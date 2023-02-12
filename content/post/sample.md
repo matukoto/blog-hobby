@@ -7,5 +7,5 @@ tags:
   - JavaScript
   - NuxtJS
 ---
-Nuxt ContentのNuxt3対応版がリリースされたので、WordPressで作っていたブログをNuxtで書き直してみました。
+## 1. sample1
 ## Nuxt Contentとは
