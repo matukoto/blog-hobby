@@ -2,19 +2,16 @@
 
 Look at the [Content documentation](https://content-v2.nuxtjs.org/) to learn more.
 
+## 参考サイト
+[Get Started · Nuxt Content](https://content.nuxtjs.org/get-started)
+
 ## Setup
 
 Make sure to install the dependencies:
 
 ```bash
-# yarn
-yarn install
-
 # npm
 npm install
-
-# pnpm
-pnpm install
 ```
 
 ## Development Server
