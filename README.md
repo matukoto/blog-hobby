@@ -1,8 +1,8 @@
-# Content v2 Minimal Starter
-
-Look at the [Content documentation](https://content-v2.nuxtjs.org/) to learn more.
+# hobby-blog
+つれづれなるままに
 
 ## 参考サイト
+[Content documentation](https://content-v2.nuxtjs.org/) to learn more.
 [Get Started · Nuxt Content](https://content.nuxtjs.org/get-started)
 
 ## Setup
