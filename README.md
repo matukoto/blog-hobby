@@ -1,39 +1,21 @@
 # hobby-blog
+
 つれづれなるままに
 
-## 参考サイト
-[Content documentation](https://content-v2.nuxtjs.org/) to learn more.
-[Get Started · Nuxt Content](https://content.nuxtjs.org/get-started)
+## TODO
 
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment) for more information.
+- [ ] 本一覧
+  - [ ] 本の☆評価
+  - [ ] 本の感想ページ
+- [ ] 漫画一覧
+  - [ ] 漫画の☆評価
+  - [ ] 漫画の一言コメント
+- [ ] 映画一覧
+  - [ ] 映画の☆評価
+  - [ ] 映画の一言コメント
+- [ ] アニメ一覧
+  - [ ] アニメの☆評価
+  - [ ] アニメの一言コメント
+- [ ] tag
+- [ ] 全文検索
+  - [ ] migemo
