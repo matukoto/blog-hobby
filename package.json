@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "package-lock.json": "^1.0.0"
+    "package-lock.json": "^1.0.0",
+    "shiki": "^1.16.2"
   }
 }
