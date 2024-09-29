@@ -5,12 +5,16 @@
 	import 'open-props/style';
 	import 'open-props/normalize';
 	import 'open-props/buttons';
+	import { GoogleAnalytics } from 'svelte-google-analytics';
+	import { PUBLIC_MEASUREMENT_ID } from '$env/static/public';
 
 	import '../app.css';
+	const measurementId = PUBLIC_MEASUREMENT_ID;
 </script>
 
 <div class="layout">
 	<Header />
+	<GoogleAnalytics trackingId="${measurementId}" />
 	<main>
 		<slot />
 	</main>

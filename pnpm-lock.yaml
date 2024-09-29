@@ -35,6 +35,9 @@ importers:
       shiki:
         specifier: ^1.16.2
         version: 1.18.0
+      svelte-google-analytics:
+        specifier: ^2.0.3
+        version: 2.0.3(svelte@4.2.19)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
@@ -1669,6 +1672,11 @@ packages:
     peerDependenciesMeta:
       svelte:
         optional: true
+
+  svelte-google-analytics@2.0.3:
+    resolution: {integrity: sha512-oBjRFcU+JlTXKQOhqAfYFI3EEKFkTkJhiKfoDwmO+Th8NYetMMu7GsRV1b7Q6S7M7RQlJqHyEfokdY/Ggxn2Cg==}
+    peerDependencies:
+      svelte: ^4.0.0
 
   svelte-hmr@0.16.0:
     resolution: {integrity: sha512-Gyc7cOS3VJzLlfj7wKS0ZnzDVdv3Pn2IuVeJPk9m2skfhcu5bq3wtIZyQGggr7/Iim5rH5cncyQft/kRLupcnA==}
@@ -3485,6 +3493,10 @@ snapshots:
       postcss: 8.4.47
       postcss-scss: 4.0.9(postcss@8.4.47)
     optionalDependencies:
+      svelte: 4.2.19
+
+  svelte-google-analytics@2.0.3(svelte@4.2.19):
+    dependencies:
       svelte: 4.2.19
 
   svelte-hmr@0.16.0(svelte@4.2.19):
