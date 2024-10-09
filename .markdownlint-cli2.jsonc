@@ -1,0 +1,11 @@
+{
+  "config": {
+    "MD009": {
+      "br_spaces": 2,
+      "list_item_empty_lines": false,
+      "strict": false
+    }
+  },
+  "customRules": ["./markdownlint-cil2-rules/add-spaces.js"],
+  "fix": true
+}
