@@ -37,11 +37,15 @@
     "@fontsource/jetbrains-mono": "^5.0.21",
     "@fontsource/manrope": "^5.0.21",
     "@sveltejs/adapter-cloudflare": "^4.7.2",
+    "@types/react": "^18.3.11",
     "lucide-svelte": "^0.438.0",
     "open-props": "^1.7.6",
+    "react": "^18.3.1",
     "rehype-slug": "^6.0.0",
     "remark-toc": "^9.0.0",
     "remark-unwrap-images": "^4.0.0",
+    "satori": "^0.11.2",
+    "sharp": "^0.33.5",
     "shiki": "^1.16.2",
     "svelte-google-analytics": "^2.0.3"
   }
