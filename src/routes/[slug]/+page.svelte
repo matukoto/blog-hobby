@@ -2,12 +2,14 @@
 	import { formatDate } from '$lib/utils';
 
 	export let data;
+	const baseUrl = process.env.BASE_URL;
 </script>
 
 <svelte:head>
 	<title>{data.meta.title}</title>
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={data.meta.title} />
+	<meta property="og:image" content={`baseUrl/ogp/${encodeURIComponent(data.meta.title)}.png`} />
 </svelte:head>
 
 <article>
@@ -29,6 +31,9 @@
 		<svelte:component this={data.content} />
 	</div>
 </article>
+
+<!-- svelte-ignore a11y-missing-content -->
+<a href={`/ogp/${encodeURIComponent(data.meta.title)}.png`} />
 
 <style>
 	article {
