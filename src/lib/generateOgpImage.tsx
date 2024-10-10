@@ -5,7 +5,7 @@ import fs from 'fs';
 
 export const generateOgpImage = async (title: string): Buffer => {
 	// フォントデータを読み込む
-	const font = fs.readFileSync('./fonts/NotoSansJP-Regular.otf');
+	const font = fs.readFileSync('./fonts/MPLUS1p-Regular.ttf');
 	// JSX から画像を生成する
 	const svg = await satori(
 		<div
