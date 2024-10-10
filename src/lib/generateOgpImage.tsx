@@ -3,7 +3,7 @@ import satori from 'satori';
 import sharp from 'sharp';
 import fs from 'fs';
 
-export const generateOgpImage = async (title: string): Buffer => {
+export const generateOgpImage = async (title: string): Promise<Buffer> => {
 	// フォントデータを読み込む
 	const font = fs.readFileSync('./fonts/MPLUS1p-Regular.ttf');
 	// JSX から画像を生成する
