@@ -19,15 +19,6 @@
 </button>
 
 <style>
-	botton {
-		padding: 0;
-		font-weight: inherit;
-		background: none;
-		border: none;
-		box-shadow: none;
-		overflow: hidden;
-	}
-
 	button > * {
 		display: flex;
 		gap: var(--size-2);

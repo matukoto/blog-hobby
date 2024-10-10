@@ -24,13 +24,6 @@
 		padding-block: var(--size-7);
 	}
 
-	.link {
-		margin-block: var(--size-7);
-	}
-	a {
-		color: inherit;
-		text-decoration: none;
-	}
 	@media (min-whidth: 768px) {
 		nav {
 			display: flex;
