@@ -1,15 +1,11 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils';
-	import { GoogleAnalytics } from 'svelte-google-analytics';
-	import { PUBLIC_MEASUREMENT_ID } from '$env/static/public';
 
-	const measurementId = PUBLIC_MEASUREMENT_ID;
 	export let data;
 </script>
 
 <svelte:head>
 	<title>{data.meta.title}</title>
-	<GoogleAnalytics trackingId="${measurementId}" />
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={data.meta.title} />
 </svelte:head>

@@ -5,16 +5,24 @@
 	import 'open-props/style';
 	import 'open-props/normalize';
 	import 'open-props/buttons';
-	import { GoogleAnalytics } from 'svelte-google-analytics';
-	import { PUBLIC_MEASUREMENT_ID } from '$env/static/public';
 
 	import '../app.css';
-	const measurementId = PUBLIC_MEASUREMENT_ID;
 </script>
+
+<svelte:head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HN02GJ363R"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-HN02GJ363R');
+	</script>
+</svelte:head>
 
 <div class="layout">
 	<Header />
-	<GoogleAnalytics trackingId="${measurementId}" />
 	<main>
 		<slot />
 	</main>

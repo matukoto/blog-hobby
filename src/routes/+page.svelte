@@ -2,16 +2,11 @@
 	import { formatDate } from '$lib/utils';
 	import * as config from '$lib/config';
 
-	import { GoogleAnalytics } from 'svelte-google-analytics';
-	import { PUBLIC_MEASUREMENT_ID } from '$env/static/public';
 	export let data;
-
-	const measurementId = PUBLIC_MEASUREMENT_ID;
 </script>
 
 <svelte:head>
 	<title>{config.title}</title>
-	<GoogleAnalytics trackingId="${measurementId}" />
 </svelte:head>
 
 <!-- Post -->
