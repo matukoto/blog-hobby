@@ -7,7 +7,7 @@ export const GET: RequestHandler = async ({ params }) => {
 	const { title } = params;
 	const png = await generateOgpImage(title);
 
-	return new Resposnse(png, {
+	return new Response(png, {
 		headers: {
 			'Content-Type': 'image/png'
 		}
