@@ -4,12 +4,12 @@ import type { Post } from '$lib/types';
 async function getPosts() {
 	let posts: Post[] = [];
 
-	const paths = import.meta.glob('/src/posts/*md', { eager: true });
+	const paths = import.meta.glob('/src/posts/article/*md', { eager: true });
 
 	for (const path in paths) {
 		const file = paths[path];
 		// 拡張子はいらない
-		const slug = path.split('/').at(-1)?.replace('.md', '');
+		const slug = 'article/' + path.split('/').at(-1)?.replace('.md', '');
 
 		// ファイルがオブジェクトで、メタデータとスラッグを含んでいるかチェックする
 		if (file && typeof file === 'object' && 'metadata' in file && slug) {
