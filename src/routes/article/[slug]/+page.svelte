@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils';
+	import '../../../app.css';
 
 	export let data;
 </script>
