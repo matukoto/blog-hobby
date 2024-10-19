@@ -31,7 +31,8 @@
 	}
 
 	.post {
-		max-inline-size: var(--size-content-3);
+		max-inline-size: var(--content-max-width);
+		margin-inline: var(--content-margin);
 	}
 
 	.post:not(:last-child) {

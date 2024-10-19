@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils';
+	import '../../../app.css';
 
 	export let data;
 </script>
@@ -32,8 +33,9 @@
 
 <style>
 	article {
-		max-inline-size: var(--size-content-3);
-		margin-inline: auto;
+		max-inline-size: var(--content-max-width);
+		padding-inline: var(--content-margin);
+		box-sizing: border-box;
 	}
 
 	h1 {

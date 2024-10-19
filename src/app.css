@@ -41,6 +41,8 @@ html {
 	--surface-4: var(--surface-4-dark);
 	--background: var(--background-dark);
 	--border: var(--border-dark);
+	--content-max-width: 90%;
+	--content-margin: 1rem;
 }
 
 @media (prefers-color-scheme: light) {
@@ -56,6 +58,14 @@ html {
 		--surface-4: var(--surface-4-light);
 		--background: var(--background-light);
 		--border: var(--border-light);
+	}
+}
+
+/* 画面幅が 768px 以上のページで適用 */
+@media screen and (min-width: 768px) {
+	:root {
+		--content-max-width: 500px;
+		--content-margin: auto;
 	}
 }
 
