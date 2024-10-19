@@ -32,8 +32,8 @@
 
 <style>
 	article {
-		max-inline-size: var(--size-content-3);
-		margin-inline: auto;
+		max-inline-size: var(--content-max-width);
+		margin-inline: var(--content-margin);
 	}
 
 	h1 {
