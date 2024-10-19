@@ -41,7 +41,7 @@ html {
 	--surface-4: var(--surface-4-dark);
 	--background: var(--background-dark);
 	--border: var(--border-dark);
-	--content-max-width: 100%;
+	--content-max-width: 90%;
 	--content-margin: 1rem;
 }
 
