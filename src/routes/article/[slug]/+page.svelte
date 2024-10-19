@@ -34,7 +34,8 @@
 <style>
 	article {
 		max-inline-size: var(--content-max-width);
-		margin-inline: var(--content-margin);
+		padding-inline: var(--content-margin);
+		box-sizing: border-box;
 	}
 
 	h1 {
