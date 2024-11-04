@@ -29,7 +29,8 @@
         "noSvgWithoutTitle": "off"
       },
       "correctness": {
-        "noUnusedImports": "warn"
+        "noUnusedImports": "warn",
+        "noUnusedVariables": "warn"
       }
     }
   }
