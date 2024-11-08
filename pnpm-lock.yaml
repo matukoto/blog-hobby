@@ -25,7 +25,7 @@ importers:
         version: 0.438.0(svelte@5.1.12)
       open-props:
         specifier: ^1.7.6
-        version: 1.7.6
+        version: 1.7.7
       rehype-slug:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1542,8 +1542,8 @@ packages:
   oniguruma-to-js@0.4.3:
     resolution: {integrity: sha512-X0jWUcAlxORhOqqBREgPMgnshB7ZGYszBNspP+tS9hPD3l13CdaXcHbgImoHUHlrvGx/7AvFEkTRhAGYh+jzjQ==}
 
-  open-props@1.7.6:
-    resolution: {integrity: sha512-fE3E22x8lCf6gJrPO3L54NKrPaqQGxeKoXLz4JIXrhALD3Ua1kkE2kMw8HmlTKYF9BSLLMfoVfsT3UC1PJcaww==}
+  open-props@1.7.7:
+    resolution: {integrity: sha512-yn4B4D2dG7HGiZQSSdS03+jnsKlVIfdcWk6XyvSeTHcu2oqRbIEnJ9BVT7Qfq5N9p6z7tEIHTuRZoxckAemfqA==}
 
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
@@ -3595,7 +3595,7 @@ snapshots:
     dependencies:
       regex: 4.3.2
 
-  open-props@1.7.6: {}
+  open-props@1.7.7: {}
 
   optionator@0.9.4:
     dependencies:
