@@ -34,7 +34,7 @@ importers:
         version: 9.0.0
       remark-unwrap-images:
         specifier: ^4.0.0
-        version: 4.0.0
+        version: 4.0.1
       shiki:
         specifier: ^1.16.2
         version: 1.18.0
@@ -1731,8 +1731,8 @@ packages:
   remark-toc@9.0.0:
     resolution: {integrity: sha512-KJ9txbo33GjDAV1baHFze7ij4G8c7SGYoY8Kzsm2gzFpbhL/bSoVpMMzGa3vrNDSWASNd/3ppAqL7cP2zD6JIA==}
 
-  remark-unwrap-images@4.0.0:
-    resolution: {integrity: sha512-Ilr5ZhrhZSvnjemy1rRuxlTC0I/39YyWDRiE9d5vF079APcwdYYzwcZL8RGehlCtQCiik8hWMyo4Xhz2Fq0JhA==}
+  remark-unwrap-images@4.0.1:
+    resolution: {integrity: sha512-J9HibCHx0/X7ovgqaFe0otizCHpbb1s6Jh3IeiD5ibQm2Oz/OhCDXSKMEW5T54iBw5CxuqRL6BrYp+jLLdqBOw==}
 
   require-relative@0.8.7:
     resolution: {integrity: sha512-AKGr4qvHiryxRb19m3PsLRGuKVAbJLUD7E6eOaHkfKhwc+vSgVOCY5xNvm9EkolBKTOf0GrQAZKLimOCz81Khg==}
@@ -3747,7 +3747,7 @@ snapshots:
       '@types/mdast': 4.0.4
       mdast-util-toc: 7.1.0
 
-  remark-unwrap-images@4.0.0:
+  remark-unwrap-images@4.0.1:
     dependencies:
       '@types/mdast': 4.0.4
       hast-util-whitespace: 3.0.0
