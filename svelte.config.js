@@ -3,7 +3,7 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 import { mdsvex, escapeSvelte } from 'mdsvex';
 import { getSingletonHighlighter } from 'shiki';
-import remarkUnwrapImages from 'remark-unwrap-images';
+import rehypeUnwrapImages from 'rehype-unwrap-images';
 import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
 
@@ -24,7 +24,7 @@ const mdsvexOptions = {
 			return `{@html \`${html}\`}`;
 		}
 	},
-	remarkPlugins: [remarkUnwrapImages, [remarkToc, { tight: true }]],
+	remarkPlugins: [rehypeUnwrapImages, [remarkToc, { tight: true }]],
 	rehypePlugins: [rehypeSlug]
 };
 
