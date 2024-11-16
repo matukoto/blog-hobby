@@ -4,7 +4,7 @@
     "config:recommended"
   ],
   "timezone": "Asia/Tokyo",
-  "automerge": true,
+  "automerge": false,
   "dependencyDashboard": false,
   "platformAutomerge": true,
   "packageRules": [
