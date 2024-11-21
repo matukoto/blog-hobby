@@ -1,32 +1,32 @@
-<script lang="ts">
-	import Footer from './footer.svelte';
-	import Header from './header.svelte';
+<script lang='ts'>
+  import Footer from './footer.svelte'
+  import Header from './header.svelte'
 
-	import 'open-props/style';
-	import 'open-props/normalize';
-	import 'open-props/buttons';
+  import 'open-props/style'
+  import 'open-props/normalize'
+  import 'open-props/buttons'
 
-	import '../app.css';
-</script>
+  import '../app.css'
+  </script>
 
-<svelte:head>
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HN02GJ363R"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-		gtag('config', 'G-HN02GJ363R');
-	</script>
-</svelte:head>
+    <svelte:head>
+      <script async src='https://www.googletagmanager.com/gtag/js?id=G-HN02GJ363R'></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+        dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-HN02GJ363R');
+      </script>
+    </svelte:head>
 
-<div class="layout">
-	<Header />
-	<main>
-		<slot />
-	</main>
-	<Footer />
+<div class='layout'>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
 </div>
 
 <style>
