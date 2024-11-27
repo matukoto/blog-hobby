@@ -1,41 +1,31 @@
-import adapterAuto from '@sveltejs/adapter-auto'
-import adapterNode from '@sveltejs/adapter-node'
-import adapterStatic from '@sveltejs/adapter-static'
+// import adapterAuto from '@sveltejs/adapter-auto'
+// import adapterNode from '@sveltejs/adapter-node'
+// import adapterStatic from '@sveltejs/adapter-static'
+import adapter from '@sveltejs/adapter-cloudflare'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import { mdsvex } from 'mdsvex'
 
 import mdsvexConfig from './mdsvex.config.js'
 
-const adapter = {
-  auto: adapterAuto(),
-  node: adapterNode(),
-  static: adapterStatic({
-    assets: 'build',
-    fallback: undefined,
-    pages: 'build',
-  }),
-}
-
 /** @type {import("@sveltejs/kit").Config} */
 export default {
   extensions: ['.svelte', ...(mdsvexConfig.extensions ?? [])],
   kit: {
-    adapter:
-      process.env.ADAPTER
-        // @ts-expect-error adapter types
-        ? adapter[process.env.ADAPTER.toLowerCase()]
-        : Object.keys(process.env).some(key => ['NETLIFY', 'VERCEL'].includes(key))
-          ? adapter.auto
-          : adapter.static,
-    csp: {
-      directives: {
-        'style-src': ['self', 'unsafe-inline', 'https://giscus.app'],
+    // adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
+    // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
+    // See https://kit.svelte.dev/docs/adapters for more information about adapters.
+    adapter: adapter({
+      platformPloxy: {
+        configPath: './wrangler.toml',
+        environment: undefined,
+        experimentalJsonConfig: false,
+        persist: false,
       },
-      mode: 'auto',
-    },
-    prerender: {
-      handleMissingId: 'warn',
-    },
+      routes: {
+        exclude: ['<all>'],
+        include: ['/*'],
+      },
+    }),
   },
   preprocess: [mdsvex(mdsvexConfig), vitePreprocess()],
 }
