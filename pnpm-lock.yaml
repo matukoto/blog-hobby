@@ -120,8 +120,8 @@ importers:
         specifier: ^5.1.3
         version: 5.1.4(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.4.49))(postcss@8.4.49)(svelte@4.2.19)(typescript@5.7.2)
       sveltekit-embed:
-        specifier: ^0.0.14
-        version: 0.0.14(svelte@4.2.19)
+        specifier: ^0.0.18
+        version: 0.0.18(svelte@4.2.19)
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.15
@@ -4458,10 +4458,10 @@ packages:
     resolution: {integrity: sha512-IY1rnGr6izd10B0A8LqsBfmlT5OILVuZ7XsI0vdGPEvuonFV7NYEUK4dAkm9Zg2q0Um92kYjTpS1CAP3Nh/KWw==}
     engines: {node: '>=16'}
 
-  sveltekit-embed@0.0.14:
-    resolution: {integrity: sha512-GhrvCcosSO36AEpbv07n134TQ9SyUY6M0O38/i1ZZ7TdFEKlwuA7Jmf5uyKu2lB0gJ7mTHgBsO5SNrYfLg1dEA==}
+  sveltekit-embed@0.0.18:
+    resolution: {integrity: sha512-/uj5pjQPH22G99x+adgD2EydXjkkdQNg84aByPmxeZ7HE3cjk5IXUYF8CJqV5IQWBGVKSNta4k8KOqjtlig8/g==}
     peerDependencies:
-      svelte: ^3.54.0 || ^4.0.0
+      svelte: ^4.0.0 || ^5.0.0
 
   synckit@0.6.2:
     resolution: {integrity: sha512-Vhf+bUa//YSTYKseDiiEuQmhGCoIF3CVBhunm3r/DQnYiGT4JssmnKQc44BIyOZRK2pKjXXAgbhfmbeoC9CJpA==}
@@ -9778,7 +9778,7 @@ snapshots:
       magic-string: 0.30.14
       periscopic: 3.1.0
 
-  sveltekit-embed@0.0.14(svelte@4.2.19):
+  sveltekit-embed@0.0.18(svelte@4.2.19):
     dependencies:
       svelte: 4.2.19
 
