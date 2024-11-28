@@ -8,13 +8,13 @@ export const site: SiteConfig = {
     status: "🔔",
   },
   description: "Powered by SvelteKit/Urara",
-  domain: import.meta.env.URARA_SITE_DOMAIN ?? "urara-demo.netlify.app",
+  domain: import.meta.env.URARA_SITE_DOMAIN ?? "matukoto.dev",
   lang: "ja-JP",
   protocol:
     (import.meta.env.URARA_SITE_PROTOCOL ?? import.meta.env.DEV)
       ? "http://"
       : "https://",
-  subtitle: "Sweet & Powerful SvelteKit Blog Template",
+  subtitle: "matukoto blog",
   themeColor: "#3D4451",
   title: "Top Page",
 };
