@@ -1,15 +1,18 @@
 ---
-title: ジョーカー:フォリアドゥ
+title: 'ジョーカー:フォリアドゥ'
+image: '/assets/movie.png'
 created: 2024-11-10
-tags: ['movie', 'joker']
+updated: 2024-11-12
+published: 2024-11-11
+tags:
+  - 'movie'
+# flags: // custom flags
+#   - unlisted // hide article on the home page
 ---
 
 ## 感想  
 
-ネタバレありです。  
-
 見て良かった。不評だったので見ない方が良いかと思ったが挑戦して正解だった。  
-
 ジョーカーの映画は1が傑作でありきれいな終わり方だったので、続編を作ったところで蛇足にしかならないだろうと思っていた。しかしいフォリアドゥを見てその考えは間違っていたと気付かされた。  
 
 ## 展開  
