@@ -2,7 +2,7 @@ import type { SiteConfig } from "$lib/types/site";
 
 export const site: SiteConfig = {
   author: {
-    avatar: "/favicon.svg",
+    avatar: "/assets/favicon.svg",
     bio: "茫洋の海",
     name: "matukoto",
     status: "🔔",
