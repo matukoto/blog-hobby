@@ -1,51 +1,32 @@
-<script lang='ts'>
-  import Footer from './footer.svelte'
-  import Header from './header.svelte'
+<script lang="ts">
+  import { browser, dev } from "$app/environment";
+  import Head from "$lib/components/head_static.svelte";
+  import Header from "$lib/components/header.svelte";
+  import Transition from "$lib/components/transition.svelte";
+  import { posts, tags } from "$lib/stores/posts";
+  import { genTags } from "$lib/utils/posts";
+  import { onMount } from "svelte";
+  import "uno.css";
 
-  import 'open-props/style'
-  import 'open-props/normalize'
-  import 'open-props/buttons'
+  import type { LayoutData } from "./$types";
 
-  import '../app.css'
-  </script>
+  import "../app.pcss";
 
-    <svelte:head>
-      <script async src='https://www.googletagmanager.com/gtag/js?id=G-HN02GJ363R'></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-        dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-HN02GJ363R');
-      </script>
-    </svelte:head>
+  export let data: LayoutData;
 
-<div class='layout'>
-  <Header />
-  <main>
-    <slot />
-  </main>
-  <Footer />
-</div>
+  let { path, res } = data;
 
-<style>
-	.layout {
-		height: 100%;
-		max-inline-size: 1440px;
-		margin-inline: var(--content-margin);
-		display: grid;
-		grid-template-rows: auto 1fr auto;
-		padding-inline: var(--size-7);
-	}
+  $: if (data) path = data.path;
 
-	main {
-		padding-block: var(--size-9);
-	}
+  posts.set(res);
+  tags.set(genTags(res));
+  onMount(() => !dev && browser);
+</script>
 
-	@media (min-width: 1440px) {
-		.layout {
-			padding-inline: 0;
-		}
-	}
-</style>
+<Head />
+
+<Header {path} />
+
+<Transition {path}>
+  <slot />
+</Transition>
