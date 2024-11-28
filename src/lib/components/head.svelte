@@ -35,6 +35,15 @@
       {@html tag}
     {/each}
   {/if}
+  <script async src='https://www.googletagmanager.com/gtag/js?id=G-HN02GJ363R'></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+      dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-HN02GJ363R');
+    </script>
 </svelte:head>
 
 <OpenGraph {page} {post} />
