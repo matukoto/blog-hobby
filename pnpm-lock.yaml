@@ -84,8 +84,8 @@ importers:
         specifier: ^8.4.35
         version: 8.4.49
       postcss-lightningcss:
-        specifier: ^0.7.0
-        version: 0.7.0(postcss@8.4.49)
+        specifier: ^0.9.0
+        version: 0.9.0(postcss@8.4.49)
       rehype-autolink-headings:
         specifier: ^6.1.1
         version: 6.1.1
@@ -3878,8 +3878,8 @@ packages:
     peerDependencies:
       postcss: ^8.4.21
 
-  postcss-lightningcss@0.7.0:
-    resolution: {integrity: sha512-9AlnYlHJtt+xSNBBegsspzQZazYagsLDacQ2l+fvwYXO80bYeVSc6QtIUbcUbaMnFRf7Nrn+cnwk1gLvLsmHxQ==}
+  postcss-lightningcss@0.9.0:
+    resolution: {integrity: sha512-Qfmei+Pq31AJUkqcF53s08VWhMIbCYvgsuFyEk0urnm6O5kA4C1/utnSNEKPTAzXx4Fm/IwK/1zFDRUjDGn+KQ==}
     engines: {node: ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
     peerDependencies:
       postcss: ^8.0.0
@@ -9083,7 +9083,7 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.49
 
-  postcss-lightningcss@0.7.0(postcss@8.4.49):
+  postcss-lightningcss@0.9.0(postcss@8.4.49):
     dependencies:
       browserslist: 4.24.2
       lightningcss: 1.28.2
