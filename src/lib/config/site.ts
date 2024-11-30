@@ -16,6 +16,10 @@ export const site: SiteConfig = {
         icon: "i-simple-icons-zenn",
         link: "https://zenn.dev/kesu",
       },
+      {
+        icon: "i-simple-icons-bluesky",
+        link: "https://bsky.app/profile/matukoto.bsky.social",
+      },
     ],
   },
   description: "Powered by SvelteKit/Urara",
