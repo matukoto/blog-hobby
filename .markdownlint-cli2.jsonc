@@ -6,6 +6,6 @@
       "strict": false
     }
   },
-  // "customRules": ["./.markdownlint-cil2-rules/add-spaces.js"],
+   "customRules": ["./.markdownlint-cil2-rules/add-spaces.js"],
   "fix": true
 }
