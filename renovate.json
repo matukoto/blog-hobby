@@ -16,7 +16,7 @@
         "svelte-check"
       ],
       "matchPackagePrefixes": [
-        "sveltejs"
+        "@sveltejs"
       ]
     },
     {
