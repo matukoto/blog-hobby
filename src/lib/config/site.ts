@@ -12,6 +12,10 @@ export const site: SiteConfig = {
         icon: "i-simple-icons-github",
         link: "https://github.com/matukoto",
       },
+      {
+        icon: "i-simple-icons-zenn",
+        link: "https://zenn.dev/kesu",
+      },
     ],
   },
   description: "Powered by SvelteKit/Urara",
