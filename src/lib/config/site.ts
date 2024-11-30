@@ -6,6 +6,13 @@ export const site: SiteConfig = {
     bio: "茫洋の海",
     name: "matukoto",
     status: "🔔",
+    metadata: [
+      {
+        // text: 'matukoto',
+        icon: "i-simple-icons-github",
+        link: "https://github.com/matukoto",
+      },
+    ],
   },
   description: "Powered by SvelteKit/Urara",
   domain: import.meta.env.URARA_SITE_DOMAIN ?? "matukoto.dev",
