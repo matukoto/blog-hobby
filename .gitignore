@@ -1,4 +1,8 @@
 node_modules
+static*
+src/routes/2024*
+src/routes/2025*
+urara.js
 
 # Output
 .output
