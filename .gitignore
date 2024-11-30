@@ -1,7 +1,8 @@
 node_modules
-static*
-src/routes/2024*
-src/routes/2025*
+static
+src/static
+src/routes/**/+page.svelte.md
+src/routes/**/+page.md
 urara.js
 
 # Output
