@@ -7,6 +7,7 @@
   "automerge": false,
   "dependencyDashboard": false,
   "platformAutomerge": true,
+  "prHourlyLimit": 2,
   "packageRules": [
     {
       "groupName": "svelte",
