@@ -136,8 +136,8 @@ importers:
         specifier: ^5.3.3
         version: 5.7.2
       unist-util-visit:
-        specifier: ^4.1.2
-        version: 4.1.2
+        specifier: ^5.0.0
+        version: 5.0.0
       unocss:
         specifier: ^0.58.5
         version: 0.58.9(postcss@8.4.49)(rollup@2.79.2)(vite@6.0.1(@types/node@20.17.9)(jiti@1.21.6)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.6.1))
