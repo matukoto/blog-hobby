@@ -1,0 +1,28 @@
+{
+  "plugins": {
+    "@textlint/markdown": true,
+    "@textlint/text": true
+  },
+  "filters": {},
+  "rules": {
+    "preset-ja-spacing": {
+      "ja-nakaguro-or-halfwidth-space-between-katakana": true,
+      "ja-no-space-around-parentheses": false,
+      "ja-no-space-between-full-width": true,
+      "ja-space-between-half-and-full-width": {
+        "space": "always"
+      },
+      "ja-space-after-exclamation": true,
+      "ja-space-after-question": true,
+      "ja-space-around-code": {
+        "before": true,
+        "after": true
+      },
+      "ja-space-around-link": {
+        "before": true,
+        "after": true
+      }
+    },
+    "preset-ja-technical-writing": true
+  }
+}
