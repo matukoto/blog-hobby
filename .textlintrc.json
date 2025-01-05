@@ -23,6 +23,7 @@
         "after": true
       }
     },
-    "preset-ja-technical-writing": true
+    "preset-ja-technical-writing": true,
+    "severity": "warning"
   }
 }
