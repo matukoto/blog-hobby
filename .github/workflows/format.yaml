@@ -12,6 +12,6 @@ jobs:
       - name: Install pnpm dependencies
         run: pnpm install
       - name: Run textlint
-        run: npx textlint --format ${FILES}
+        run: npx textlint --fix ${FILES}
         env:
           FILES: urara/**/*.md
