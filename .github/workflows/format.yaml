@@ -7,7 +7,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
         with:
-          version: latest
           install: true
           log_level: 'info'
       - name: Install pnpm dependencies
