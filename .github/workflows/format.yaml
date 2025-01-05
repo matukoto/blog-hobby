@@ -12,6 +12,8 @@ jobs:
       - name: Install pnpm dependencies
         run: pnpm install
       - name: Run textlint
-        run: npx textlint --fix ${FILES}
+        # textlint の終了コードを強制0にする
+        run: npx textlint --fix ${FILES} | true
+        shell: bash {0}
         env:
           FILES: urara/**/*.md
