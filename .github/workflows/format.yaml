@@ -3,6 +3,8 @@ on: [pull_request, workflow_dispatch]
 jobs:
   textlint:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
