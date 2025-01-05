@@ -21,9 +21,11 @@
       "ja-space-around-link": {
         "before": true,
         "after": true
-      }
+      },
+      "severity": "warning"
     },
-    "preset-ja-technical-writing": true,
-    "severity": "warning"
+    "preset-ja-technical-writing": {
+      "severity": "warning"
+    }
   }
 }
