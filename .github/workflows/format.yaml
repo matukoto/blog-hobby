@@ -20,3 +20,7 @@ jobs:
         shell: bash {0}
         env:
           FILES: urara/**/*.md
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'style(textlint): auto fix'
