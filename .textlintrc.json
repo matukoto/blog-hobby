@@ -25,7 +25,11 @@
       "severity": "warning"
     },
     "preset-ja-technical-writing": {
-      "severity": "warning"
+      "no-exclamation-question-mark": false,
+      "ja-no-weak-phrase": false,
+      "max-kanji-continuous-len": {
+        "max": 8
+      }
     }
   }
 }
