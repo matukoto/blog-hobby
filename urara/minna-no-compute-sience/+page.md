@@ -1,5 +1,5 @@
 ---
-title: '感想「みんなのコンピュータサイエンス」'
+title: '読書記録「みんなのコンピュータサイエンス」'
 image: '/assets/techbook.png'
 created: 2024-12-26
 updated: 2024-12-26

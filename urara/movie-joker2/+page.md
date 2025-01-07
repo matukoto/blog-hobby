@@ -1,5 +1,5 @@
 ---
-title: 'ジョーカー:フォリアドゥ'
+title: '映画鑑賞記録「ジョーカー:フォリアドゥ」'
 image: '/assets/movie.png'
 created: 2024-11-10
 updated: 2024-11-12
