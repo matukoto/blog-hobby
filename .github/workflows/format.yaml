@@ -11,7 +11,7 @@ jobs:
         uses: jdx/mise-action@v2
         with:
           install: true
-          log_level: 'info'
+          log_level: 'debug'
       - name: Install pnpm dependencies
         run: pnpm install
       - name: Run textlint
