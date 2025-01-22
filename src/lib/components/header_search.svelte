@@ -15,7 +15,7 @@
     name={headerConfig?.search?.provider === 'duckduckgo' ? 'sites' : 'sitesearch'}
     type='hidden'
     value={site.protocol + site.domain} />
-  <button class='btn btn-square btn-ghost ml-2' type='submit'>
+  <button class='btn btn-square btn-ghost ml-2' type='submit' aria-label='submit search'>
     <span class='i-heroicons-outline-search'></span>
   </button>
 </form>

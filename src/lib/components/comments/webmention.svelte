@@ -88,6 +88,7 @@
     </p>
     <button
       class='btn btn-ghost btn-sm float-right'
+      aria-label='toggle sort direction'
       onclick={() => {
         sortDirUp = !sortDirUp
         reset()
@@ -177,7 +178,7 @@
       <div class='divider mt-0 -mb-2'>END</div>
     {/if}
   {:else}
-    <button class='btn btn-lg btn-block flex btn-ghost loading' id='webmention-loading'></button>
+    <button class='btn btn-lg btn-block flex btn-ghost loading' id='webmention-loading' aria-label='loading webmentions'></button>
   {/if}
   {#if config?.form === true}
     <form action='https://webmention.io/{config.username}/webmention' id='webmention-form' method='post'>

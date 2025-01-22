@@ -41,6 +41,6 @@
 </script>
 
 <div id='giscus-container'>
-  <button class='btn btn-lg flex mx-auto my-4 btn-ghost btn-circle loading' id='giscus-loading'></button>
+  <button class='btn btn-lg flex mx-auto my-4 btn-ghost btn-circle loading' id='giscus-loading' aria-label='loading comments'></button>
   <div class='giscus' id='giscus'></div>
 </div>

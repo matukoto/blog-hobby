@@ -15,12 +15,12 @@
   }
 
   let { path }: Props = $props();
-  let title: string = $state()
-  let currentTheme: string = $state()
-  let currentThemeColor: string = $state()
+  let title: string = $state('')
+  let currentTheme: string = $state('')
+  let currentThemeColor: string = $state('')
   let search: boolean = $state(false)
   let pin: boolean = $state(true)
-  let percent: number = $state()
+  let percent: number = $state(0)
   let [scrollY, lastY] = $state([0, 0])
 
   storedTitle.subscribe(storedTitle => (title = storedTitle as string))
@@ -85,9 +85,9 @@
         <div class='dropdown dropdown-end' id='change-theme'>
           <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
           <!-- reference: https://github.com/saadeghi/daisyui/issues/1285 -->
-          <div class='btn btn-square btn-ghost' tabindex='0'>
+          <button class='btn btn-square btn-ghost' tabindex='0' aria-label='change theme'>
             <span class='i-heroicons-outline-color-swatch'></span>
-          </div>
+          </button>
           <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
           <!-- reference: https://github.com/saadeghi/daisyui/issues/1285 -->
           <ul

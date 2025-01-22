@@ -34,6 +34,6 @@
 </script>
 
 <div id='utterances-container'>
-  <button class='btn btn-lg flex mx-auto my-4 btn-ghost btn-circle loading' id='utterances-loading'></button>
+  <button class='btn btn-lg flex mx-auto my-4 btn-ghost btn-circle loading' id='utterances-loading' aria-label='loading comments'></button>
   <div class='utterances' id='utterances'></div>
 </div>

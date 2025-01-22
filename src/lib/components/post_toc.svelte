@@ -1,8 +1,5 @@
-<script module lang='ts'>
-  export const prerender = true
-</script>
-
 <script lang='ts'>
+  export const prerender = true
   import { run } from 'svelte/legacy';
 
   import { onDestroy, onMount } from 'svelte'
@@ -12,7 +9,9 @@
   }
 
   let { toc }: Props = $props();
-
+  
+  let headingsObserver: IntersectionObserver;
+  let articleObserver: IntersectionObserver;
   let intersecting: string[] = $state([])
   let intersectingArticle: boolean = $state(true)
   let bordered: string[] = $state([])
@@ -75,6 +74,7 @@
         <li class='flex flex-col' id={`toc-item-${slug}`}>
           <!-- svelte-ignore a11y_click_events_have_key_events -->
           <span
+            role="button"
             class="cursor-pointer border-l-4 border-transparent transition-all hover:border-primary hover:bg-base-content hover:bg-opacity-10 active:bg-primary active:text-primary-content active:font-bold pr-4{depth
             <= 2
               ? 'py-3'
