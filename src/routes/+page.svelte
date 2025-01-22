@@ -1,6 +1,4 @@
 <script lang='ts'>
-  import { run } from 'svelte/legacy';
-
   import { browser } from '$app/environment'
   import { goto } from '$app/navigation'
   import { page } from '$app/stores'
@@ -20,20 +18,20 @@
 
   storedTitle.set('')
 
-  run(() => {
+  $effect(() => {
     storedPosts.subscribe(storedPosts => (allPosts = storedPosts.filter(post => !post.flags?.includes('unlisted'))))
   });
 
-  run(() => {
+  $effect(() => {
     storedTags.subscribe(storedTags => (allTags = storedTags as string[]))
   });
 
-  run(() => {
+  $effect(() => {
     if (posts.length > 1)
       years = [new Date(posts[0].published ?? posts[0].created).getFullYear()]
   });
 
-  run(() => {
+  $effect(() => {
     if (tags) {
       posts = !tags ? allPosts : allPosts.filter(post => tags.every(tag => post.tags?.includes(tag)))
       if (browser && window.location.pathname === '/')

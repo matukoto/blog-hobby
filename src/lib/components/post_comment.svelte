@@ -1,6 +1,4 @@
 <script lang='ts'>
-  import { run } from 'svelte/legacy';
-
   import type { CommentConfig } from '$lib/types/post'
 
   import { toSnake } from '$lib/utils/case'
@@ -16,7 +14,7 @@
   let currentConfig: undefined | unknown = $state()
   currentComment = localStorage.getItem('comment') ?? toSnake(config.use[0])
   // @ts-ignore No index signature with a parameter of type 'string' was found on type 'CommentConfig'. ts(7053)
-  run(() => {
+  $effect(() => {
     if (currentComment)
       currentConfig = config[currentComment]
   });

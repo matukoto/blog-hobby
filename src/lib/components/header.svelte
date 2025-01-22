@@ -1,6 +1,4 @@
 <script lang='ts'>
-  import { run } from 'svelte/legacy';
-
   import { browser, dev } from '$app/environment'
   import Nav from '$lib/components/header_nav.svelte'
   import Search from '$lib/components/header_search.svelte'
@@ -13,8 +11,15 @@
   interface Props {
     path: string;
   }
-
+  
+  interface NavItem {
+    children?: { link: string; text: string }[];
+    link?: string;
+    text: string;
+  }
+  
   let { path }: Props = $props();
+  let navItems: NavItem[] = headerConfig.nav ?? [];
   let title: string = $state('')
   let currentTheme: string = $state('')
   let currentThemeColor: string = $state('')
@@ -25,7 +30,7 @@
 
   storedTitle.subscribe(storedTitle => (title = storedTitle as string))
 
-  run(() => {
+  $effect(() => {
     if (browser && currentTheme) {
       document.documentElement.setAttribute('data-theme', currentTheme)
       currentThemeColor = hslToHex(
@@ -39,7 +44,7 @@
     }
   });
 
-  run(() => {
+  $effect(() => {
     if (scrollY) {
       pin = !!(lastY - scrollY > 0 || scrollY === 0)
       lastY = scrollY
@@ -72,7 +77,7 @@
     <div class='navbar' in:fly={{ delay: 300, duration: 300, x: -50 }} out:fly={{ duration: 300, x: -50 }}>
       <div class='navbar-start'>
         {#if headerConfig.nav}
-          <Nav nav={headerConfig.nav} {path} {pin} {scrollY} {title} />
+          <Nav nav={navItems} {path} {pin} {scrollY} {title} />
         {/if}
         <a class='btn btn-ghost normal-case text-lg' href='/'>{site.title}</a>
       </div>
@@ -121,7 +126,7 @@
   {:else}
     <div class='navbar' in:fly={{ delay: 300, duration: 300, x: 50 }} out:fly={{ duration: 300, x: 50 }}>
       <Search />
-      <button class='btn btn-square btn-ghost' onclick={() => (search = !search)} tabindex='0'>
+      <button class='btn btn-square btn-ghost' onclick={() => (search = !search)} tabindex='0' aria-label='close search'>
         <span class='i-heroicons-outline-x'></span>
       </button>
     </div>

@@ -1,19 +1,20 @@
 <script lang='ts'>
-  interface Props {
-    nav: { children?: { link: string, text: string }[], link?: string, text: string }[];
+  type NavChild = { link: string; text: string };
+  type NavItem = { children?: NavChild[]; link?: string; text: string };
+
+  let props = $props<{
+    nav: NavItem[];
     path: string;
     title: string;
     scrollY: number;
     pin: boolean;
-  }
+  }>();
 
-  let {
-    nav,
-    path,
-    title,
-    scrollY,
-    pin
-  }: Props = $props();
+  let { nav, path, title, scrollY, pin } = props;
+
+  const hasLink = (item: { link?: string }): item is { link: string } => {
+    return typeof item.link === 'string';
+  };
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -34,7 +35,7 @@
         </li>
       {:else if children}
         <li tabindex='0'>
-          <span class='justify-between gap-1 max-w-[13rem]' class:font-bold={children.some(({ link }) => link === path)}>
+          <span class='justify-between gap-1 max-w-[13rem]' class:font-bold={children.some(({ link }: { link: string }) => link === path)}>
             {text}
             <span class='i-heroicons-solid-chevron-right mr-2'></span>
           </span>

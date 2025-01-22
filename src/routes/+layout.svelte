@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
-
   import { browser, dev } from "$app/environment";
   import Head from "$lib/components/head_static.svelte";
   import Header from "$lib/components/header.svelte";
@@ -23,7 +21,7 @@
 
   let { path, res } = $state(data);
 
-  run(() => {
+  $effect(() => {
     if (data) path = data.path;
   });
 
@@ -37,5 +35,7 @@
 <Header {path} />
 
 <Transition {path}>
-  {@render children?.()}
+  {#if children}
+    {children()}
+  {/if}
 </Transition>
