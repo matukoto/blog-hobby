@@ -4,8 +4,12 @@
   import { site } from '$lib/config/site'
   import { onMount } from 'svelte'
 
-  export let config: WebmentionConfig
-  export let post: Urara.Post
+  interface Props {
+    config: WebmentionConfig;
+    post: Urara.Post;
+  }
+
+  let { config, post }: Props = $props();
 
   interface WebmentionFeed {
     children: WebmentionEntry[]
@@ -34,13 +38,13 @@
     'wm-target': string
   }
 
-  let [page, loaded, end, mentions, sortDirUp]: [number, boolean, boolean, WebmentionEntry[], boolean] = [
+  let [page, loaded, end, mentions, sortDirUp]: [number, boolean, boolean, WebmentionEntry[], boolean] = $state([
     0,
     false,
     false,
     [],
     config?.sortDir === 'up',
-  ]
+  ])
 
   const load = async () =>
     await fetch(
@@ -84,14 +88,14 @@
     </p>
     <button
       class='btn btn-ghost btn-sm float-right'
-      on:click={() => {
+      onclick={() => {
         sortDirUp = !sortDirUp
         reset()
       }}>
       {#if sortDirUp === true}
-        <span class='i-heroicons-outline-sort-ascending' />
+        <span class='i-heroicons-outline-sort-ascending'></span>
       {:else}
-        <span class='i-heroicons-outline-sort-descending' />
+        <span class='i-heroicons-outline-sort-descending'></span>
       {/if}
     </button>
   </div>
@@ -163,7 +167,7 @@
     {#if end !== true}
       <button
         class='btn btn-primary btn-block'
-        on:click={() => {
+        onclick={() => {
           loaded = false
           load()
         }}>
@@ -173,7 +177,7 @@
       <div class='divider mt-0 -mb-2'>END</div>
     {/if}
   {:else}
-    <button class='btn btn-lg btn-block flex btn-ghost loading' id='webmention-loading' />
+    <button class='btn btn-lg btn-block flex btn-ghost loading' id='webmention-loading'></button>
   {/if}
   {#if config?.form === true}
     <form action='https://webmention.io/{config.username}/webmention' id='webmention-form' method='post'>

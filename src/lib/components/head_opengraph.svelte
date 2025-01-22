@@ -2,8 +2,12 @@
   import { any, maskable } from '$lib/config/icon'
   import { site } from '$lib/config/site'
 
-  export let post: undefined | Urara.Post
-  export let page: undefined | Urara.Page
+  interface Props {
+    post: undefined | Urara.Post;
+    page: undefined | Urara.Page;
+  }
+
+  let { post, page }: Props = $props();
 </script>
 
 <svelte:head>

@@ -1,15 +1,21 @@
-<script context='module' lang='ts'>
+<script module lang='ts'>
   export const prerender = true
 </script>
 
 <script lang='ts'>
+  import { run } from 'svelte/legacy';
+
   import { onDestroy, onMount } from 'svelte'
 
-  export let toc: Urara.Post.Toc[]
+  interface Props {
+    toc: Urara.Post.Toc[];
+  }
 
-  let intersecting: string[] = []
-  let intersectingArticle: boolean = true
-  let bordered: string[] = []
+  let { toc }: Props = $props();
+
+  let intersecting: string[] = $state([])
+  let intersectingArticle: boolean = $state(true)
+  let bordered: string[] = $state([])
 
   onMount(() => {
     if (window.screen.availWidth >= 1280) {
@@ -39,17 +45,23 @@
       articleObserver.disconnect()
   })
 
-  $: if (intersecting.length > 0)
-    bordered = intersecting
-  $: if (intersectingArticle === false)
-    bordered = []
-  $: if (bordered) {
-    toc.forEach(heading =>
-      bordered.includes(heading.slug!)
-        ? document.getElementById(`toc-link-${heading.slug}`)?.classList.add('!border-accent')
-        : document.getElementById(`toc-link-${heading.slug}`)?.classList.remove('!border-accent'),
-    )
-  }
+  run(() => {
+    if (intersecting.length > 0)
+      bordered = intersecting
+  });
+  run(() => {
+    if (intersectingArticle === false)
+      bordered = []
+  });
+  run(() => {
+    if (bordered) {
+      toc.forEach(heading =>
+        bordered.includes(heading.slug!)
+          ? document.getElementById(`toc-link-${heading.slug}`)?.classList.add('!border-accent')
+          : document.getElementById(`toc-link-${heading.slug}`)?.classList.remove('!border-accent'),
+      )
+    }
+  });
 </script>
 
 <aside class='sticky top-16 py-8'>
@@ -61,7 +73,7 @@
     <ul dir='ltr' id='toc-list-root'>
       {#each toc as { depth, slug, title }}
         <li class='flex flex-col' id={`toc-item-${slug}`}>
-          <!-- svelte-ignore a11y-click-events-have-key-events -->
+          <!-- svelte-ignore a11y_click_events_have_key_events -->
           <span
             class="cursor-pointer border-l-4 border-transparent transition-all hover:border-primary hover:bg-base-content hover:bg-opacity-10 active:bg-primary active:text-primary-content active:font-bold pr-4{depth
             <= 2
@@ -74,7 +86,7 @@
             class:pl-20={depth === 6}
             dir='ltr'
             id={`toc-link-${slug}`}
-            on:click={() =>
+            onclick={() =>
               // @ts-ignore Object is possibly 'null'. ts(2531)
               document.getElementById(slug).scrollIntoView({ behavior: 'smooth' })}>
             {title}

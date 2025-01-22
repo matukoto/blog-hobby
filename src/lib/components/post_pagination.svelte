@@ -1,8 +1,12 @@
 <script lang='ts'>
   import Image from '$lib/components/prose/img.svelte'
 
-  export let prev: undefined | Urara.Post
-  export let next: undefined | Urara.Post
+  interface Props {
+    prev: undefined | Urara.Post;
+    next: undefined | Urara.Post;
+  }
+
+  let { prev, next }: Props = $props();
 </script>
 
 <nav class='flex flex-col md:flex-row flex-warp justify-evenly'>
@@ -20,7 +24,7 @@
         </figure>
       {/if}
       <div class='card-body'>
-        <span class='i-heroicons-outline-chevron-left opacity-50 group-hover:opacity-100 mr-auto' />
+        <span class='i-heroicons-outline-chevron-left opacity-50 group-hover:opacity-100 mr-auto'></span>
         <a
           class='card-title block text-left mb-0 mr-auto bg-[length:100%_0%] bg-[position:0_88%] underline decoration-3 decoration-transparent group-hover:decoration-primary hover:bg-[length:100%_100%] hover:text-primary-content bg-gradient-to-t from-primary to-primary bg-no-repeat transition-all ease-in-out duration-300'
           href={prev.path}
@@ -30,7 +34,7 @@
       </div>
     </div>
     {#if next && !next.image && !prev.image}
-      <div class='flex-0 divider mx-4 md:divider-horizontal md:mx-0 md:my-4' />
+      <div class='flex-0 divider mx-4 md:divider-horizontal md:mx-0 md:my-4'></div>
     {/if}
   {/if}
   {#if next}
@@ -53,7 +57,7 @@
           rel='next'>
           {next.title ?? next.summary ?? next.path.slice(1)}
         </a>
-        <span class='i-heroicons-outline-chevron-right opacity-50 group-hover:opacity-100 ml-auto' />
+        <span class='i-heroicons-outline-chevron-right opacity-50 group-hover:opacity-100 ml-auto'></span>
       </div>
     </div>
   {/if}

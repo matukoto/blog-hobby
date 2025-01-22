@@ -1,4 +1,6 @@
 <script lang='ts'>
+  import { run } from 'svelte/legacy';
+
   import { browser } from '$app/environment'
   import { goto } from '$app/navigation'
   import { page } from '$app/stores'
@@ -11,25 +13,33 @@
   import { onMount } from 'svelte'
   import { fly } from 'svelte/transition'
 
-  let allPosts: Urara.Post[]
-  let allTags: string[]
-  let loaded: boolean
-  let [posts, tags, years]: [Urara.Post[], string[], number[]] = [[], [], []]
+  let allPosts: Urara.Post[] = $state()
+  let allTags: string[] = $state()
+  let loaded: boolean = $state()
+  let [posts, tags, years]: [Urara.Post[], string[], number[]] = $state([[], [], []])
 
   storedTitle.set('')
 
-  $: storedPosts.subscribe(storedPosts => (allPosts = storedPosts.filter(post => !post.flags?.includes('unlisted'))))
+  run(() => {
+    storedPosts.subscribe(storedPosts => (allPosts = storedPosts.filter(post => !post.flags?.includes('unlisted'))))
+  });
 
-  $: storedTags.subscribe(storedTags => (allTags = storedTags as string[]))
+  run(() => {
+    storedTags.subscribe(storedTags => (allTags = storedTags as string[]))
+  });
 
-  $: if (posts.length > 1)
-    years = [new Date(posts[0].published ?? posts[0].created).getFullYear()]
+  run(() => {
+    if (posts.length > 1)
+      years = [new Date(posts[0].published ?? posts[0].created).getFullYear()]
+  });
 
-  $: if (tags) {
-    posts = !tags ? allPosts : allPosts.filter(post => tags.every(tag => post.tags?.includes(tag)))
-    if (browser && window.location.pathname === '/')
-      goto(tags.length > 0 ? `?tags=${tags.toString()}` : `/`, { replaceState: true })
-  }
+  run(() => {
+    if (tags) {
+      posts = !tags ? allPosts : allPosts.filter(post => tags.every(tag => post.tags?.includes(tag)))
+      if (browser && window.location.pathname === '/')
+        goto(tags.length > 0 ? `?tags=${tags.toString()}` : `/`, { replaceState: true })
+    }
+  });
 
   onMount(() => {
     if (browser) {
@@ -62,7 +72,7 @@
             class:!btn-secondary={tags.includes(tag)}
             class:shadow-lg={tags.includes(tag)}
             id={tag}
-            on:click={() => (tags.includes(tag) ? (tags = tags.filter(tagName => tagName != tag)) : (tags = [...tags, tag]))}>
+            onclick={() => (tags.includes(tag) ? (tags = tags.filter(tagName => tagName != tag)) : (tags = [...tags, tag]))}>
             #{tag}
           </button>
         {/each}
@@ -83,8 +93,8 @@
                 '{tag}'{#if i + 1 < tags.length},{/if}
               {/each}]
             </h2>
-            <button class='btn btn-secondary' on:click={() => (tags = [])}>
-              <span class='i-heroicons-outline-trash mr-2' />
+            <button class='btn btn-secondary' onclick={() => (tags = [])}>
+              <span class='i-heroicons-outline-trash mr-2'></span>
               tags = []
             </button>
           </div>
@@ -118,7 +128,7 @@
         class:hidden={!loaded}
         in:fly={{ delay: 500, duration: 300, x: posts.length + (1 % 2) ? 100 : -100 }}
         out:fly={{ duration: 300, x: posts.length + (1 % 2) ? -100 : 100 }}>
-        <div class='divider mt-0 mb-8 hidden lg:flex' />
+        <div class='divider mt-0 mb-8 hidden lg:flex'></div>
         <Footer />
       </div>
     {/key}

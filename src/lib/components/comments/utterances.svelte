@@ -3,7 +3,11 @@
 
   import { onMount } from 'svelte'
 
-  export let config: UtterancesConfig
+  interface Props {
+    config: UtterancesConfig;
+  }
+
+  let { config }: Props = $props();
 
   onMount(() => {
     const utterances = document.createElement('script')
@@ -30,6 +34,6 @@
 </script>
 
 <div id='utterances-container'>
-  <button class='btn btn-lg flex mx-auto my-4 btn-ghost btn-circle loading' id='utterances-loading' />
-  <div class='utterances' id='utterances' />
+  <button class='btn btn-lg flex mx-auto my-4 btn-ghost btn-circle loading' id='utterances-loading'></button>
+  <div class='utterances' id='utterances'></div>
 </div>

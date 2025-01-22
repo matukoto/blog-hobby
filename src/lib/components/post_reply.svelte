@@ -1,7 +1,11 @@
 <script lang='ts'>
-  let className = ''
-  export { className as class }
-  export let in_reply_to: Urara.Post['in_reply_to']
+  
+  interface Props {
+    class?: string;
+    in_reply_to: Urara.Post['in_reply_to'];
+  }
+
+  let { class: className = '', in_reply_to }: Props = $props();
 </script>
 
 <div class='flex flex-wrap gap-2 rounded-box outline outline-neutral/10 p-4{className}'>
@@ -11,7 +15,7 @@
     href={in_reply_to}
     rel='noopener noreferrer external'
     target='_blank'>
-    <span class='i-heroicons-outline-reply my-auto !w-4 !h-4' />
+    <span class='i-heroicons-outline-reply my-auto !w-4 !h-4'></span>
     {in_reply_to}
   </a>
 </div>

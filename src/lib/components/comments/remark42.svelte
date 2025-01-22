@@ -3,8 +3,12 @@
 
   import { onDestroy, onMount } from 'svelte'
 
-  export let post: Urara.Post
-  export let config: Remark42Config
+  interface Props {
+    post: Urara.Post;
+    config: Remark42Config;
+  }
+
+  let { post, config }: Props = $props();
 
   let remark42Instance: any
 
@@ -63,4 +67,4 @@
   })
 </script>
 
-<div id='remark42' />
+<div id='remark42'></div>

@@ -4,7 +4,11 @@
   import { site } from '$lib/config/site'
   import { onMount } from 'svelte'
 
-  export let config: GiscusConfig
+  interface Props {
+    config: GiscusConfig;
+  }
+
+  let { config }: Props = $props();
 
   onMount(() => {
     const giscus = document.createElement('script')
@@ -37,6 +41,6 @@
 </script>
 
 <div id='giscus-container'>
-  <button class='btn btn-lg flex mx-auto my-4 btn-ghost btn-circle loading' id='giscus-loading' />
-  <div class='giscus' id='giscus' />
+  <button class='btn btn-lg flex mx-auto my-4 btn-ghost btn-circle loading' id='giscus-loading'></button>
+  <div class='giscus' id='giscus'></div>
 </div>

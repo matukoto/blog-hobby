@@ -7,7 +7,12 @@
   import Toc from '$lib/components/post_toc.svelte'
   import { fly } from 'svelte/transition'
 
-  export let post: Urara.Post
+  interface Props {
+    post: Urara.Post;
+    children?: import('svelte').Snippet;
+  }
+
+  let { post, children }: Props = $props();
 </script>
 
 <Head {post} />
@@ -33,7 +38,7 @@
   </div>
   <div class='flex-none w-full max-w-screen-md mx-auto xl:mx-0'>
     <Card {post}>
-      <slot />
+      {@render children?.()}
     </Card>
     <Footer sticky={true} />
   </div>

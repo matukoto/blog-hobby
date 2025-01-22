@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { browser, dev } from "$app/environment";
   import Head from "$lib/components/head_static.svelte";
   import Header from "$lib/components/header.svelte";
@@ -12,11 +14,18 @@
 
   import "../app.pcss";
 
-  export let data: LayoutData;
+  interface Props {
+    data: LayoutData;
+    children?: import('svelte').Snippet;
+  }
 
-  let { path, res } = data;
+  let { data, children }: Props = $props();
 
-  $: if (data) path = data.path;
+  let { path, res } = $state(data);
+
+  run(() => {
+    if (data) path = data.path;
+  });
 
   posts.set(res);
   tags.set(genTags(res));
@@ -28,5 +37,5 @@
 <Header {path} />
 
 <Transition {path}>
-  <slot />
+  {@render children?.()}
 </Transition>
