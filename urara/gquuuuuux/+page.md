@@ -1,5 +1,5 @@
 ---
-title: '映画感想「Gquuuuuux」'
+title: '映画鑑賞記録「Gquuuuuux」'
 image: '/assets/gundam.jpg'
 created: 2025-01-25
 updated: 2025-01-25

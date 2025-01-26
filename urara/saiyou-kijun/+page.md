@@ -1,5 +1,5 @@
 ---
-title: '採用基準 (書籍) を読んだ'
+title: '読書記録「採用基準」'
 image: '/assets/book.png'
 created: 2024-12-11
 updated: 2024-12-11
