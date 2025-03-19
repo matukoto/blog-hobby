@@ -20,17 +20,5 @@ jobs:
         shell: bash {0}
         env:
           FILES: urara/**/*.md
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: 'style(textlint): auto fix'
-      - name: textlint-github-pr-review
-        uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-      - name: textlint reviewdog
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npx textlint -f checkstyle urara/**/*.md | \
-            reviewdog -f=checkstyle -name="textlint" -reporter=github-check -level=info
+      - name: Autofix
+        uses: autofix-ci/action@551dded8c6cc8a1054039c8bc0b8b48c51dfc6ef
