@@ -16,9 +16,7 @@ jobs:
         run: pnpm install
       - name: Run textlint
         # textlint の終了コードを強制0にする
-        run: npx textlint --fix ${FILES} | true
+        run: npx textlint --fix urara/**/*.md | true
         shell: bash {0}
-        env:
-          FILES: urara/**/*.md
       - name: Autofix
         uses: autofix-ci/action@551dded8c6cc8a1054039c8bc0b8b48c51dfc6ef
