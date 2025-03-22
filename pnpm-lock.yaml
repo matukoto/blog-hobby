@@ -106,13 +106,13 @@ importers:
         specifier: 5.1.0
         version: 5.1.0
       remark:
-        specifier: ^14.0.3
+        specifier: 14.0.3
         version: 14.0.3
       remark-fff:
         specifier: 1.0.0-alpha.1
         version: 1.0.0-alpha.1
       remark-footnotes:
-        specifier: ~2.0.0
+        specifier: 2.0.0
         version: 2.0.0
       shiki-twoslash:
         specifier: 3.1.2
