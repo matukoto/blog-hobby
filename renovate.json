@@ -1,24 +1,17 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
+  "extends": ["config:best-practices"],
   "timezone": "Asia/Tokyo",
-  "automerge": false,
+  "automerge": true,
   "dependencyDashboard": false,
   "platformAutomerge": true,
   "prHourlyLimit": 2,
+  "stabilityDays": 3,
   "packageRules": [
     {
       "groupName": "svelte",
-      "matchPackageNames": [
-        "svelte",
-        "svelte-loader",
-        "svelte-check"
-      ],
-      "matchPackagePrefixes": [
-        "@sveltejs"
-      ]
+      "matchPackageNames": ["svelte", "svelte-loader", "svelte-check"],
+      "matchPackagePrefixes": ["@sveltejs"]
     },
     {
       "groupName": "eslint",
@@ -30,11 +23,7 @@
     },
     {
       "groupName": "vite",
-      "matchPackageNames": [
-        "vite",
-        "vite-plugin-svelte",
-        "vitest"
-      ]
+      "matchPackageNames": ["vite", "vite-plugin-svelte", "vitest"]
     }
   ]
 }
