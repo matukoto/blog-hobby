@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "license": "WTFPL",
-  "packageManager": "pnpm@9.14.4",
+  "packageManager": "pnpm@9.15.9",
   "scripts": {
     "build": "run-s tsc urara:build kit:build clean",
     "check": "svelte-check --tsconfig ./tsconfig.json",
