@@ -13,7 +13,16 @@ jobs:
           install: true
           log_level: 'debug'
       - name: Install pnpm dependencies
-        run: pnpm install
+        run: pnpm ci
+      - name: Cache .npm directory
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm ci
       - name: Run textlint
         # textlint の終了コードを強制0にする
         run: npx textlint --fix urara/**/*.md | true
