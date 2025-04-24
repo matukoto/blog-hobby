@@ -13,7 +13,14 @@ jobs:
           install: true
           log_level: 'debug'
       - name: Install pnpm dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
+      - name: Cache .npm directory
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Run textlint
         # textlint の終了コードを強制0にする
         run: npx textlint --fix urara/**/*.md | true
