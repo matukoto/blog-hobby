@@ -56,7 +56,7 @@
     "remark-fff": "1.2.1",
     "remark-footnotes": "2.0.0",
     "shiki-twoslash": "3.1.2",
-    "svelte": "4.2.19",
+    "svelte": "4.2.20",
     "svelte-check": "3.8.6",
     "svelte-eslint-parser": "1.2.0",
     "svelte-preprocess": "6.0.3",
