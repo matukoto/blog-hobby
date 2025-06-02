@@ -31,7 +31,7 @@
     "@sveltejs/kit": "2.21.1",
     "@sveltejs/vite-plugin-svelte": "3.1.2",
     "@tailwindcss/typography": "0.5.16",
-    "@types/node": "22.15.26",
+    "@types/node": "22.15.28",
     "@types/unist": "3.0.3",
     "@unocss/eslint-plugin": "66.1.2",
     "@unocss/extractor-svelte": "66.1.2",
