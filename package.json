@@ -39,7 +39,7 @@
     "chokidar": "4.0.1",
     "cross-env": "7.0.3",
     "daisyui": "4.12.24",
-    "eslint": "9.28.0",
+    "eslint": "9.29.0",
     "eslint-plugin-svelte": "3.9.2",
     "fenceparser": "2.2.0",
     "fff-flavored-frontmatter": "1.2.1",
