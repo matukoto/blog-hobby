@@ -40,8 +40,8 @@ importers:
         specifier: 14.8.1
         version: 14.8.1
       '@textlint/textlint-plugin-text':
-        specifier: 14.8.0
-        version: 14.8.0
+        specifier: 14.8.1
+        version: 14.8.1
       '@types/node':
         specifier: 22.15.31
         version: 22.15.31
@@ -1964,8 +1964,8 @@ packages:
   '@textlint/textlint-plugin-text@13.4.1':
     resolution: {integrity: sha512-z0p5B8WUfTCIRmhjVHFfJv719oIElDDKWOIZei4CyYkfMGo0kq8fkrYBkUR6VZ6gofHwc+mwmIABdUf1rDHzYA==}
 
-  '@textlint/textlint-plugin-text@14.8.0':
-    resolution: {integrity: sha512-fg2382TsRL7FiWxatvr3VNyjIQqMTRIqFkuPjBSb8HjC5xabi5s2ZU8Z0O58SBN9YWpihcTP+N84W5l5iU784g==}
+  '@textlint/textlint-plugin-text@14.8.1':
+    resolution: {integrity: sha512-w5fm62kbzWv6KJw/bm2gVloi9A4XWIya416B4A3Og6fADPdG/YbWp0dvUynnJSw0GPYKKna6u+dc9SgdOUNcBg==}
 
   '@textlint/types@13.4.1':
     resolution: {integrity: sha512-1ApwQa31sFmiJeJ5yTNFqjbb2D1ICZvIDW0tFSM0OtmQCSDFNcKD3YrrwDBgSokZ6gWQq/FpNjlhi6iETUWt0Q==}
@@ -7955,7 +7955,7 @@ snapshots:
     dependencies:
       '@textlint/text-to-ast': 13.4.1
 
-  '@textlint/textlint-plugin-text@14.8.0':
+  '@textlint/textlint-plugin-text@14.8.1':
     dependencies:
       '@textlint/text-to-ast': 14.8.4
 
@@ -12511,7 +12511,7 @@ snapshots:
       '@textlint/module-interop': 14.8.4
       '@textlint/resolver': 14.8.4
       '@textlint/textlint-plugin-markdown': 14.8.1
-      '@textlint/textlint-plugin-text': 14.8.0
+      '@textlint/textlint-plugin-text': 14.8.1
       '@textlint/types': 14.8.4
       '@textlint/utils': 14.8.4
       debug: 4.4.1
