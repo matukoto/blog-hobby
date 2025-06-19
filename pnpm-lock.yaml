@@ -65,7 +65,7 @@ importers:
         version: 7.0.3
       daisyui:
         specifier: 4.12.24
-        version: 4.12.24(postcss@8.5.5)
+        version: 4.12.24(postcss@8.5.6)
       eslint:
         specifier: 9.29.0
         version: 9.29.0(jiti@2.4.2)
@@ -91,11 +91,11 @@ importers:
         specifier: 8.0.4
         version: 8.0.4
       postcss:
-        specifier: 8.5.5
-        version: 8.5.5
+        specifier: 8.5.6
+        version: 8.5.6
       postcss-lightningcss:
         specifier: 1.0.1
-        version: 1.0.1(postcss@8.5.5)
+        version: 1.0.1(postcss@8.5.6)
       rehype-autolink-headings:
         specifier: 7.1.0
         version: 7.1.0
@@ -122,13 +122,13 @@ importers:
         version: 4.2.20
       svelte-check:
         specifier: 3.8.6
-        version: 3.8.6(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.5))(postcss@8.5.5)(svelte@4.2.20)
+        version: 3.8.6(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.6))(postcss@8.5.6)(svelte@4.2.20)
       svelte-eslint-parser:
         specifier: 1.2.0
         version: 1.2.0(svelte@4.2.20)
       svelte-preprocess:
         specifier: 6.0.3
-        version: 6.0.3(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.5))(postcss@8.5.5)(svelte@4.2.20)(typescript@5.8.3)
+        version: 6.0.3(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.6))(postcss@8.5.6)(svelte@4.2.20)(typescript@5.8.3)
       sveltekit-embed:
         specifier: 0.0.22
         version: 0.0.22(svelte@4.2.20)
@@ -158,7 +158,7 @@ importers:
         version: 5.0.0
       unocss:
         specifier: 66.2.1
-        version: 66.2.1(postcss@8.5.5)(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.3))
+        version: 66.2.1(postcss@8.5.6)(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.3))
       vite:
         specifier: 6.3.5
         version: 6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.7.0)
@@ -4833,8 +4833,8 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.5:
-    resolution: {integrity: sha512-d/jtm+rdNT8tpXuHY5MMtcbJFBkhXE6593XVR9UoGCH8jSFGci7jGvMGH5RYd5PBJW+00NZQt6gf7CbagJCrhg==}
+  postcss@8.5.6:
+    resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -8327,13 +8327,13 @@ snapshots:
     transitivePeerDependencies:
       - vue
 
-  '@unocss/postcss@66.2.1(postcss@8.5.5)':
+  '@unocss/postcss@66.2.1(postcss@8.5.6)':
     dependencies:
       '@unocss/config': 66.2.1
       '@unocss/core': 66.2.1
       '@unocss/rule-utils': 66.2.1
       css-tree: 3.1.0
-      postcss: 8.5.5
+      postcss: 8.5.6
       tinyglobby: 0.2.14
 
   '@unocss/preset-attributify@66.2.1':
@@ -8515,7 +8515,7 @@ snapshots:
       '@vue/shared': 3.5.13
       estree-walker: 2.0.2
       magic-string: 0.30.17
-      postcss: 8.5.5
+      postcss: 8.5.6
       source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.5.13':
@@ -8986,12 +8986,12 @@ snapshots:
 
   culori@3.3.0: {}
 
-  daisyui@4.12.24(postcss@8.5.5):
+  daisyui@4.12.24(postcss@8.5.6):
     dependencies:
       css-selector-tokenizer: 0.8.0
       culori: 3.3.0
       picocolors: 1.1.1
-      postcss-js: 4.0.1(postcss@8.5.5)
+      postcss-js: 4.0.1(postcss@8.5.6)
     transitivePeerDependencies:
       - postcss
 
@@ -9488,9 +9488,9 @@ snapshots:
       esutils: 2.0.3
       globals: 16.2.0
       known-css-properties: 0.36.0
-      postcss: 8.5.5
-      postcss-load-config: 3.1.4(postcss@8.5.5)
-      postcss-safe-parser: 7.0.1(postcss@8.5.5)
+      postcss: 8.5.6
+      postcss-load-config: 3.1.4(postcss@8.5.6)
+      postcss-safe-parser: 7.0.1(postcss@8.5.6)
       semver: 7.7.2
       svelte-eslint-parser: 1.2.0(svelte@4.2.20)
     optionalDependencies:
@@ -11445,50 +11445,50 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
-  postcss-import@15.1.0(postcss@8.5.5):
+  postcss-import@15.1.0(postcss@8.5.6):
     dependencies:
-      postcss: 8.5.5
+      postcss: 8.5.6
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.10
 
-  postcss-js@4.0.1(postcss@8.5.5):
+  postcss-js@4.0.1(postcss@8.5.6):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.5.5
+      postcss: 8.5.6
 
-  postcss-lightningcss@1.0.1(postcss@8.5.5):
+  postcss-lightningcss@1.0.1(postcss@8.5.6):
     dependencies:
       browserslist: 4.24.2
       lightningcss: 1.28.2
-      postcss: 8.5.5
+      postcss: 8.5.6
 
-  postcss-load-config@3.1.4(postcss@8.5.5):
+  postcss-load-config@3.1.4(postcss@8.5.6):
     dependencies:
       lilconfig: 2.1.0
       yaml: 1.10.2
     optionalDependencies:
-      postcss: 8.5.5
+      postcss: 8.5.6
 
-  postcss-load-config@4.0.2(postcss@8.5.5):
+  postcss-load-config@4.0.2(postcss@8.5.6):
     dependencies:
       lilconfig: 3.1.3
       yaml: 2.6.1
     optionalDependencies:
-      postcss: 8.5.5
+      postcss: 8.5.6
 
-  postcss-nested@6.2.0(postcss@8.5.5):
+  postcss-nested@6.2.0(postcss@8.5.6):
     dependencies:
-      postcss: 8.5.5
+      postcss: 8.5.6
       postcss-selector-parser: 6.1.2
 
-  postcss-safe-parser@7.0.1(postcss@8.5.5):
+  postcss-safe-parser@7.0.1(postcss@8.5.6):
     dependencies:
-      postcss: 8.5.5
+      postcss: 8.5.6
 
-  postcss-scss@4.0.9(postcss@8.5.5):
+  postcss-scss@4.0.9(postcss@8.5.6):
     dependencies:
-      postcss: 8.5.5
+      postcss: 8.5.6
 
   postcss-selector-parser@6.0.10:
     dependencies:
@@ -11507,7 +11507,7 @@ snapshots:
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.5.5:
+  postcss@8.5.6:
     dependencies:
       nanoid: 3.3.11
       picocolors: 1.1.1
@@ -12213,14 +12213,14 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte-check@3.8.6(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.5))(postcss@8.5.5)(svelte@4.2.20):
+  svelte-check@3.8.6(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.6))(postcss@8.5.6)(svelte@4.2.20):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 3.6.0
       picocolors: 1.1.1
       sade: 1.8.1
       svelte: 4.2.20
-      svelte-preprocess: 5.1.4(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.5))(postcss@8.5.5)(svelte@4.2.20)(typescript@5.8.3)
+      svelte-preprocess: 5.1.4(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.6))(postcss@8.5.6)(svelte@4.2.20)(typescript@5.8.3)
       typescript: 5.8.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -12238,8 +12238,8 @@ snapshots:
       eslint-scope: 8.3.0
       eslint-visitor-keys: 4.2.0
       espree: 10.3.0
-      postcss: 8.5.5
-      postcss-scss: 4.0.9(postcss@8.5.5)
+      postcss: 8.5.6
+      postcss-scss: 4.0.9(postcss@8.5.6)
       postcss-selector-parser: 7.1.0
     optionalDependencies:
       svelte: 4.2.20
@@ -12248,7 +12248,7 @@ snapshots:
     dependencies:
       svelte: 4.2.20
 
-  svelte-preprocess@5.1.4(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.5))(postcss@8.5.5)(svelte@4.2.20)(typescript@5.8.3):
+  svelte-preprocess@5.1.4(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.6))(postcss@8.5.6)(svelte@4.2.20)(typescript@5.8.3):
     dependencies:
       '@types/pug': 2.0.10
       detect-indent: 6.1.0
@@ -12258,17 +12258,17 @@ snapshots:
       svelte: 4.2.20
     optionalDependencies:
       '@babel/core': 7.26.0
-      postcss: 8.5.5
-      postcss-load-config: 4.0.2(postcss@8.5.5)
+      postcss: 8.5.6
+      postcss-load-config: 4.0.2(postcss@8.5.6)
       typescript: 5.8.3
 
-  svelte-preprocess@6.0.3(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.5))(postcss@8.5.5)(svelte@4.2.20)(typescript@5.8.3):
+  svelte-preprocess@6.0.3(@babel/core@7.26.0)(postcss-load-config@4.0.2(postcss@8.5.6))(postcss@8.5.6)(svelte@4.2.20)(typescript@5.8.3):
     dependencies:
       svelte: 4.2.20
     optionalDependencies:
       '@babel/core': 7.26.0
-      postcss: 8.5.5
-      postcss-load-config: 4.0.2(postcss@8.5.5)
+      postcss: 8.5.6
+      postcss-load-config: 4.0.2(postcss@8.5.6)
       typescript: 5.8.3
 
   svelte@4.2.20:
@@ -12324,11 +12324,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.5
-      postcss-import: 15.1.0(postcss@8.5.5)
-      postcss-js: 4.0.1(postcss@8.5.5)
-      postcss-load-config: 4.0.2(postcss@8.5.5)
-      postcss-nested: 6.2.0(postcss@8.5.5)
+      postcss: 8.5.6
+      postcss-import: 15.1.0(postcss@8.5.6)
+      postcss-js: 4.0.1(postcss@8.5.6)
+      postcss-load-config: 4.0.2(postcss@8.5.6)
+      postcss-nested: 6.2.0(postcss@8.5.6)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.10
       sucrase: 3.35.0
@@ -12916,12 +12916,12 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  unocss@66.2.1(postcss@8.5.5)(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.3)):
+  unocss@66.2.1(postcss@8.5.6)(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.3)):
     dependencies:
       '@unocss/astro': 66.2.1(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.3))
       '@unocss/cli': 66.2.1
       '@unocss/core': 66.2.1
-      '@unocss/postcss': 66.2.1(postcss@8.5.5)
+      '@unocss/postcss': 66.2.1(postcss@8.5.6)
       '@unocss/preset-attributify': 66.2.1
       '@unocss/preset-icons': 66.2.1
       '@unocss/preset-mini': 66.2.1
@@ -13056,7 +13056,7 @@ snapshots:
       esbuild: 0.25.1
       fdir: 6.4.4(picomatch@4.0.2)
       picomatch: 4.0.2
-      postcss: 8.5.5
+      postcss: 8.5.6
       rollup: 4.36.0
       tinyglobby: 0.2.13
     optionalDependencies:
