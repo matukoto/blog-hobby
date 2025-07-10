@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@iconify-json/simple-icons':
         specifier: ^1.2.13
-        version: 1.2.41
+        version: 1.2.42
     devDependencies:
       '@antfu/eslint-config':
         specifier: 4.16.2
@@ -1495,8 +1495,8 @@ packages:
   '@iconify-json/heroicons-solid@1.2.1':
     resolution: {integrity: sha512-sRZ6U1FT1lkxtIuL+iQ9Fpm5IZxvJCDaKdLpP5elgZ6OkQn6j8HVJpxgFIcuJbHC/EeoNp3tHldMEELqN9pZDQ==}
 
-  '@iconify-json/simple-icons@1.2.41':
-    resolution: {integrity: sha512-4tt29cKzNsxvt6rjAOVhEgpZV0L8jleTDTMdtvIJjF14Afp9aH8peuwGYyX35l6idfFwuzbvjSVfVyVjJtfmYA==}
+  '@iconify-json/simple-icons@1.2.42':
+    resolution: {integrity: sha512-G/EED0hUV1wMNUsWaFdQYLibm6SO7rP2GZP1+CvhszB5WAFYYibD3zoWp3X96xSIWpYQFvccvE17ewpd0Q1hWQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -2599,9 +2599,9 @@ packages:
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
 
-  chai@5.2.0:
-    resolution: {integrity: sha512-mCuXncKXk5iCLhfhwTc0izo0gtEmpz5CtG2y8GiOINBlMVS6v8TMRc5TaLWKS6692m9+dVVfzgeVxR5UxWHTYw==}
-    engines: {node: '>=12'}
+  chai@5.2.1:
+    resolution: {integrity: sha512-5nFxhUrX0PqtyogoYOA8IPswy5sZFTOsBFl/9bNsmDLgsxYTzSZQJDPppDnZPTQbzSEm0hqGjWPzRemQCYbD6A==}
+    engines: {node: '>=18'}
 
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
@@ -3291,8 +3291,8 @@ packages:
     resolution: {integrity: sha512-eNTPlAD67BmP31LDINZ3U7HSF8l57TxOY2PmBJ1shpCvpnxBF93mWCE8YHBnXs8qiUZJc9WDcWIeC3a2HIAMfw==}
     engines: {node: '>=6'}
 
-  expect-type@1.2.1:
-    resolution: {integrity: sha512-/kP8CAwxzLVEeFrMm4kMmy4CCDlpipyA7MYLVrdJIkV0fYF0UaigQHRsxHiuY/GEea+bh4KSv3TIlgr+2UL6bw==}
+  expect-type@1.2.2:
+    resolution: {integrity: sha512-JhFGDVJ7tmDJItKhYgJCGLOWjuK9vPxiXoUFLwLDc99NlmklilbiQJwoctZtt13+xMw91MCk/REan6MWHqDjyA==}
     engines: {node: '>=12.0.0'}
 
   express-rate-limit@7.5.0:
@@ -6168,6 +6168,9 @@ packages:
   zod@3.25.71:
     resolution: {integrity: sha512-BsBc/NPk7h8WsUWYWYL+BajcJPY8YhjelaWu2NMLuzgraKAz4Lb4/6K11g9jpuDetjMiqhZ6YaexFLOC0Ogi3Q==}
 
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+
   zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
 
@@ -6954,7 +6957,7 @@ snapshots:
   '@cloudflare/workers-shared@0.9.0':
     dependencies:
       mime: 3.0.0
-      zod: 3.25.71
+      zod: 3.25.76
 
   '@cloudflare/workers-types@4.20241202.0': {}
 
@@ -7379,7 +7382,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/simple-icons@1.2.41':
+  '@iconify-json/simple-icons@1.2.42':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8410,7 +8413,7 @@ snapshots:
     dependencies:
       '@vitest/spy': 3.1.1
       '@vitest/utils': 3.1.1
-      chai: 5.2.0
+      chai: 5.2.1
       tinyrainbow: 2.0.0
     optional: true
 
@@ -8784,7 +8787,7 @@ snapshots:
 
   ccount@2.0.1: {}
 
-  chai@5.2.0:
+  chai@5.2.1:
     dependencies:
       assertion-error: 2.0.1
       check-error: 2.1.1
@@ -9647,7 +9650,7 @@ snapshots:
 
   exit-hook@2.2.1: {}
 
-  expect-type@1.2.1:
+  expect-type@1.2.2:
     optional: true
 
   express-rate-limit@7.5.0(express@5.1.0):
@@ -11087,7 +11090,7 @@ snapshots:
       workerd: 1.20241106.1
       ws: 8.18.3
       youch: 3.3.4
-      zod: 3.25.71
+      zod: 3.25.76
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -12982,9 +12985,9 @@ snapshots:
       '@vitest/snapshot': 3.1.1
       '@vitest/spy': 3.1.1
       '@vitest/utils': 3.1.1
-      chai: 5.2.0
+      chai: 5.2.1
       debug: 4.4.1
-      expect-type: 1.2.1
+      expect-type: 1.2.2
       magic-string: 0.30.17
       pathe: 2.0.3
       std-env: 3.9.0
@@ -13313,6 +13316,8 @@ snapshots:
       zod: 3.25.71
 
   zod@3.25.71: {}
+
+  zod@3.25.76: {}
 
   zwitch@1.0.5: {}
 
