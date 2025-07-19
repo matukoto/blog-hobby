@@ -14,7 +14,7 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: 4.17.0
-        version: 4.17.0(@unocss/eslint-plugin@66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-svelte@3.10.1(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20))(eslint@9.31.0(jiti@2.4.2))(svelte-eslint-parser@1.2.0(svelte@4.2.20))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0))
+        version: 4.17.0(@unocss/eslint-plugin@66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-svelte@3.11.0(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20))(eslint@9.31.0(jiti@2.4.2))(svelte-eslint-parser@1.2.0(svelte@4.2.20))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0))
       '@iconify-json/heroicons-outline':
         specifier: 1.2.1
         version: 1.2.1
@@ -23,7 +23,7 @@ importers:
         version: 1.2.1
       '@importantimport/eslint-config':
         specifier: 1.0.0-beta.2
-        version: 1.0.0-beta.2(@antfu/eslint-config@4.17.0(@unocss/eslint-plugin@66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-svelte@3.10.1(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20))(eslint@9.31.0(jiti@2.4.2))(svelte-eslint-parser@1.2.0(svelte@4.2.20))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0)))(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)
+        version: 1.0.0-beta.2(@antfu/eslint-config@4.17.0(@unocss/eslint-plugin@66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-svelte@3.11.0(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20))(eslint@9.31.0(jiti@2.4.2))(svelte-eslint-parser@1.2.0(svelte@4.2.20))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0)))(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)
       '@sveltejs/adapter-cloudflare':
         specifier: 4.9.0
         version: 4.9.0(@sveltejs/kit@2.24.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.20)(vite@6.3.5(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0)))(svelte@4.2.20)(vite@6.3.5(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0)))(wrangler@3.91.0(@cloudflare/workers-types@4.20241202.0))
@@ -70,8 +70,8 @@ importers:
         specifier: 9.31.0
         version: 9.31.0(jiti@2.4.2)
       eslint-plugin-svelte:
-        specifier: 3.10.1
-        version: 3.10.1(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20)
+        specifier: 3.11.0
+        version: 3.11.0(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20)
       fenceparser:
         specifier: 2.2.0
         version: 2.2.0
@@ -3147,8 +3147,8 @@ packages:
     peerDependencies:
       eslint: ^8.0.0 || ^9.0.0
 
-  eslint-plugin-svelte@3.10.1:
-    resolution: {integrity: sha512-csCh2x0ge/DugXC7dCANh46Igi7bjMZEy6rHZCdS13AoGVJSu7a90Kru3I8oMYLGEemPRE1hQXadxvRPVMAAXQ==}
+  eslint-plugin-svelte@3.11.0:
+    resolution: {integrity: sha512-KliWlkieHyEa65aQIkRwUFfHzT5Cn4u3BQQsu3KlkJOs7c1u7ryn84EWaOjEzilbKgttT4OfBURA8Uc4JBSQIw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.1 || ^9.0.0
@@ -3513,10 +3513,6 @@ packages:
 
   globals@15.15.0:
     resolution: {integrity: sha512-7ACyT3wmyp3I61S4fG682L0VA2RGD9otkqGJIwNUMF1SWUombIIk+af1unuDYgMm082aHYwD+mzJvv9Iu8dsgg==}
-    engines: {node: '>=18'}
-
-  globals@16.2.0:
-    resolution: {integrity: sha512-O+7l9tPdHCU320IigZZPj5zmRCFG9xHmx9cU8FqU2Rp+JN714seHV+2S9+JslCpY4gJwU2vOGox0wzgae/MCEg==}
     engines: {node: '>=18'}
 
   globals@16.3.0:
@@ -5337,6 +5333,15 @@ packages:
       svelte:
         optional: true
 
+  svelte-eslint-parser@1.3.0:
+    resolution: {integrity: sha512-VCgMHKV7UtOGcGLGNFSbmdm6kEKjtzo5nnpGU/mnx4OsFY6bZ7QwRF5DUx+Hokw5Lvdyo8dpk8B1m8mliomrNg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      svelte: ^3.37.0 || ^4.0.0 || ^5.0.0
+    peerDependenciesMeta:
+      svelte:
+        optional: true
+
   svelte-hmr@0.16.0:
     resolution: {integrity: sha512-Gyc7cOS3VJzLlfj7wKS0ZnzDVdv3Pn2IuVeJPk9m2skfhcu5bq3wtIZyQGggr7/Iim5rH5cncyQft/kRLupcnA==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
@@ -6191,7 +6196,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@antfu/eslint-config@4.17.0(@unocss/eslint-plugin@66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-svelte@3.10.1(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20))(eslint@9.31.0(jiti@2.4.2))(svelte-eslint-parser@1.2.0(svelte@4.2.20))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0))':
+  '@antfu/eslint-config@4.17.0(@unocss/eslint-plugin@66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-svelte@3.11.0(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20))(eslint@9.31.0(jiti@2.4.2))(svelte-eslint-parser@1.2.0(svelte@4.2.20))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0))':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@clack/prompts': 0.11.0
@@ -6232,7 +6237,7 @@ snapshots:
       yaml-eslint-parser: 1.3.0
     optionalDependencies:
       '@unocss/eslint-plugin': 66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)
-      eslint-plugin-svelte: 3.10.1(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20)
+      eslint-plugin-svelte: 3.11.0(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20)
       svelte-eslint-parser: 1.2.0(svelte@4.2.20)
     transitivePeerDependencies:
       - '@eslint/json'
@@ -7488,9 +7493,9 @@ snapshots:
   '@img/sharp-win32-x64@0.34.1':
     optional: true
 
-  '@importantimport/eslint-config@1.0.0-beta.2(@antfu/eslint-config@4.17.0(@unocss/eslint-plugin@66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-svelte@3.10.1(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20))(eslint@9.31.0(jiti@2.4.2))(svelte-eslint-parser@1.2.0(svelte@4.2.20))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0)))(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)':
+  '@importantimport/eslint-config@1.0.0-beta.2(@antfu/eslint-config@4.17.0(@unocss/eslint-plugin@66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-svelte@3.11.0(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20))(eslint@9.31.0(jiti@2.4.2))(svelte-eslint-parser@1.2.0(svelte@4.2.20))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0)))(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)':
     dependencies:
-      '@antfu/eslint-config': 4.17.0(@unocss/eslint-plugin@66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-svelte@3.10.1(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20))(eslint@9.31.0(jiti@2.4.2))(svelte-eslint-parser@1.2.0(svelte@4.2.20))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0))
+      '@antfu/eslint-config': 4.17.0(@unocss/eslint-plugin@66.3.3(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.13)(eslint-plugin-svelte@3.11.0(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20))(eslint@9.31.0(jiti@2.4.2))(svelte-eslint-parser@1.2.0(svelte@4.2.20))(typescript@5.8.3)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.16.4)(jiti@2.4.2)(lightningcss@1.28.2)(terser@5.36.0)(tsx@4.19.2)(yaml@2.8.0))
       '@masknet/eslint-plugin': 0.3.0(eslint@9.31.0(jiti@2.4.2))
       defu: 6.1.4
       eslint: 9.31.0(jiti@2.4.2)
@@ -7532,7 +7537,7 @@ snapshots:
   '@jridgewell/trace-mapping@0.3.25':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
-      '@jridgewell/sourcemap-codec': 1.5.0
+      '@jridgewell/sourcemap-codec': 1.5.4
 
   '@jridgewell/trace-mapping@0.3.9':
     dependencies:
@@ -8857,7 +8862,7 @@ snapshots:
 
   code-red@1.0.4:
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.0
+      '@jridgewell/sourcemap-codec': 1.5.4
       '@types/estree': 1.0.8
       acorn: 8.15.0
       estree-walker: 3.0.3
@@ -9459,19 +9464,19 @@ snapshots:
       semver: 7.7.1
       typescript: 5.8.3
 
-  eslint-plugin-svelte@3.10.1(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20):
+  eslint-plugin-svelte@3.11.0(eslint@9.31.0(jiti@2.4.2))(svelte@4.2.20):
     dependencies:
       '@eslint-community/eslint-utils': 4.7.0(eslint@9.31.0(jiti@2.4.2))
-      '@jridgewell/sourcemap-codec': 1.5.0
+      '@jridgewell/sourcemap-codec': 1.5.4
       eslint: 9.31.0(jiti@2.4.2)
       esutils: 2.0.3
-      globals: 16.2.0
+      globals: 16.3.0
       known-css-properties: 0.37.0
       postcss: 8.5.6
       postcss-load-config: 3.1.4(postcss@8.5.6)
       postcss-safe-parser: 7.0.1(postcss@8.5.6)
       semver: 7.7.2
-      svelte-eslint-parser: 1.2.0(svelte@4.2.20)
+      svelte-eslint-parser: 1.3.0(svelte@4.2.20)
     optionalDependencies:
       svelte: 4.2.20
     transitivePeerDependencies:
@@ -9916,8 +9921,6 @@ snapshots:
   globals@14.0.0: {}
 
   globals@15.15.0: {}
-
-  globals@16.2.0: {}
 
   globals@16.3.0: {}
 
@@ -12148,6 +12151,17 @@ snapshots:
       eslint-scope: 8.3.0
       eslint-visitor-keys: 4.2.0
       espree: 10.3.0
+      postcss: 8.5.6
+      postcss-scss: 4.0.9(postcss@8.5.6)
+      postcss-selector-parser: 7.1.0
+    optionalDependencies:
+      svelte: 4.2.20
+
+  svelte-eslint-parser@1.3.0(svelte@4.2.20):
+    dependencies:
+      eslint-scope: 8.4.0
+      eslint-visitor-keys: 4.2.1
+      espree: 10.4.0
       postcss: 8.5.6
       postcss-scss: 4.0.9(postcss@8.5.6)
       postcss-selector-parser: 7.1.0
