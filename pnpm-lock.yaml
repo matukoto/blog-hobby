@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@iconify-json/simple-icons':
         specifier: ^1.2.13
-        version: 1.2.44
+        version: 1.2.46
     devDependencies:
       '@antfu/eslint-config':
         specifier: 5.0.0
@@ -754,8 +754,8 @@ packages:
     resolution: {integrity: sha512-emqcG3vHrpxUKTrxcblR36dcrcoRDvKmnL/dCL6ZsHaShW80qxCAcNhzQZrpeM765VzEos+xOi4s+r4IXzTwdQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/types@7.28.1':
-    resolution: {integrity: sha512-x0LvFTekgSX+83TI28Y9wYPUfzrnl2aT5+5QLnO6v7mSJYtEEevuDRN0F0uSHRk1G1IWZC43o00Y0xDDrpBGPQ==}
+  '@babel/types@7.28.2':
+    resolution: {integrity: sha512-ruv7Ae4J5dUYULmeXw1gmb7rYRz57OWCPM57pHojnLq/3Z1CK2lNSLTCVjxVk1F/TZHwOZZrOWi0ur95BbLxNQ==}
     engines: {node: '>=6.9.0'}
 
   '@clack/core@0.5.0':
@@ -1490,8 +1490,8 @@ packages:
   '@iconify-json/heroicons-solid@1.2.1':
     resolution: {integrity: sha512-sRZ6U1FT1lkxtIuL+iQ9Fpm5IZxvJCDaKdLpP5elgZ6OkQn6j8HVJpxgFIcuJbHC/EeoNp3tHldMEELqN9pZDQ==}
 
-  '@iconify-json/simple-icons@1.2.44':
-    resolution: {integrity: sha512-CdWgSPygwDlDbKtDWjvi3NtUefnkoepXv90n3dQxJerqzD9kI+nEJOiWUBM+eOyMYQKtxBpLWFBrgeotF0IZKw==}
+  '@iconify-json/simple-icons@1.2.46':
+    resolution: {integrity: sha512-MJfKQDhOMQD5Fc8PcTtCdFX0oBf/nKVfp69ScdEKIXW0JXELX5V2Ld45EsjShi8aJ6DNhdDtSDZvKuDnkDiKnw==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -4087,8 +4087,8 @@ packages:
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
 
-  loupe@3.1.4:
-    resolution: {integrity: sha512-wJzkKwJrheKtknCOKNEtDK4iqg/MxmZheEMtSTYvnzRdEYaZzmgH976nenp8WdJRdx5Vc1X/9MO0Oszl6ezeXg==}
+  loupe@3.2.0:
+    resolution: {integrity: sha512-2NCfZcT5VGVNX9mSZIxLRkEAegDGBpuQZBy13desuHeVORmBDyAET4TkJr4SjqQy3A8JDofMN6LpkK8Xcm/dlw==}
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
@@ -6434,7 +6434,7 @@ snapshots:
 
   '@babel/parser@7.28.0':
     dependencies:
-      '@babel/types': 7.28.1
+      '@babel/types': 7.28.2
 
   '@babel/plugin-bugfix-firefox-class-in-computed-class-key@7.25.9(@babel/core@7.26.0)':
     dependencies:
@@ -6923,7 +6923,7 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.27.1
 
-  '@babel/types@7.28.1':
+  '@babel/types@7.28.2':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
@@ -7377,7 +7377,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/simple-icons@1.2.44':
+  '@iconify-json/simple-icons@1.2.46':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8454,7 +8454,7 @@ snapshots:
   '@vitest/utils@3.1.1':
     dependencies:
       '@vitest/pretty-format': 3.1.1
-      loupe: 3.1.4
+      loupe: 3.2.0
       tinyrainbow: 2.0.0
     optional: true
 
@@ -8798,7 +8798,7 @@ snapshots:
       assertion-error: 2.0.1
       check-error: 2.1.1
       deep-eql: 5.0.2
-      loupe: 3.1.4
+      loupe: 3.2.0
       pathval: 2.0.1
     optional: true
 
@@ -10399,7 +10399,7 @@ snapshots:
 
   longest-streak@3.1.0: {}
 
-  loupe@3.1.4:
+  loupe@3.2.0:
     optional: true
 
   lru-cache@10.4.3: {}
