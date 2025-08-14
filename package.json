@@ -23,7 +23,7 @@
     "urara:watch": "node urara.js watch"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "5.2.0",
+    "@antfu/eslint-config": "5.2.1",
     "@iconify-json/heroicons-outline": "1.2.1",
     "@iconify-json/heroicons-solid": "1.2.1",
     "@importantimport/eslint-config": "1.0.0-beta.2",
