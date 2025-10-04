@@ -63,7 +63,7 @@
     "sveltekit-embed": "0.0.22",
     "tailwindcss": "3.4.17",
     "tslib": "2.8.1",
-    "typescript": "5.9.2",
+    "typescript": "5.9.3",
     "unist-util-visit": "5.0.0",
     "unocss": "66.5.2",
     "vite": "6.3.6",
