@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@iconify-json/simple-icons':
         specifier: ^1.2.13
-        version: 1.2.53
+        version: 1.2.54
     devDependencies:
       '@antfu/eslint-config':
         specifier: 5.4.1
@@ -1533,8 +1533,8 @@ packages:
   '@iconify-json/heroicons-solid@1.2.1':
     resolution: {integrity: sha512-sRZ6U1FT1lkxtIuL+iQ9Fpm5IZxvJCDaKdLpP5elgZ6OkQn6j8HVJpxgFIcuJbHC/EeoNp3tHldMEELqN9pZDQ==}
 
-  '@iconify-json/simple-icons@1.2.53':
-    resolution: {integrity: sha512-8GEW5mshsPAZpVAJmkBG/niR2qn8t4U03Wmz6aSD9R4VMZKTECqbOxH3z4inA0JfZOoTvP4qoK9T2VXAx2Xg5g==}
+  '@iconify-json/simple-icons@1.2.54':
+    resolution: {integrity: sha512-OQQYl8yC5j3QklZOYnK31QYe5h47IhyCoxSLd53f0e0nA4dgi8VOZS30SgSAbsecQ+S0xlGJMjXIHTIqZ+ML3w==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -3499,6 +3499,9 @@ packages:
 
   get-tsconfig@4.10.1:
     resolution: {integrity: sha512-auHyJ4AgMz7vgS8Hp3N6HXSmlMdUyhSUrfBF16w153rxtLIEOE+HGqaBppczZvnHLqQJfiHotCYpNhl0lUROFQ==}
+
+  get-tsconfig@4.11.0:
+    resolution: {integrity: sha512-sNsqf7XKQ38IawiVGPOoAlqZo1DMrO7TU+ZcZwi7yLl7/7S0JwmoBMKz/IkUPhSoXM0Ng3vT0yB1iCe5XavDeQ==}
 
   github-slugger@2.0.0:
     resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
@@ -7437,7 +7440,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/simple-icons@1.2.53':
+  '@iconify-json/simple-icons@1.2.54':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -9893,6 +9896,11 @@ snapshots:
   get-tsconfig@4.10.1:
     dependencies:
       resolve-pkg-maps: 1.0.0
+
+  get-tsconfig@4.11.0:
+    dependencies:
+      resolve-pkg-maps: 1.0.0
+    optional: true
 
   github-slugger@2.0.0: {}
 
@@ -12628,7 +12636,7 @@ snapshots:
   tsx@4.19.2:
     dependencies:
       esbuild: 0.23.1
-      get-tsconfig: 4.10.1
+      get-tsconfig: 4.11.0
     optionalDependencies:
       fsevents: 2.3.3
     optional: true
