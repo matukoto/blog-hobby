@@ -40,8 +40,8 @@ importers:
         specifier: 15.2.3
         version: 15.2.3
       '@textlint/textlint-plugin-text':
-        specifier: 15.2.2
-        version: 15.2.2
+        specifier: 15.2.3
+        version: 15.2.3
       '@types/node':
         specifier: 22.18.9
         version: 22.18.9
@@ -2021,6 +2021,9 @@ packages:
   '@textlint/text-to-ast@15.2.2':
     resolution: {integrity: sha512-IphrojtJw3eW/1JMm/Hzc0dsDFALpEzjankABS6tIHMvB2O+2wejRDbDaqmgCgMCr+lGKoMNg5Xvlr5x9XRxww==}
 
+  '@textlint/text-to-ast@15.2.3':
+    resolution: {integrity: sha512-xweE4sDTz56tLy90UXcjn/YEYZr2NH/Kh4Kr5FmQ8K4MtJXOVOubnwmN9503/Vmj4Mq9uNuEzR35D4H2LVHriQ==}
+
   '@textlint/textlint-plugin-markdown@13.4.1':
     resolution: {integrity: sha512-OcLkFKYmbYeGJ0kj2487qcicCYTiE2vJLwfPcUDJrNoMYak5JtvHJfWffck8gON2mEM00DPkHH0UdxZpFjDfeg==}
 
@@ -2035,6 +2038,9 @@ packages:
 
   '@textlint/textlint-plugin-text@15.2.2':
     resolution: {integrity: sha512-bZYlxw8S9zsuJgx2EAR23RFyQ3JtyuIDUA3dbt5Sov2eo20LitNjDIqrQgDo85widbOD/6rG7VioNesV1/6HFw==}
+
+  '@textlint/textlint-plugin-text@15.2.3':
+    resolution: {integrity: sha512-d5a1dXCYqx3cz8Q8dg5JFqWGbZHbfnYIKsue5DndEY6YtZ99JnaAvReo6GuJK5Pg+6pgOys2OvyZRxFA4D59fQ==}
 
   '@textlint/types@13.4.1':
     resolution: {integrity: sha512-1ApwQa31sFmiJeJ5yTNFqjbb2D1ICZvIDW0tFSM0OtmQCSDFNcKD3YrrwDBgSokZ6gWQq/FpNjlhi6iETUWt0Q==}
@@ -8075,6 +8081,10 @@ snapshots:
     dependencies:
       '@textlint/ast-node-types': 15.2.2
 
+  '@textlint/text-to-ast@15.2.3':
+    dependencies:
+      '@textlint/ast-node-types': 15.2.3
+
   '@textlint/textlint-plugin-markdown@13.4.1':
     dependencies:
       '@textlint/markdown-to-ast': 13.4.1
@@ -8103,6 +8113,11 @@ snapshots:
     dependencies:
       '@textlint/text-to-ast': 15.2.2
       '@textlint/types': 15.2.2
+
+  '@textlint/textlint-plugin-text@15.2.3':
+    dependencies:
+      '@textlint/text-to-ast': 15.2.3
+      '@textlint/types': 15.2.3
 
   '@textlint/types@13.4.1':
     dependencies:
