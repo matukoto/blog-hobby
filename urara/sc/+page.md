@@ -1,6 +1,5 @@
 ---
 title: '情報処理安全確保支援士試験 (R7 秋) を受けた'  
-image: '/assets/'  
 created: 2025-10-15  
 updated: 2025-10-15  
 tags:  
