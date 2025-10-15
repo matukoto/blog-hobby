@@ -1,13 +1,11 @@
 ---
-title: '関西万博2025感想'
-image: '/assets/'
-created: 2025-06-01
-updated: 2025-06-01
-tags:
-  - 'travel'
-# flags: // custom flags
-#   - unlisted // hide article on the home page
----
+title: '関西万博2025感想'  
+created: 2025-06-01  
+updated: 2025-06-01  
+tags:  
+- 'travel'  
+---  
+
 ## 万博へ行った  
 
 5 月 16 日（金）に万博へ行った。  
