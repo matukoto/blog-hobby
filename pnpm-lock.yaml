@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@iconify-json/simple-icons':
         specifier: ^1.2.13
-        version: 1.2.58
+        version: 1.2.59
     devDependencies:
       '@antfu/eslint-config':
         specifier: 6.2.0
@@ -1537,8 +1537,8 @@ packages:
   '@iconify-json/heroicons-solid@1.2.1':
     resolution: {integrity: sha512-sRZ6U1FT1lkxtIuL+iQ9Fpm5IZxvJCDaKdLpP5elgZ6OkQn6j8HVJpxgFIcuJbHC/EeoNp3tHldMEELqN9pZDQ==}
 
-  '@iconify-json/simple-icons@1.2.58':
-    resolution: {integrity: sha512-XtXEoRALqztdNc9ujYBj2tTCPKdIPKJBdLNDebFF46VV1aOAwTbAYMgNsK5GMCpTJupLCmpBWDn+gX5SpECorQ==}
+  '@iconify-json/simple-icons@1.2.59':
+    resolution: {integrity: sha512-fYx/InyQsWFW4wVxWka3CGDJ6m/fXoTqWBSl+oA3FBXO5RhPAb6S3Y5bRgCPnrYevErH8VjAL0TZevIqlN2PhQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -7521,7 +7521,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/simple-icons@1.2.58':
+  '@iconify-json/simple-icons@1.2.59':
     dependencies:
       '@iconify/types': 2.0.0
 
