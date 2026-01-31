@@ -31,6 +31,8 @@
     "@sveltejs/kit": "2.49.2",
     "@sveltejs/vite-plugin-svelte": "3.1.2",
     "@tailwindcss/typography": "0.5.19",
+    "@textlint/textlint-plugin-markdown": "15.5.0",
+    "@textlint/textlint-plugin-text": "15.5.0",
     "@types/node": "24.10.4",
     "@types/unist": "3.0.3",
     "@unocss/eslint-plugin": "66.5.12",
@@ -62,6 +64,10 @@
     "svelte-preprocess": "6.0.3",
     "sveltekit-embed": "0.0.22",
     "tailwindcss": "3.4.19",
+    "textlint": "15.5.0",
+    "textlint-rule-ja-space-between-half-and-full-width": "2.4.2",
+    "textlint-rule-preset-ja-spacing": "2.4.3",
+    "textlint-rule-preset-ja-technical-writing": "12.0.2",
     "tslib": "2.8.1",
     "typescript": "5.9.3",
     "unist-util-visit": "5.0.0",
@@ -70,12 +76,7 @@
     "vite-imagetools": "9.0.2",
     "workbox-build": "7.4.0",
     "workbox-window": "7.4.0",
-    "@textlint/textlint-plugin-markdown": "15.5.0",
-    "@textlint/textlint-plugin-text": "15.5.0",
-    "textlint": "15.5.0",
-    "textlint-rule-ja-space-between-half-and-full-width": "2.4.2",
-    "textlint-rule-preset-ja-spacing": "2.4.3",
-    "textlint-rule-preset-ja-technical-writing": "12.0.2"
+    "wrangler": "^4.61.1"
   },
   "dependencies": {
     "@iconify-json/simple-icons": "^1.2.13"
