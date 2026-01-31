@@ -11,5 +11,5 @@ directory = ".svelte-kit/cloudflare/assets"
 
 [observability]
 [observability.logs]
-enabled = false
+enabled = true
 invocation_logs = true
