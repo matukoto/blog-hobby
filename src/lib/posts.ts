@@ -45,7 +45,7 @@ type GetPostsOptions = {
 	includeUnlisted?: boolean;
 };
 
-const RAW_POSTS = import.meta.glob('/urara/**/+page.md', {
+const RAW_POSTS = import.meta.glob('/src/lib/posts/*.md', {
 	eager: true,
 	import: 'default',
 	query: '?raw'
@@ -104,7 +104,7 @@ export async function getAllTags(options: GetPostsOptions = {}): Promise<TagSumm
 async function loadPosts(): Promise<Post[]> {
 	postsPromise ??= Promise.all(
 		Object.entries(RAW_POSTS).map(async ([path, source]) => {
-			const slug = path.match(/\/urara\/([^/]+)\/\+page\.md$/)?.[1];
+			const slug = path.match(/\/src\/lib\/posts\/([^/]+)\.md$/)?.[1];
 			if (!slug) {
 				throw new Error(`Unexpected post path: ${path}`);
 			}
