@@ -29,7 +29,7 @@ pnpm test:e2e e2e/demo.test.ts
 pnpm test  
 
 # Markdown 用ツールは package.json の scripts には未定義  
-npx textlint --fix urara/**/*.md  
+npx textlint --fix src/lib/posts/**/*.md  
 npx markdownlint-cli2 "**/*.md"  
 ```  
 
@@ -42,20 +42,20 @@ npx markdownlint-cli2 "**/*.md"
 - `mdsvex` が有効で、`.svx` もページ拡張子として登録されています。  
   そのため、Svelte のルート実装と Markdown 系コンテンツ実装の両方を  
   またいで確認する必要があります。  
-- ブログコンテンツは現在 `urara/**/+page.md` にあります。  
-  frontmatter にメタデータを持ち、実行時の画像は `/assets/...`  
-  パスで `static/assets/` から配信されます。  
+- ブログコンテンツは現在 `src/lib/posts/*.md` にあります。  
+  ファイル名がそのまま slug になるフラット構造で、frontmatter に  
+  メタデータを持ちます。実行時の画像は `/assets/...` パスで  
+  `static/assets/` から配信されます。  
 - `src/lib/posts.ts` がサイト全体の共通データ層です。  
-  `urara/**/+page.md` の生 Markdown を読み込み、frontmatter 解析、  
+  `src/lib/posts/*.md` の生 Markdown を読み込み、frontmatter 解析、  
   HTML 化、タグ正規化を行い、記事一覧・記事詳細・タグページに  
   データを渡します。  
 - ユーザー向けの主要ルートは次の 3 つです。  
   - `src/routes/+page.svelte`: 記事一覧と全タグ一覧  
   - `src/routes/articles/[slug]/+page.svelte`: 記事詳細ページ  
   - `src/routes/tags/[tag]/+page.svelte`: タグ別の記事一覧  
-- `docs/agents/ブログ記事機能設計.md` には将来的な  
-  `src/lib/posts/` への移行案が残っているため、今後ブログ機能を  
-  触る際は、データソースがまだ `urara/` なのかを確認してください。  
+- `docs/agents/ブログ記事機能設計.md` と現行実装は一致しており、  
+  Markdown は `src/lib/posts/`、画像は `static/assets/` を使います。  
 - テストは `vite.config.ts` で実行環境ごとに分割されています。  
   - `client`: `@vitest/browser-playwright` を使うブラウザ実行の  
     Svelte コンポーネントテスト  
@@ -89,7 +89,7 @@ npx markdownlint-cli2 "**/*.md"
 - `tsconfig.json` では TypeScript の strict mode に加え、  
   `allowJs` と `checkJs` も有効です。`.js` ファイルでも  
   緩い型付けに依存しないでください。  
-- `urara/**/+page.md` を編集するときは、既存 frontmatter の形  
+- `src/lib/posts/*.md` を編集するときは、既存 frontmatter の形  
   （`title`、任意の `image`、`created`、`updated`、  
   任意の `published`、`tags`、`unlisted` 用のコメント付き  
   `flags` ブロック）を保ってください。  

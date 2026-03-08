@@ -29,7 +29,7 @@ pnpm test:e2e e2e/demo.test.ts
 pnpm test  
 
 # markdown tools are invoked directly, not through package.json scripts  
-npx textlint --fix urara/**/*.md  
+npx textlint --fix src/lib/posts/**/*.md  
 npx markdownlint-cli2 "**/*.md"  
 ```  
 
@@ -41,19 +41,21 @@ npx markdownlint-cli2 "**/*.md"
   `.svelte-kit/cloudflare/_worker.js`.  
 - `mdsvex` is enabled and `.svx` is registered as a page extension, so content  
   work spans both Svelte routes and Markdown-style content.  
-- Blog content currently lives under `urara/**/+page.md`. Those files use  
-  frontmatter for metadata, while runtime images are served from  
-  `static/assets/` via `/assets/...` paths.  
+- Blog content currently lives under `src/lib/posts/*.md` in a flat structure  
+  where the filename is the slug. Those files use frontmatter for metadata,  
+  while runtime images are served from `static/assets/` via `/assets/...`  
+  paths.  
 - `src/lib/posts.ts` is the shared data layer for the site. It reads the raw  
-  markdown content from `urara/**/+page.md`, parses frontmatter, renders HTML,  
+  markdown content from `src/lib/posts/*.md`, parses frontmatter, renders  
+  HTML,  
   normalizes tags, and feeds the homepage, article pages, and tag pages.  
 - The main user-facing routes are now:  
   - `src/routes/+page.svelte`: article listing plus global tag listing  
   - `src/routes/articles/[slug]/+page.svelte`: article detail pages  
   - `src/routes/tags/[tag]/+page.svelte`: tag-filtered article listing  
-- The design notes in `docs/agents/ブログ記事機能設計.md` still describe a future  
-  migration toward `src/lib/posts/`, so future sessions should verify whether  
-  content is still sourced from `urara/` before changing the blog loader.  
+- The design notes in `docs/agents/ブログ記事機能設計.md` now match the active  
+  content layout: markdown in `src/lib/posts/` and blog images in  
+  `static/assets/`.  
 - Testing is deliberately split by runtime in `vite.config.ts`:  
   - `client`: browser-based Svelte component tests using  
     `@vitest/browser-playwright` for `src/**/*.svelte.{test,spec}.{js,ts}`  
@@ -82,7 +84,7 @@ npx markdownlint-cli2 "**/*.md"
   should match that style instead of older slot APIs.  
 - TypeScript is strict, and `allowJs` + `checkJs` are enabled in  
   `tsconfig.json`. Avoid loose typing even in `.js` files.  
-- When editing `urara/**/+page.md`, preserve the established frontmatter  
+- When editing `src/lib/posts/*.md`, preserve the established frontmatter  
   shape:  
   `title`, optional `image`, `created`, `updated`, optional `published`,  
   `tags`, and the commented `flags` block used for unlisted posts.  
