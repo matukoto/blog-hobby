@@ -9,6 +9,8 @@
   // コードフォーマットの基本設定
   "formatter": {
     "enabled": true,
+    // Svelteの独自構文による解析エラーを許容してフォーマットを継続
+    "formatWithErrors": true,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf"
@@ -40,5 +42,20 @@
         "noUnusedImports": "warn"
       }
     }
-  }
+  },
+  // Svelteファイル特有のLint誤検知対策
+  "overrides": [
+    {
+      "includes": ["*.svelte", "**/*.svelte"],
+      "linter": {
+        "rules": {
+          "style": {
+            // Svelteのコンパイラ仕様（リアクティビティなど）との衝突を回避
+            "useConst": "off",
+            "useImportType": "off"
+          }
+        }
+      }
+    }
+  ]
 }
