@@ -1,4 +1,4 @@
-import { compile } from 'mdsvex';
+import { marked } from 'marked';
 
 import { normalizeSlug } from './slug';
 
@@ -219,13 +219,11 @@ function createTag(name: string): PostTag {
 }
 
 async function renderMarkdown(markdown: string, slug: string): Promise<string> {
-	const compiled = await compile(markdown, { filename: `${slug}.svx` });
+	const rendered = await marked.parse(markdown, {
+		async: true
+	});
 
-	if (!compiled?.code) {
-		throw new Error(`Failed to compile markdown for post: ${slug}`);
-	}
-
-	return compiled.code.trim();
+	return rendered.trim();
 }
 
 function createExcerpt(markdown: string): string {
