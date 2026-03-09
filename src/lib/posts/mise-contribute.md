@@ -6,7 +6,7 @@ updated: 2024-09-30
 published: 2024-10-01
 tags:
   - 'tech'
-  - ' OSS '
+  - 'OSS'
 # flags: // custom flags
 #   - unlisted // hide article on the home page
 ---

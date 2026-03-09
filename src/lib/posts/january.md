@@ -4,8 +4,8 @@ image: '/assets/daikon.jpg'
 created: 2025-02-01
 updated: 2025-02-15
 tags:
-  - 'comic'
-  - 'movie'
+  - 'マンガ'
+  - '映画'
 # flags: // custom flags
 #   - unlisted // hide article on the home page
 ---

@@ -6,8 +6,6 @@ updated: 2024-12-07
 tags:
   - '生活'
   - '家事'
-flags: // custom flags
-  - unlisted // hide article on the home page
 ---
 
 ## TL;DR  
