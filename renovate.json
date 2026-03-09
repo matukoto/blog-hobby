@@ -5,7 +5,7 @@
     "helpers:pinGitHubActionDigestsToSemver"
   ],
   "timezone": "Asia/Tokyo",
-  "automerge": true,
+  "automerge": false,
   "dependencyDashboard": false,
   "platformAutomerge": true,
   "prHourlyLimit": 2,
