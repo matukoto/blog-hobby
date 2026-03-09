@@ -1,15 +1,16 @@
 {
-	"$schema": "./node_modules/wrangler/config-schema.json",
-	"name": "blog-hobby",
-	"compatibility_date": "2026-02-04",
-	"compatibility_flags": [
-		"nodejs_als"
-	],
-	"main": ".svelte-kit/cloudflare/_worker.js",
-	"assets": {
-		"binding": "ASSETS",
-		"directory": ".svelte-kit/cloudflare"
-	},
-	"workers_dev": true,
-	"preview_urls": true
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "blog-hobby",
+  "compatibility_date": "2026-02-04",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": ".svelte-kit/cloudflare/_worker.js",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".svelte-kit/cloudflare",
+    // 404 ページを提供するための設定
+    "not_found_handling": "404-page"
+  },
+  // workers.dev ドメイン
+  "workers_dev": false,
+  "preview_urls": true
 }
