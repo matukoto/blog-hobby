@@ -67,7 +67,7 @@
     "unist-util-visit": "5.0.0",
     "unocss": "66.5.12",
     "vite": "6.4.1",
-    "vite-imagetools": "9.0.2",
+    "vite-imagetools": "9.0.3",
     "workbox-build": "7.4.0",
     "workbox-window": "7.4.0",
     "@textlint/textlint-plugin-markdown": "15.5.0",
