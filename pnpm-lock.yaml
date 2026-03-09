@@ -13,7 +13,7 @@ importers:
         version: 17.0.4
     devDependencies:
       '@playwright/test':
-        specifier: ^1.58.0
+        specifier: 1.58.1
         version: 1.58.1
       '@sveltejs/adapter-cloudflare':
         specifier: ^7.2.6
@@ -25,13 +25,13 @@ importers:
         specifier: ^6.2.4
         version: 6.2.4(svelte@5.49.1)(vite@7.3.1)
       '@vitest/browser-playwright':
-        specifier: ^4.0.18
+        specifier: 4.0.18
         version: 4.0.18(playwright@1.58.1)(vite@7.3.1)(vitest@4.0.18)
       mdsvex:
-        specifier: ^0.12.6
+        specifier: 0.12.6
         version: 0.12.6(svelte@5.49.1)
       playwright:
-        specifier: ^1.58.0
+        specifier: 1.58.1
         version: 1.58.1
       svelte:
         specifier: ^5.48.2
@@ -40,7 +40,7 @@ importers:
         specifier: ^4.3.5
         version: 4.3.5(picomatch@4.0.3)(svelte@5.49.1)(typescript@5.9.3)
       typescript:
-        specifier: ^5.9.3
+        specifier: 5.9.3
         version: 5.9.3
       vite:
         specifier: ^7.3.1
@@ -49,10 +49,10 @@ importers:
         specifier: ^4.0.18
         version: 4.0.18(@vitest/browser-playwright@4.0.18)
       vitest-browser-svelte:
-        specifier: ^2.0.2
+        specifier: 2.0.2
         version: 2.0.2(svelte@5.49.1)(vitest@4.0.18)
       wrangler:
-        specifier: ^4.60.0
+        specifier: 4.62.0
         version: 4.62.0(@cloudflare/workers-types@4.20260203.0)
 
 packages:
