@@ -4,7 +4,7 @@ image: '/assets/techbook.png'
 created: 2024-12-26
 updated: 2024-12-26
 tags:
-  - 'techbook'
+  - '技術書'
 # flags: // custom flags
 #   - unlisted // hide article on the home page
 ---

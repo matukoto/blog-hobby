@@ -5,7 +5,7 @@ created: 2024-11-10
 updated: 2024-11-12
 published: 2024-11-11
 tags:
-  - 'movie'
+  - '映画'
 # flags: // custom flags
 #   - unlisted // hide article on the home page
 ---

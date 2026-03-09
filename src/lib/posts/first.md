@@ -5,14 +5,14 @@ created: 2024-09-20
 updated: 2024-09-20
 published: 2024-09-20
 tags:
-  - 'svelte'
-  - 'cloudflare'
+  - 'Svelte'
+  - 'Cloudflare'
   - 'tech'
 # flags: // custom flags
 #   - unlisted // hide article on the home page
 ---
 
-## 感想
+## 感想  
 
 Svelte に将来性を感じているのと、Svelte の思想が好きなので, SvelteKit でブログを作ってみました。  
 Cloudflare Pages でブログ公開するの簡単すぎてびっくりした。  

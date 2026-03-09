@@ -1,15 +1,15 @@
 ---
-title: '奨学金Tips'
-image: ''
-created: 2024-12-02
-updated: 2024-12-02
-published: 2024-12-02
-tags:
-  - '生活'
-  - 'tips'
-# flags: // custom flags
-#   - unlisted // hide article on the home page
----
+title: '奨学金Tips'  
+image: ''  
+created: 2024-12-02  
+updated: 2024-12-02  
+published: 2024-12-02  
+tags:  
+  - '生活'  
+  - 'Tips'  
+# flags: // custom flags  
+# - unlisted // hide article on the home page  
+---  
 
 ## 第二種奨学金の利率上昇  
 

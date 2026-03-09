@@ -4,7 +4,7 @@ image: '/assets/gundam.jpg'
 created: 2025-01-25
 updated: 2025-03-16
 tags:
-  - 'movie'
+  - '映画'
   - 'ガンダム'
 # flags: // custom flags
 #   - unlisted // hide article on the home page
