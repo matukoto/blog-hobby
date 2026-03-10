@@ -7,10 +7,10 @@
   "assets": {
     "binding": "ASSETS",
     "directory": ".svelte-kit/cloudflare",
-    // 404 ページを提供するための設定
-    "not_found_handling": "404-page"
+    // 静的ファイルが見つからない場合の挙動を指定
+    "not_found_handling": "none"
   },
   // workers.dev ドメイン
-  "workers_dev": false,
+  "workers_dev": true,
   "preview_urls": true
 }
