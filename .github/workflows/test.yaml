@@ -1,4 +1,3 @@
----
 name: test.ci
 on:
   pull_request:
@@ -9,17 +8,15 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
-      - name: Setup pnpm
-        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - name: Setup mise
+        uses: jdx/mise-action@5228313ee0372e111a38da051671ca30fc5a96db # v3.6.3
         with:
-          version: 10
-      - name: Setup Node.js
-        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
-        with:
-          node-version: 24.13.0
-          cache: pnpm
+          install: true
+          log_level: 'debug'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Cache .npm directory
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps chromium
       - name: Run type check
