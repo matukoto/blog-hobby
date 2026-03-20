@@ -16,6 +16,16 @@ jobs:
         with:
           install: true
           log_level: 'debug'
+      - name: Get pnpm store directory
+        id: pnpm-cache-dir
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - name: Cache pnpm dependencies
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+        with:
+          path: ${{ steps.pnpm-cache-dir.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
       - name: Install pnpm dependencies
         run: pnpm install --frozen-lockfile
       - name: Run textlint
