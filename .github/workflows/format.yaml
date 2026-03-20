@@ -1,4 +1,3 @@
----
 name: autofix.ci
 on:
   pull_request:
@@ -17,8 +16,6 @@ jobs:
         with:
           install: true
           log_level: 'debug'
-      - name: Install pnpm # <-- Add this block
-        run: npm install -g pnpm
       - name: Install pnpm dependencies
         run: pnpm install --frozen-lockfile
       - name: Cache .npm directory
