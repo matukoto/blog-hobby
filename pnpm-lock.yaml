@@ -28,8 +28,8 @@ importers:
         specifier: 4.0.18
         version: 4.0.18(playwright@1.58.1)(vite@8.0.0(esbuild@0.27.2))(vitest@4.1.0)
       mdsvex:
-        specifier: 0.12.6
-        version: 0.12.6(svelte@5.53.12)
+        specifier: 0.12.7
+        version: 0.12.7(svelte@5.53.12)
       playwright:
         specifier: 1.58.1
         version: 1.58.1
@@ -1058,8 +1058,8 @@ packages:
     engines: {node: '>= 20'}
     hasBin: true
 
-  mdsvex@0.12.6:
-    resolution: {integrity: sha512-pupx2gzWh3hDtm/iDW4WuCpljmyHbHi34r7ktOqpPGvyiM4MyfNgdJ3qMizXdgCErmvYC9Nn/qyjePy+4ss9Wg==}
+  mdsvex@0.12.7:
+    resolution: {integrity: sha512-gx4bReLCUvq+MPErHXYeyX+TEq1hsS2KfiZtEOMNTcbibSouFy8AHc5h04KbGCl+g5tLuo4/lbgRVYRnc7bJZw==}
     peerDependencies:
       svelte: ^3.56.0 || ^4.0.0 || ^5.0.0-next.120
 
@@ -2143,7 +2143,7 @@ snapshots:
 
   marked@17.0.4: {}
 
-  mdsvex@0.12.6(svelte@5.53.12):
+  mdsvex@0.12.7(svelte@5.53.12):
     dependencies:
       '@types/mdast': 4.0.4
       '@types/unist': 2.0.11
