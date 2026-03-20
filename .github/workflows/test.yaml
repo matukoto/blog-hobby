@@ -15,8 +15,6 @@ jobs:
           log_level: 'debug'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Cache .npm directory
-        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps chromium
       - name: Run type check
