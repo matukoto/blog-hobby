@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   textlint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: write
     steps:
@@ -16,15 +16,18 @@ jobs:
         with:
           install: true
           log_level: 'debug'
-      - name: Install pnpm dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Cache .npm directory
+      - name: Get pnpm store directory
+        id: pnpm-cache-dir
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - name: Cache pnpm dependencies
         uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: ${{ steps.pnpm-cache-dir.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-pnpm-store-
+      - name: Install pnpm dependencies
+        run: pnpm install --frozen-lockfile
       - name: Run textlint
         # textlint の終了コードを強制0にする
         run: npx textlint --fix src/lib/posts/**/*.md | true
