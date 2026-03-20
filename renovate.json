@@ -5,27 +5,20 @@
     "helpers:pinGitHubActionDigestsToSemver"
   ],
   "timezone": "Asia/Tokyo",
-  "automerge": false,
-  "dependencyDashboard": false,
+  "automerge": true,
+  "dependencyDashboard": true,
   "platformAutomerge": true,
-  "prHourlyLimit": 2,
+  "prHourlyLimit": 1,
   "minimumReleaseAge": "3 days",
   "packageRules": [
     {
       "groupName": "svelte",
       "matchPackageNames": [
         "svelte",
-        "svelte-loader",
         "svelte-check",
-        "@sveltejs{/,}**"
-      ]
-    },
-    {
-      "groupName": "eslint",
-      "matchPackageNames": [
-        "eslint",
-        "eslint-plugin-svelte",
-        "typescript-eslint"
+        "@sveltejs/kit",
+        "@sveltejs/vite-plugin-svelte",
+        "@sveltejs/adapter-cloudflare"
       ]
     },
     {
@@ -33,7 +26,32 @@
       "matchPackageNames": [
         "vite",
         "vite-plugin-svelte",
-        "vitest"
+        "vitest",
+        "vitest-browser-svelte",
+        "@vitest/browser-playwright",
+        "@sveltejs/vite-plugin-svelte"
+      ]
+    },
+    {
+      "groupName": "cloudflare",
+      "matchPackageNames": [
+        "wrangler",
+        "@sveltejs/adapter-cloudflare"
+      ]
+    },
+    {
+      "groupName": "markdown",
+      "matchPackageNames": [
+        "marked",
+        "mdsvex"
+      ]
+    },
+    {
+      "groupName": "playwright",
+      "matchPackageNames": [
+        "playwright",
+        "playwright/test",
+        "@vitest/browser-playwright"
       ]
     }
   ]
