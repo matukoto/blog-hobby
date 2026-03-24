@@ -1,6 +1,9 @@
 <script lang="ts">
+  import GoogleAnalytics from '$lib/GoogleAnalytics.svelte';
   let { children } = $props();
 </script>
+
+<GoogleAnalytics/>
 
 <svelte:head>
   <link rel="icon" href="/assets/favicon.ico">
