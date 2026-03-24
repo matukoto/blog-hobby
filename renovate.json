@@ -10,6 +10,9 @@
   "platformAutomerge": true,
   "prHourlyLimit": 1,
   "minimumReleaseAge": "3 days",
+  "lockFileMaintenance": {
+    "enabled": false
+  },
   "packageRules": [
     {
       "groupName": "svelte",
