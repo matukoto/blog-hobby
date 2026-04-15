@@ -22,32 +22,36 @@
       <p>まだ公開中の記事はありません。</p>
     {:else}
       <div class="posts">
-        {#each data.posts as post}
+        {#each data.posts as post (post.slug)}
           <article class="post-card">
+            <a
+              class="post-link"
+              href={`/articles/${post.slug}`}
+              aria-label={post.title}
+            ></a>
+
             {#if post.image}
-							<img class="post-image" src={post.image} alt="" />
-						{/if}
+              <img class="post-image" src={post.image} alt="" />
+            {/if}
 
-						<div class="post-body">
+            <div class="post-body">
               <p class="post-date">{post.created}</p>
-							<h3>
-								<a href={`/articles/${post.slug}`}>{post.title}</a>
-							</h3>
-							<p class="post-excerpt">{post.excerpt}</p>
+              <h3>{post.title}</h3>
+              <p class="post-excerpt">{post.excerpt}</p>
 
-							{#if post.tags.length > 0}
-								<ul class="tag-list" aria-label={`${post.title} のタグ`}>
-									{#each post.tags as tag}
-										<li>
-											<a href={`/tags/${tag.slug}`}>{tag.name}</a>
-										</li>
-									{/each}
-								</ul>
-							{/if}
-						</div>
-					</article>
-				{/each}
-			</div>
+              {#if post.tags.length > 0}
+                <ul class="tag-list" aria-label={`${post.title} のタグ`}>
+              {#each post.tags as tag (tag.slug)}
+                    <li>
+                      <a href={`/tags/${tag.slug}`}>{tag.name}</a>
+                    </li>
+                  {/each}
+                </ul>
+              {/if}
+            </div>
+          </article>
+        {/each}
+      </div>
     {/if}
   </section>
 
@@ -58,7 +62,7 @@
       <p>タグはまだありません。</p>
     {:else}
       <ul class="all-tags">
-				{#each data.tags as tag}
+        {#each data.tags as tag (tag.slug)}
 					<li>
 						<a href={`/tags/${tag.slug}`}>{tag.name}</a>
 						<span>{tag.count}</span>
@@ -104,16 +108,34 @@
     overflow: hidden;
   }
 
+  .post-card {
+    position: relative;
+  }
+
+  .post-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+  }
+
   .post-image {
     display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
+    position: relative;
+    z-index: 1;
   }
 
   .post-body,
   .tags-section {
     padding: 1.25rem;
+  }
+
+  .post-body {
+    position: relative;
+    z-index: 1;
   }
 
   h2 {
@@ -123,10 +145,6 @@
   h3 {
     margin: 0.25rem 0 0.75rem;
     font-size: 1.4rem;
-  }
-
-  h3 a {
-    text-decoration: none;
   }
 
   .tag-list,
@@ -147,6 +165,12 @@
     border-radius: 9999px;
     background: #e2e8f0;
     text-decoration: none;
+    position: relative;
+    z-index: 3;
+  }
+
+  .post-link:focus-visible {
+    box-shadow: inset 0 0 0 3px #2563eb;
   }
 
   .all-tags li {
