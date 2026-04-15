@@ -5,7 +5,7 @@ test('home, article, and tag pages are connected', async ({ page }) => {
   await page.screenshot({ path: 'e2e/screenshots/home.png' });
 
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'blog hobby'
+    'matukoto blog'
   );
 
   await expect(page.getByRole('link', { name: 'RSS' })).toHaveAttribute(
@@ -20,7 +20,10 @@ test('home, article, and tag pages are connected', async ({ page }) => {
   await firstArticleLink.click();
 
   await expect(page).toHaveURL('/articles/expo');
-  await page.screenshot({ path: 'e2e/screenshots/article-expo.png', fullPage: true });
+  await page.screenshot({
+    path: 'e2e/screenshots/article-expo.png',
+    fullPage: true,
+  });
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
     '関西万博2025感想'
   );
@@ -45,12 +48,12 @@ test('missing article returns a 404 page', async ({ page }) => {
 
 test('rss feed loads successfully', async ({ request }) => {
   const response = await request.get('/rss.xml');
-  
+
   expect(response.ok()).toBeTruthy();
   expect(response.headers()['content-type']).toContain('application/xml');
-  
+
   const text = await response.text();
   expect(text).toContain('<?xml version="1.0" encoding="UTF-8" ?>');
-  expect(text).toContain('<title>blog hobby</title>');
+  expect(text).toContain('<title>matukoto blog</title>');
   expect(text).toContain('<rss version="2.0"');
 });
