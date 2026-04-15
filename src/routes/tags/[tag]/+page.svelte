@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.tag.name}| blog hobby</title>
+  <title>{data.tag.name}| matukoto blog</title>
 </svelte:head>
 
 <section class="tag-page">

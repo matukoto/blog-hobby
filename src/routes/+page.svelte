@@ -5,13 +5,13 @@
 </script>
 
 <svelte:head>
-  <title>blog hobby</title>
-  <meta name="description" content="趣味の記録をまとめたブログです。">
+  <title>matukoto blog</title>
+  <meta name="description" content="雑多ブログ。">
 </svelte:head>
 
 <section class="hero">
-  <h1>blog hobby</h1>
-  <p>趣味や読書、映画、日常の気づきをまとめるブログです。</p>
+  <h1>matukoto blog</h1>
+  <p>仕事、読書、映画、日常などなど</p>
 </section>
 
 <div class="content-grid">
