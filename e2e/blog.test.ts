@@ -8,6 +8,11 @@ test('home, article, and tag pages are connected', async ({ page }) => {
     'blog hobby'
   );
 
+  await expect(page.getByRole('link', { name: 'RSS' })).toHaveAttribute(
+    'href',
+    '/rss.xml'
+  );
+
   const firstArticleLink = page.getByRole('link', {
     name: '関西万博2025感想',
   });
@@ -36,4 +41,16 @@ test('missing article returns a 404 page', async ({ page }) => {
   expect(response?.status()).toBe(404);
   await page.screenshot({ path: 'e2e/screenshots/404-page.png' });
   await expect(page.getByRole('heading', { level: 1 })).toContainText('404');
+});
+
+test('rss feed loads successfully', async ({ request }) => {
+  const response = await request.get('/rss.xml');
+  
+  expect(response.ok()).toBeTruthy();
+  expect(response.headers()['content-type']).toContain('application/xml');
+  
+  const text = await response.text();
+  expect(text).toContain('<?xml version="1.0" encoding="UTF-8" ?>');
+  expect(text).toContain('<title>blog hobby</title>');
+  expect(text).toContain('<rss version="2.0"');
 });
