@@ -8,6 +8,11 @@ test('home, article, and tag pages are connected', async ({ page }) => {
     'blog hobby'
   );
 
+  await expect(page.getByRole('link', { name: 'RSS' })).toHaveAttribute(
+    'href',
+    '/rss.xml'
+  );
+
   const firstArticleLink = page.getByRole('link', {
     name: '関西万博2025感想',
   });
