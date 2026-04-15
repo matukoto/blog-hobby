@@ -37,17 +37,11 @@
     },
     {
       "groupName": "cloudflare",
-      "matchPackageNames": [
-        "wrangler",
-        "@sveltejs/adapter-cloudflare"
-      ]
+      "matchPackageNames": ["wrangler", "@sveltejs/adapter-cloudflare"]
     },
     {
       "groupName": "markdown",
-      "matchPackageNames": [
-        "marked",
-        "mdsvex"
-      ]
+      "matchPackageNames": ["marked", "mdsvex"]
     },
     {
       "groupName": "playwright",

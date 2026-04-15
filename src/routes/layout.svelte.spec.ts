@@ -5,30 +5,29 @@ import { render } from 'vitest-browser-svelte';
 import Layout from './+layout.svelte';
 
 describe('/+layout.svelte', () => {
-	it('renders the favicon link in the head', async () => {
-		render(Layout, {
-			children: createRawSnippet(() => ({
-				render: () => '<div>child content</div>'
-			}))
-		});
+  it('renders the favicon link in the head', async () => {
+    render(Layout, {
+      children: createRawSnippet(() => ({
+        render: () => '<div>child content</div>',
+      })),
+    });
 
-		const iconHrefs = Array.from(document.querySelectorAll('link[rel="icon"]')).map((link) =>
-			link.getAttribute('href')
-		);
+    const iconHrefs = Array.from(
+      document.querySelectorAll('link[rel="icon"]')
+    ).map((link) => link.getAttribute('href'));
 
-		expect(iconHrefs).toContain('/assets/favicon.ico');
-	});
+    expect(iconHrefs).toContain('/assets/favicon.ico');
+  });
 
-	it('renders an RSS link in the site header', async () => {
-		render(Layout, {
-			children: createRawSnippet(() => ({
-				render: () => '<div>child content</div>'
-			}))
-		});
+  it('renders an RSS link in the site header', async () => {
+    render(Layout, {
+      children: createRawSnippet(() => ({
+        render: () => '<div>child content</div>',
+      })),
+    });
 
-		await expect.element(page.getByRole('link', { name: 'RSS' })).toHaveAttribute(
-			'href',
-			'/rss.xml'
-		);
-	});
+    await expect
+      .element(page.getByRole('link', { name: 'RSS' }))
+      .toHaveAttribute('href', '/rss.xml');
+  });
 });
