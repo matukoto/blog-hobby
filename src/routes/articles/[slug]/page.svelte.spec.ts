@@ -8,6 +8,7 @@ describe('/articles/[slug]/+page.svelte', () => {
   it('renders the article body and tag links', async () => {
     render(Page, {
       data: {
+        gaId: '',
         post: {
           slug: 'first',
           title: 'SvelteKit でブログを作ってみた',

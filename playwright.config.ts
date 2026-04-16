@@ -9,6 +9,9 @@ export default defineConfig({
     command: 'pnpm dev --host 127.0.0.1 --port 4173',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: true,
+    env: {
+      PUBLIC_GA_ID: 'G-TEST123456',
+    },
   },
   testDir: 'e2e',
 });
