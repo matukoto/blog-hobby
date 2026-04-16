@@ -7,6 +7,7 @@ describe('/+page.svelte', () => {
   it('renders the article list and tag links', async () => {
     render(Page, {
       data: {
+        gaId: '',
         posts: [
           {
             slug: 'first',

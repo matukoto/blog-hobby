@@ -1,8 +1,11 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
-  import { env } from '$env/dynamic/public';
 
-  const gaId = env.PUBLIC_GA_ID;
+  type Props = {
+    gaId?: string;
+  };
+
+  let { gaId }: Props = $props();
 
   afterNavigate(({ to }) => {
     if (typeof window !== 'undefined' && 'gtag' in window && to?.url && gaId) {
@@ -17,6 +20,7 @@
 <svelte:head>
   {#if gaId}
     <script
+      data-ga-id={gaId}
       async
       src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
     ></script>
@@ -27,7 +31,10 @@
         dataLayer.push(arguments);
       }
       gtag('js', new Date());
-      gtag('config', '{gaId}');
+      const script = document.currentScript;
+      if (script instanceof HTMLScriptElement && script.dataset.gaId) {
+        gtag('config', script.dataset.gaId);
+      }
     </script>
   {/if}
 </svelte:head>

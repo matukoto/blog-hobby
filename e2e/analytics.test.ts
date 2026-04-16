@@ -1,33 +1,71 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
-test('Google Analytics tracks page views on client-side routing', async ({
+test('Google Analytics tracks page views on initial load and client-side routing', async ({
   page,
 }) => {
-  // 実際のアナリティクスへのリクエストをブロック（テストデータが送信されるのを防ぐ）
+  await page.route('**/gtag/js?id=*', async (route) => {
+    await route.fulfill({
+      contentType: 'application/javascript',
+      body: `
+window.gtag = function gtag() {
+  const args = Array.from(arguments);
+  if (args[0] !== 'config') {
+    return;
+  }
+
+  const options = args[2];
+  const pagePath =
+    options && typeof options === 'object' && 'page_path' in options && options.page_path
+      ? String(options.page_path)
+      : location.pathname;
+  const url = new URL('https://www.google-analytics.com/g/collect');
+  url.searchParams.set('en', 'page_view');
+  url.searchParams.set('dp', pagePath);
+  url.searchParams.set('tid', String(args[1] ?? ''));
+  fetch(url.toString());
+};
+
+for (const entry of (window.dataLayer || []).slice()) {
+  window.gtag.apply(null, Array.from(entry));
+}
+`,
+    });
+  });
+
   await page.route('**/*google-analytics.com/g/collect*', (route) =>
     route.abort()
   );
 
-  // 1. Playwrightでアプリケーションの画面を開く。
+  const initialCollectPromise = page.waitForRequest((request) => {
+    const url = new URL(request.url());
+    return (
+      url.pathname === '/g/collect' &&
+      url.searchParams.get('dp') === '/' &&
+      url.searchParams.get('en') === 'page_view'
+    );
+  });
+
   await page.goto('/');
-
-  // 初期ロードが完了するまで待機（初期ロード時のGAリクエストと区別するため）
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'blog hobby'
+    'matukoto blog'
   );
 
-  // 2. バックグラウンドで google-analytics.com/g/collect を含むURLへのリクエストの待機（監視）を開始する。
-  const gaRequestPromise = page.waitForRequest((request) =>
-    request.url().includes('google-analytics.com/g/collect')
-  );
+  const initialCollect = await initialCollectPromise;
+  const initialUrl = new URL(initialCollect.url());
+  expect(initialUrl.searchParams.get('tid')).toBe('G-TEST123456');
 
-  // 3. 画面内のリンクをクリックし、SvelteKitのクライアントサイドルーティング（ページ遷移）を発生させる。
+  const navigationCollectPromise = page.waitForRequest((request) => {
+    const url = new URL(request.url());
+    return (
+      url.pathname === '/g/collect' &&
+      url.searchParams.get('dp') === '/articles/expo' &&
+      url.searchParams.get('en') === 'page_view'
+    );
+  });
+
   await page.getByRole('link', { name: '関西万博2025感想' }).click();
 
-  // 4. Playwrightが捕獲したリクエストのURLを解析し、パラメータに正しいイベント名（en=page_view）や、遷移先のパス（ep.page_path）が含まれているかをアサーション（検証）する。
-  const gaRequest = await gaRequestPromise;
-  const url = new URL(gaRequest.url());
-
-  expect(url.searchParams.get('en')).toBe('page_view');
-  expect(url.searchParams.get('dp')).toBe('/articles/expo');
+  const navigationCollect = await navigationCollectPromise;
+  const navigationUrl = new URL(navigationCollect.url());
+  expect(navigationUrl.searchParams.get('tid')).toBe('G-TEST123456');
 });

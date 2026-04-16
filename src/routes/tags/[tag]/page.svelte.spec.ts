@@ -8,6 +8,7 @@ describe('/tags/[tag]/+page.svelte', () => {
   it('renders tagged posts', async () => {
     render(Page, {
       data: {
+        gaId: '',
         tag: { name: 'tech', slug: 'tech', count: 2 },
         posts: [
           {

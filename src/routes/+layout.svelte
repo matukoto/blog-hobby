@@ -1,9 +1,18 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte';
+  import type { LayoutData } from './$types';
   import GoogleAnalytics from '$lib/GoogleAnalytics.svelte';
-  let { children } = $props();
+
+  let {
+    children,
+    data,
+  }: {
+    children: Snippet;
+    data?: LayoutData;
+  } = $props();
 </script>
 
-<GoogleAnalytics/>
+<GoogleAnalytics gaId={data?.gaId}/>
 
 <svelte:head>
   <link rel="icon" href="/assets/favicon.ico">
