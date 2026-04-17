@@ -9,6 +9,7 @@ describe('/articles/[slug]/+page.svelte', () => {
     render(Page, {
       data: {
         gaId: '',
+        origin: 'https://example.com',
         post: {
           slug: 'first',
           title: 'SvelteKit でブログを作ってみた',
@@ -36,5 +37,42 @@ describe('/articles/[slug]/+page.svelte', () => {
     await expect
       .element(page.getByRole('link', { name: 'svelte' }))
       .toHaveAttribute('href', '/tags/svelte');
+  });
+
+  it('adds OGP meta tags for the article', async () => {
+    render(Page, {
+      data: {
+        gaId: '',
+        origin: 'https://example.com',
+        post: {
+          slug: 'first',
+          title: 'SvelteKit でブログを作ってみた',
+          image: '/assets/svelte.png',
+          created: '2024-09-20',
+          updated: '2024-09-20',
+          published: '2024-09-20',
+          excerpt: '記事の要約',
+          tags: [],
+          content: '<p>本文</p>',
+          unlisted: false,
+        },
+      },
+    });
+
+    expect(
+      document.head.querySelector('meta[property="og:title"]')?.getAttribute(
+        'content'
+      )
+    ).toBe('SvelteKit でブログを作ってみた | matukoto blog');
+    expect(
+      document.head.querySelector('meta[property="og:image"]')?.getAttribute(
+        'content'
+      )
+    ).toBe('https://example.com/ogp/first.png');
+    expect(
+      document.head.querySelector('meta[name="twitter:card"]')?.getAttribute(
+        'content'
+      )
+    ).toBe('summary_large_image');
   });
 });
