@@ -98,7 +98,7 @@ describe('/articles/[slug]/+page.svelte', () => {
     ).toBe('summary_large_image');
   });
 
-  it('copies the article url on desktop', async () => {
+  it('copies the article metadata on desktop', async () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     const share = vi.fn().mockResolvedValue(undefined);
 
@@ -138,7 +138,48 @@ describe('/articles/[slug]/+page.svelte', () => {
     );
     expect(share).not.toHaveBeenCalled();
     await expect
-      .element(page.getByText('記事タイトルとブログ名を含むリンクをコピーしました。'))
+      .element(page.getByRole('button', { name: 'シェア済み' }))
       .toBeInTheDocument();
+    expect(document.querySelector('.share-status')).toBeNull();
+  });
+
+  it('shows an error message when clipboard copy fails', async () => {
+    const writeText = vi.fn().mockRejectedValue(new Error('denied'));
+    const share = vi.fn().mockResolvedValue(undefined);
+
+    mockMatchMedia(true);
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
+    Object.defineProperty(navigator, 'share', {
+      configurable: true,
+      value: share,
+    });
+
+    render(Page, {
+      data: {
+        gaId: '',
+        origin: 'https://example.com',
+        post: {
+          slug: 'first',
+          title: 'SvelteKit でブログを作ってみた',
+          image: '/assets/svelte.png',
+          created: '2024-09-20',
+          updated: '2024-09-20',
+          published: '2024-09-20',
+          excerpt: '記事の要約',
+          tags: [],
+          content: '<p>本文</p>',
+          unlisted: false,
+        },
+      },
+    });
+
+    await page.getByRole('button', { name: 'share' }).click();
+
+    expect(writeText).toHaveBeenCalledTimes(1);
+    expect(share).not.toHaveBeenCalled();
+    await expect.element(page.getByText('')).toBeInTheDocument();
   });
 });

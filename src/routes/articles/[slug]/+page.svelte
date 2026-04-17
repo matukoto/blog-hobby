@@ -3,7 +3,9 @@
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
-  let shareStatus = $state('');
+  type ShareState = 'idle' | 'success' | 'error';
+
+  let shareState = $state<ShareState>('idle');
   const BLOG_NAME = 'matukoto blog';
 
   function getShareUrl() {
@@ -22,18 +24,36 @@
     );
   }
 
+  function setShareSuccess() {
+    shareState = 'success';
+  }
+
+  function setShareError() {
+    shareState = 'error';
+  }
+
+  function resetShareState() {
+    shareState = 'idle';
+  }
+
   async function copyShareText(shareText: string) {
     if (typeof navigator === 'undefined' || !('clipboard' in navigator)) {
-      shareStatus = 'この環境ではクリップボードにコピーできません。';
+      setShareError();
       return false;
     }
 
-    await navigator.clipboard.writeText(shareText);
-    shareStatus = '記事タイトルとブログ名を含むリンクをコピーしました。';
-    return true;
+    try {
+      await navigator.clipboard.writeText(shareText);
+      setShareSuccess();
+      return true;
+    } catch {
+      setShareError();
+      return false;
+    }
   }
 
   async function handleShare() {
+    resetShareState();
     const shareUrl = getShareUrl();
     const shareText = getShareText(shareUrl);
     if (isDesktopLike()) {
@@ -50,11 +70,10 @@
     if (typeof navigator !== 'undefined' && 'share' in navigator) {
       try {
         await navigator.share(shareData);
-        shareStatus = '共有画面を開きました。';
+        setShareSuccess();
         return;
       } catch (error) {
         if (error instanceof DOMException && error.name === 'AbortError') {
-          shareStatus = '共有をキャンセルしました。';
           return;
         }
       }
@@ -113,10 +132,31 @@
   <div class="article-content">{@html data.post.content}</div>
 
   <footer class="article-footer">
-    <button type="button" class="share-button" onclick={handleShare}>
-      share
+    <button
+      type="button"
+      class:share-button--success={shareState === 'success'}
+      class="share-button"
+      aria-label={shareState === 'success' ? 'シェア済み' : 'share'}
+      onclick={handleShare}
+    >
+      {#if shareState === 'success'}
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M20 6.5 9 17.5l-5-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+          />
+        </svg>
+      {:else}
+        share
+      {/if}
     </button>
-    <p class="share-status" aria-live="polite">{shareStatus}</p>
+    {#if shareState === 'error'}
+      <p class="share-status" aria-live="polite"></p>
+    {/if}
   </footer>
 </article>
 
@@ -214,8 +254,24 @@
     font-weight: 700;
   }
 
+  .share-button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+  }
+
+  .share-button--success {
+    width: 2.75rem;
+    padding: 0;
+    background: #059669;
+  }
+
   .share-button:hover {
     background: #1e293b;
+  }
+
+  .share-button--success:hover {
+    background: #047857;
   }
 
   .share-button:focus-visible {
@@ -225,6 +281,6 @@
 
   .share-status {
     margin: 0;
-    color: #475569;
+    color: #b91c1c;
   }
 </style>
