@@ -13,17 +13,17 @@ importers:
         version: 18.0.0
     devDependencies:
       '@fontsource/noto-sans-jp':
-        specifier: ^5.2.9
+        specifier: 5.2.9
         version: 5.2.9
       '@playwright/test':
         specifier: 1.59.1
         version: 1.59.1
       '@resvg/resvg-js':
-        specifier: ^2.6.2
+        specifier: 2.6.2
         version: 2.6.2
       '@sveltejs/adapter-cloudflare':
         specifier: 7.2.8
-        version: 7.2.8(@sveltejs/kit@2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(wrangler@4.81.1)
+        version: 7.2.8(@sveltejs/kit@2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(wrangler@4.82.2)
       '@sveltejs/kit':
         specifier: 2.57.1
         version: 2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3))
@@ -31,13 +31,13 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3))
       '@types/node':
-        specifier: ^25.6.0
+        specifier: 25.6.0
         version: 25.6.0
       '@vitest/browser-playwright':
         specifier: 4.1.4
         version: 4.1.4(playwright@1.59.1)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3))(vitest@4.1.4)
       fonteditor-core:
-        specifier: ^2.6.3
+        specifier: 2.6.3
         version: 2.6.3
       mdsvex:
         specifier: 0.12.7
@@ -46,10 +46,10 @@ importers:
         specifier: 1.59.1
         version: 1.59.1
       satori:
-        specifier: ^0.26.0
+        specifier: 0.26.0
         version: 0.26.0
       satori-html:
-        specifier: ^0.3.2
+        specifier: 0.3.2
         version: 0.3.2
       svelte:
         specifier: 5.55.3
@@ -1795,15 +1795,15 @@ snapshots:
     dependencies:
       acorn: 8.15.0
 
-  ? '@sveltejs/adapter-cloudflare@7.2.8(@sveltejs/kit@2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(wrangler@4.81.1)'
-  : dependencies:
+  '@sveltejs/adapter-cloudflare@7.2.8(@sveltejs/kit@2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(wrangler@4.82.2)':
+    dependencies:
       '@cloudflare/workers-types': 4.20260203.0
       '@sveltejs/kit': 2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3))
       worktop: 0.8.0-next.18
       wrangler: 4.82.2
 
-  ? '@sveltejs/kit@2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3))'
-  : dependencies:
+  '@sveltejs/kit@2.57.1(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3)))(svelte@5.55.3)(typescript@6.0.2)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3))':
+    dependencies:
       '@standard-schema/spec': 1.1.0
       '@sveltejs/acorn-typescript': 1.0.8(acorn@8.15.0)
       '@sveltejs/vite-plugin-svelte': 7.0.0(svelte@5.55.3)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.27.3))
