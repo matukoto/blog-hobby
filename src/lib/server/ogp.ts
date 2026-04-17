@@ -163,11 +163,11 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
         children: [
           createNode('div', {
             style: {
-              width: '260px',
-              height: '260px',
-              borderRadius: '9999px',
-              background: '#fff7f7',
-              border: '1px solid #fecdd3',
+              width: '240px',
+              height: '240px',
+              borderRadius: '28px',
+              background: '#f8fafc',
+              border: '1px solid #e2e8f0',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -201,10 +201,15 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
 }
 
 async function loadBlogIcon(): Promise<string> {
-  const iconPath = join(process.cwd(), 'static/assets/favicon.png');
-  const icon = await readFile(iconPath);
+  const iconPath = join(process.cwd(), 'static/assets/favicon.svg');
+  const icon = await readFile(iconPath, 'utf8');
+  const embeddedImage = icon.match(/xlink:href="(data:image\/png;base64,[^"]+)"/)?.[1];
 
-  return `data:image/png;base64,${icon.toString('base64')}`;
+  if (embeddedImage) {
+    return embeddedImage;
+  }
+
+  return `data:image/svg+xml;base64,${Buffer.from(icon).toString('base64')}`;
 }
 
 async function readArticlePosts(postsDir: string): Promise<ArticleOgpPost[]> {

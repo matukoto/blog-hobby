@@ -29,7 +29,8 @@ describe('generateArticleOgpImages', () => {
     expect(svg).toContain('2024-09-21');
     expect(svg).toContain('data:image/png;base64,');
     expect(svg).toContain('#ffffff');
-    expect(svg).toContain('#fff7f7');
+    expect(svg).toContain('#f8fafc');
+    expect(svg).toContain('#e2e8f0');
     expect(svg).not.toContain('Cloudflare');
     expect(svg).not.toContain('記事の要約');
   });
