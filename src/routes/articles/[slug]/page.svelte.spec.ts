@@ -180,6 +180,6 @@ describe('/articles/[slug]/+page.svelte', () => {
 
     expect(writeText).toHaveBeenCalledTimes(1);
     expect(share).not.toHaveBeenCalled();
-    await expect.element(page.getByText('')).toBeInTheDocument();
+    await expect.element(page.getByText('エラー')).toBeInTheDocument();
   });
 });

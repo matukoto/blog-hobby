@@ -155,7 +155,7 @@
       {/if}
     </button>
     {#if shareState === 'error'}
-      <p class="share-status" aria-live="polite"></p>
+      <p class="share-status" aria-live="polite">エラー</p>
     {/if}
   </footer>
 </article>
