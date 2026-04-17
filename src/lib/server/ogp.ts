@@ -96,7 +96,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                 style: {
                   marginTop: '14px',
                   height: '4px',
-                  width: '80px',
+                  width: '700px',
                   borderRadius: '9999px',
                   background: '#ff3e00',
                 },
