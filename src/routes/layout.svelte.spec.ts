@@ -31,7 +31,7 @@ describe('/+layout.svelte', () => {
       .toHaveAttribute('href', '/rss.xml');
   });
 
-  it('renders social links in the header and footer', async () => {
+  it('renders social links in the header', async () => {
     render(Layout, {
       children: createRawSnippet(() => ({
         render: () => '<div>child content</div>',
@@ -56,20 +56,6 @@ describe('/+layout.svelte', () => {
           })
       )
       .toHaveAttribute('href', 'https://bsky.app/profile/matukoto');
-    await expect
-      .element(
-        page.getByRole('navigation', { name: '外部リンク' }).getByRole('link', {
-          name: 'GitHub',
-        })
-      )
-      .toHaveAttribute('href', 'https://github.com/matukoto');
-    await expect
-      .element(
-        page.getByRole('navigation', { name: '外部リンク' }).getByRole('link', {
-          name: 'BlueSky',
-        })
-      )
-      .toHaveAttribute('href', 'https://bsky.app/profile/matukoto');
-    expect(document.querySelector('footer .social-links svg')).toBeNull();
+    expect(document.querySelector('footer')).toBeNull();
   });
 });

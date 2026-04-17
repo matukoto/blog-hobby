@@ -65,8 +65,6 @@
   </header>
 
   <main class="site-main">{@render children()}</main>
-
-  <footer class="site-footer"></footer>
 </div>
 
 <style>
@@ -184,30 +182,6 @@
     max-width: 72rem;
     margin: 0 auto;
     padding: 0 1.5rem 4rem;
-  }
-
-  .site-footer {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 0 1.5rem 2.5rem;
-  }
-
-  .social-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .social-links a {
-    color: #334155;
-    font-weight: 700;
-    text-decoration: none;
-  }
-
-  .social-links a:hover {
-    color: #0f172a;
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
   }
 
   @media (max-width: 640px) {
