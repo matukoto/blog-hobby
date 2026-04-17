@@ -33,6 +33,7 @@ type GenerateArticleOgpImagesOptions = {
 
 const require = createRequire(import.meta.url);
 const FONT_PROMISE = loadFonts();
+const BLOG_ICON_PROMISE = loadBlogIcon();
 
 export async function generateArticleOgpImages({
   postsDir,
@@ -56,7 +57,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
   const titleLines = wrapText(post.title, 18, 3);
   const excerptLines = post.excerpt ? wrapText(post.excerpt, 28, 2) : [];
   const tagLine = post.tags.slice(0, 3).map((tag) => tag.name).join(' / ');
-  const fonts = await FONT_PROMISE;
+  const [fonts, blogIcon] = await Promise.all([FONT_PROMISE, BLOG_ICON_PROMISE]);
   const markup = createNode('div', {
     style: {
       width: '1200px',
@@ -64,9 +65,10 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
       display: 'flex',
       boxSizing: 'border-box',
       padding: '64px',
-      background: 'linear-gradient(135deg,#020617 0%,#0f172a 100%)',
+      background: '#ffffff',
+      border: '1px solid #e2e8f0',
       fontFamily: 'Hiragino Sans GB, Noto Sans JP, sans-serif',
-      color: '#f8fafc',
+      color: '#0f172a',
     },
     children: [
       createNode('div', {
@@ -75,19 +77,29 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          paddingRight: '48px',
+          paddingRight: '40px',
         },
         children: [
           createNode('div', {
             style: {
               display: 'flex',
-              flexDirection: 'column',
+              alignItems: 'center',
             },
             children: [
               createNode('div', {
                 style: {
+                  width: '14px',
+                  height: '14px',
+                  borderRadius: '9999px',
+                  background: '#ff3e00',
+                },
+                children: '',
+              }),
+              createNode('div', {
+                style: {
                   display: 'flex',
-                  color: '#cbd5e1',
+                  marginLeft: '12px',
+                  color: '#0f172a',
                   fontSize: '28px',
                   fontWeight: 700,
                   letterSpacing: '0.16em',
@@ -97,9 +109,12 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
               createNode('div', {
                 style: {
                   display: 'flex',
-                  marginTop: '12px',
-                  color: '#93c5fd',
-                  fontSize: '18px',
+                  marginLeft: '16px',
+                  padding: '6px 14px',
+                  borderRadius: '9999px',
+                  background: '#fff1f2',
+                  color: '#be123c',
+                  fontSize: '16px',
                   fontWeight: 600,
                 },
                 children: 'ARTICLE OGP',
@@ -110,7 +125,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
             style: {
               display: 'flex',
               flexDirection: 'column',
-              fontSize: '64px',
+              fontSize: '66px',
               fontWeight: 800,
               lineHeight: 1.15,
             },
@@ -133,7 +148,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
               createNode('div', {
                 style: {
                   display: 'flex',
-                  color: '#cbd5e1',
+                  color: '#475569',
                   fontSize: '24px',
                   fontWeight: 600,
                 },
@@ -143,7 +158,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                 style: {
                   display: 'flex',
                   marginTop: '8px',
-                  color: '#94a3b8',
+                  color: '#64748b',
                   fontSize: '22px',
                   fontWeight: 500,
                 },
@@ -154,7 +169,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                   display: 'flex',
                   flexDirection: 'column',
                   marginTop: '16px',
-                  color: '#cbd5e1',
+                  color: '#475569',
                   fontSize: '20px',
                   fontWeight: 500,
                   lineHeight: 1.4,
@@ -183,75 +198,103 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
         children: [
           createNode('div', {
             style: {
-              borderRadius: '36px',
-              background: 'linear-gradient(135deg,#38bdf8 0%,#8b5cf6 100%)',
-              padding: '48px',
+              borderRadius: '40px',
+              background: '#fff7f7',
+              border: '1px solid #fecdd3',
+              padding: '36px',
               boxSizing: 'border-box',
               display: 'flex',
               flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
             },
             children: [
               createNode('div', {
                 style: {
-                  height: '20px',
+                  width: '228px',
+                  height: '228px',
                   borderRadius: '9999px',
-                  background: 'rgba(248,250,252,0.85)',
-                },
-                children: '',
-              }),
-              createNode('div', {
-                style: {
-                  marginTop: '20px',
-                  height: '20px',
-                  width: '86%',
-                  borderRadius: '9999px',
-                  background: 'rgba(248,250,252,0.7)',
-                },
-                children: '',
-              }),
-              createNode('div', {
-                style: {
-                  marginTop: '20px',
-                  height: '20px',
-                  width: '68%',
-                  borderRadius: '9999px',
-                  background: 'rgba(248,250,252,0.55)',
-                },
-                children: '',
-              }),
-              createNode('div', {
-                style: {
-                  marginTop: '58px',
-                  height: '168px',
-                  borderRadius: '28px',
-                  background: 'rgba(2,6,23,0.22)',
+                  background: '#ffffff',
+                  border: '1px solid #fecdd3',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  flexDirection: 'column',
                 },
                 children: [
-                  createNode('div', {
+                  createNode('img', {
                     style: {
-                      display: 'flex',
-                      color: '#ffffff',
-                      fontSize: '42px',
-                      fontWeight: 800,
+                      width: '164px',
+                      height: '164px',
+                      objectFit: 'contain',
                     },
-                    children: 'OGP',
-                  }),
-                  createNode('div', {
-                    style: {
-                      display: 'flex',
-                      marginTop: '10px',
-                      color: '#e0f2fe',
-                      fontSize: '22px',
-                      fontWeight: 600,
-                      wordBreak: 'break-all',
-                    },
-                    children: post.slug,
+                    src: blogIcon,
+                    alt: 'matukoto blog icon',
                   }),
                 ],
+              }),
+              createNode('div', {
+                style: {
+                  display: 'flex',
+                  marginTop: '24px',
+                  color: '#be123c',
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  letterSpacing: '0.16em',
+                },
+                children: 'BLOG ICON',
+              }),
+              createNode('div', {
+                style: {
+                  marginTop: '10px',
+                  display: 'flex',
+                  color: '#0f172a',
+                  fontSize: '24px',
+                  fontWeight: 800,
+                },
+                children: 'matukoto',
+              }),
+              createNode('div', {
+                style: {
+                  marginTop: '4px',
+                  display: 'flex',
+                  color: '#64748b',
+                  fontSize: '18px',
+                  fontWeight: 500,
+                },
+                children: 'blog',
+              }),
+              createNode('div', {
+                style: {
+                  marginTop: '20px',
+                  height: '4px',
+                  width: '72px',
+                  borderRadius: '9999px',
+                  background: '#ff3e00',
+                },
+                children: '',
+              }),
+              createNode('div', {
+                style: {
+                  marginTop: '18px',
+                  display: 'flex',
+                  color: '#475569',
+                  fontSize: '15px',
+                  fontWeight: 500,
+                  textAlign: 'center',
+                  lineHeight: 1.4,
+                },
+                children: 'shareable article cover',
+              }),
+              createNode('div', {
+                style: {
+                  marginTop: '6px',
+                  display: 'flex',
+                  color: '#94a3b8',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  textAlign: 'center',
+                },
+                children: post.slug,
               }),
             ],
           }),
@@ -269,6 +312,13 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
   return `<!-- ${escapeXml(post.title)} | ${escapeXml(post.created)} | ${escapeXml(
     tagLine
   )} -->${svg}`;
+}
+
+async function loadBlogIcon(): Promise<string> {
+  const iconPath = join(process.cwd(), 'src/lib/assets/favicon.svg');
+  const svg = await readFile(iconPath, 'utf8');
+
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
 }
 
 async function readArticlePosts(postsDir: string): Promise<ArticleOgpPost[]> {

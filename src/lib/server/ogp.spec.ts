@@ -28,6 +28,9 @@ describe('generateArticleOgpImages', () => {
     expect(svg).toContain('SvelteKit でブログを作ってみた');
     expect(svg).toContain('2024-09-20');
     expect(svg).toContain('Svelte');
+    expect(svg).toContain('data:image/svg+xml;base64,');
+    expect(svg).toContain('#ffffff');
+    expect(svg).toContain('#fff7f7');
   });
 
   it('writes png files for markdown posts', async () => {
