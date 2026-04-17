@@ -1,9 +1,7 @@
-import { createRequire } from 'node:module';
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { Resvg } from '@resvg/resvg-js';
-import { createFont, woff2 } from 'fonteditor-core';
 import satori from 'satori';
 
 import { createExcerpt, createTag, parseFrontmatter, splitFrontmatter } from '../post-parser';
@@ -31,7 +29,6 @@ type GenerateArticleOgpImagesOptions = {
   outputDir: string;
 };
 
-const require = createRequire(import.meta.url);
 const FONT_PROMISE = loadFonts();
 const BLOG_ICON_PROMISE = loadBlogIcon();
 
@@ -67,7 +64,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
       padding: '64px',
       background: '#ffffff',
       border: '1px solid #e2e8f0',
-      fontFamily: 'Hiragino Sans GB, Noto Sans JP, sans-serif',
+      fontFamily: 'Noto Sans JP',
       color: '#0f172a',
     },
     children: [
@@ -115,7 +112,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                   background: '#fff1f2',
                   color: '#be123c',
                   fontSize: '16px',
-                  fontWeight: 600,
+                  fontWeight: 700,
                 },
                 children: 'ARTICLE OGP',
               }),
@@ -126,7 +123,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
               display: 'flex',
               flexDirection: 'column',
               fontSize: '66px',
-              fontWeight: 800,
+              fontWeight: 700,
               lineHeight: 1.15,
             },
             children: titleLines.map((line, index) =>
@@ -150,7 +147,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                   display: 'flex',
                   color: '#475569',
                   fontSize: '24px',
-                  fontWeight: 600,
+                  fontWeight: 400,
                 },
                 children: post.created,
               }),
@@ -160,7 +157,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                   marginTop: '8px',
                   color: '#64748b',
                   fontSize: '22px',
-                  fontWeight: 500,
+                  fontWeight: 400,
                 },
                 children: tagLine,
               }),
@@ -171,7 +168,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                   marginTop: '16px',
                   color: '#475569',
                   fontSize: '20px',
-                  fontWeight: 500,
+                  fontWeight: 400,
                   lineHeight: 1.4,
                 },
                 children: excerptLines.map((line, index) =>
@@ -222,6 +219,8 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                 },
                 children: [
                   createNode('img', {
+                    width: 164,
+                    height: 164,
                     style: {
                       width: '164px',
                       height: '164px',
@@ -238,7 +237,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                   marginTop: '24px',
                   color: '#be123c',
                   fontSize: '18px',
-                  fontWeight: 700,
+                  fontWeight: 400,
                   letterSpacing: '0.16em',
                 },
                 children: 'BLOG ICON',
@@ -249,7 +248,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                   display: 'flex',
                   color: '#0f172a',
                   fontSize: '24px',
-                  fontWeight: 800,
+                  fontWeight: 700,
                 },
                 children: 'matukoto',
               }),
@@ -259,7 +258,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                   display: 'flex',
                   color: '#64748b',
                   fontSize: '18px',
-                  fontWeight: 500,
+                  fontWeight: 400,
                 },
                 children: 'blog',
               }),
@@ -279,7 +278,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                   display: 'flex',
                   color: '#475569',
                   fontSize: '15px',
-                  fontWeight: 500,
+                  fontWeight: 400,
                   textAlign: 'center',
                   lineHeight: 1.4,
                 },
@@ -291,7 +290,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                   display: 'flex',
                   color: '#94a3b8',
                   fontSize: '14px',
-                  fontWeight: 500,
+                  fontWeight: 400,
                   textAlign: 'center',
                 },
                 children: post.slug,
@@ -315,10 +314,10 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
 }
 
 async function loadBlogIcon(): Promise<string> {
-  const iconPath = join(process.cwd(), 'src/lib/assets/favicon.svg');
-  const svg = await readFile(iconPath, 'utf8');
+  const iconPath = join(process.cwd(), 'static/assets/favicon.png');
+  const icon = await readFile(iconPath);
 
-  return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
+  return `data:image/png;base64,${icon.toString('base64')}`;
 }
 
 async function readArticlePosts(postsDir: string): Promise<ArticleOgpPost[]> {
@@ -357,44 +356,22 @@ function renderSvgToPng(svg: string): Buffer {
 }
 
 async function loadFonts(): Promise<SatoriFont[]> {
-  await woff2.init();
-
   return Promise.all([
-    readFont('noto-sans-jp-0-400-normal'),
-    readFont('noto-sans-jp-0-700-normal'),
+    readFont('noto-sans-jp-japanese-400.ttf', 400),
+    readFont('noto-sans-jp-japanese-700.ttf', 700),
   ]);
 }
 
-async function readFont(baseName: string): Promise<SatoriFont> {
-  const fontPath = resolveFontPath(baseName);
+async function readFont(fileName: string, weight: 400 | 700): Promise<SatoriFont> {
+  const fontPath = join(process.cwd(), 'src/lib/assets/ogp-fonts', fileName);
   const data = await readFile(fontPath);
-  const ttfBuffer = convertFontToTtf(data);
 
   return {
-    data: ttfBuffer,
+    data,
     name: 'Noto Sans JP',
-    weight: baseName.includes('700') ? 700 : 400,
+    weight,
     style: 'normal',
   };
-}
-
-function resolveFontPath(baseName: string): string {
-  const candidates = [
-    `@fontsource/noto-sans-jp/files/${baseName}.woff2`,
-    `@fontsource/noto-sans-jp/files/${baseName}.woff`,
-    `@openfonts/noto-sans-jp_japanese/files/${baseName}.woff2`,
-    `@openfonts/noto-sans-jp_japanese/files/${baseName}.woff`,
-  ];
-
-  for (const candidate of candidates) {
-    try {
-      return require.resolve(candidate);
-    } catch {
-      // Try the next font format.
-    }
-  }
-
-  throw new Error(`Unable to resolve font file for ${baseName}`);
 }
 
 function wrapText(text: string, maxCharactersPerLine: number, maxLines: number): string[] {
@@ -443,19 +420,6 @@ function escapeXml(value: string): string {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&apos;');
-}
-
-function convertFontToTtf(fontData: Buffer): Buffer {
-  const font = createFont(fontData, { type: 'woff2' });
-  const output = font.write({ type: 'ttf' });
-
-  if (Buffer.isBuffer(output)) {
-    return output;
-  }
-
-  return typeof output === 'string'
-    ? Buffer.from(output)
-    : Buffer.from(output as ArrayBuffer);
 }
 
 function createNode(
