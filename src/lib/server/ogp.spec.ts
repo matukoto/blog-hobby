@@ -10,12 +10,12 @@ describe('generateArticleOgpImages', () => {
   it('builds an svg with article metadata', async () => {
     const svg = await buildArticleOgpSvg({
       slug: 'first',
-      title: 'SvelteKit でブログを作ってみた',
+      title: 'ブログ記事のタイトル',
       created: '2024-09-20',
-      updated: '2024-09-20',
+      updated: '2024-09-21',
       published: '2024-09-20',
       tags: [
-        { name: 'Svelte', slug: 'svelte' },
+        { name: 'Blog', slug: 'blog' },
         { name: 'Cloudflare', slug: 'cloudflare' },
       ],
       excerpt: '記事の要約',
@@ -25,12 +25,13 @@ describe('generateArticleOgpImages', () => {
     });
 
     expect(svg).toContain('<svg');
-    expect(svg).toContain('SvelteKit でブログを作ってみた');
-    expect(svg).toContain('2024-09-20');
-    expect(svg).toContain('Svelte');
+    expect(svg).toContain('ブログ記事のタイトル');
+    expect(svg).toContain('2024-09-21');
     expect(svg).toContain('data:image/png;base64,');
     expect(svg).toContain('#ffffff');
     expect(svg).toContain('#fff7f7');
+    expect(svg).not.toContain('Cloudflare');
+    expect(svg).not.toContain('記事の要約');
   });
 
   it('writes png files for markdown posts', async () => {
@@ -42,11 +43,11 @@ describe('generateArticleOgpImages', () => {
     await writeFile(
       join(postsDir, 'first.md'),
       `---\n` +
-        `title: SvelteKit でブログを作ってみた\n` +
+        `title: ブログ記事のタイトル\n` +
         `created: 2024-09-20\n` +
-        `updated: 2024-09-20\n` +
+        `updated: 2024-09-21\n` +
         `tags:\n` +
-        `  - Svelte\n` +
+        `  - Blog\n` +
         `  - Cloudflare\n` +
         `---\n\n` +
         `ブログの感想です。`

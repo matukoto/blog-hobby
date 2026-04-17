@@ -51,9 +51,8 @@ export async function generateArticleOgpImages({
 }
 
 export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> {
-  const titleLines = wrapText(post.title, 18, 3);
-  const excerptLines = post.excerpt ? wrapText(post.excerpt, 28, 2) : [];
-  const tagLine = post.tags.slice(0, 3).map((tag) => tag.name).join(' / ');
+  const titleLines = wrapText(post.title, 20, 3);
+  const updatedAt = post.updated ?? post.created;
   const [fonts, blogIcon] = await Promise.all([FONT_PROMISE, BLOG_ICON_PROMISE]);
   const markup = createNode('div', {
     style: {
@@ -61,7 +60,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
       height: '630px',
       display: 'flex',
       boxSizing: 'border-box',
-      padding: '64px',
+      padding: '72px',
       background: '#ffffff',
       border: '1px solid #e2e8f0',
       fontFamily: 'Noto Sans JP',
@@ -74,47 +73,34 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          paddingRight: '40px',
+          paddingRight: '48px',
         },
         children: [
           createNode('div', {
             style: {
               display: 'flex',
-              alignItems: 'center',
+              flexDirection: 'column',
             },
             children: [
               createNode('div', {
                 style: {
-                  width: '14px',
-                  height: '14px',
-                  borderRadius: '9999px',
-                  background: '#ff3e00',
-                },
-                children: '',
-              }),
-              createNode('div', {
-                style: {
                   display: 'flex',
-                  marginLeft: '12px',
                   color: '#0f172a',
                   fontSize: '28px',
                   fontWeight: 700,
-                  letterSpacing: '0.16em',
+                  letterSpacing: '0.1em',
                 },
                 children: 'matukoto blog',
               }),
               createNode('div', {
                 style: {
-                  display: 'flex',
-                  marginLeft: '16px',
-                  padding: '6px 14px',
+                  marginTop: '14px',
+                  height: '4px',
+                  width: '80px',
                   borderRadius: '9999px',
-                  background: '#fff1f2',
-                  color: '#be123c',
-                  fontSize: '16px',
-                  fontWeight: 700,
+                  background: '#ff3e00',
                 },
-                children: 'ARTICLE OGP',
+                children: '',
               }),
             ],
           }),
@@ -122,7 +108,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
             style: {
               display: 'flex',
               flexDirection: 'column',
-              fontSize: '66px',
+              fontSize: '68px',
               fontWeight: 700,
               lineHeight: 1.15,
             },
@@ -130,7 +116,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
               createNode('div', {
                 style: {
                   display: 'flex',
-                  marginTop: index === 0 ? 0 : '12px',
+                  marginTop: index === 0 ? 0 : '14px',
                 },
                 children: line,
               })
@@ -146,40 +132,21 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
                 style: {
                   display: 'flex',
                   color: '#475569',
-                  fontSize: '24px',
+                  fontSize: '18px',
                   fontWeight: 400,
+                  letterSpacing: '0.08em',
                 },
-                children: post.created,
+                children: '更新日',
               }),
               createNode('div', {
                 style: {
                   display: 'flex',
                   marginTop: '8px',
-                  color: '#64748b',
-                  fontSize: '22px',
-                  fontWeight: 400,
+                  color: '#0f172a',
+                  fontSize: '28px',
+                  fontWeight: 700,
                 },
-                children: tagLine,
-              }),
-              createNode('div', {
-                style: {
-                  display: 'flex',
-                  flexDirection: 'column',
-                  marginTop: '16px',
-                  color: '#475569',
-                  fontSize: '20px',
-                  fontWeight: 400,
-                  lineHeight: 1.4,
-                },
-                children: excerptLines.map((line, index) =>
-                  createNode('div', {
-                    style: {
-                      display: 'flex',
-                      marginTop: index === 0 ? 0 : '8px',
-                    },
-                    children: line,
-                  })
-                ),
+                children: updatedAt,
               }),
             ],
           }),
@@ -187,113 +154,35 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
       }),
       createNode('div', {
         style: {
-          width: '348px',
+          width: '300px',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
         },
         children: [
           createNode('div', {
             style: {
-              borderRadius: '40px',
+              width: '260px',
+              height: '260px',
+              borderRadius: '9999px',
               background: '#fff7f7',
               border: '1px solid #fecdd3',
-              padding: '36px',
-              boxSizing: 'border-box',
               display: 'flex',
-              flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
             },
             children: [
-              createNode('div', {
+              createNode('img', {
+                width: 176,
+                height: 176,
                 style: {
-                  width: '228px',
-                  height: '228px',
-                  borderRadius: '9999px',
-                  background: '#ffffff',
-                  border: '1px solid #fecdd3',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  width: '176px',
+                  height: '176px',
+                  objectFit: 'contain',
                 },
-                children: [
-                  createNode('img', {
-                    width: 164,
-                    height: 164,
-                    style: {
-                      width: '164px',
-                      height: '164px',
-                      objectFit: 'contain',
-                    },
-                    src: blogIcon,
-                    alt: 'matukoto blog icon',
-                  }),
-                ],
-              }),
-              createNode('div', {
-                style: {
-                  display: 'flex',
-                  marginTop: '24px',
-                  color: '#be123c',
-                  fontSize: '18px',
-                  fontWeight: 400,
-                  letterSpacing: '0.16em',
-                },
-                children: 'BLOG ICON',
-              }),
-              createNode('div', {
-                style: {
-                  marginTop: '10px',
-                  display: 'flex',
-                  color: '#0f172a',
-                  fontSize: '24px',
-                  fontWeight: 700,
-                },
-                children: 'matukoto',
-              }),
-              createNode('div', {
-                style: {
-                  marginTop: '4px',
-                  display: 'flex',
-                  color: '#64748b',
-                  fontSize: '18px',
-                  fontWeight: 400,
-                },
-                children: 'blog',
-              }),
-              createNode('div', {
-                style: {
-                  marginTop: '20px',
-                  height: '4px',
-                  width: '72px',
-                  borderRadius: '9999px',
-                  background: '#ff3e00',
-                },
-                children: '',
-              }),
-              createNode('div', {
-                style: {
-                  marginTop: '18px',
-                  display: 'flex',
-                  color: '#475569',
-                  fontSize: '15px',
-                  fontWeight: 400,
-                  textAlign: 'center',
-                  lineHeight: 1.4,
-                },
-                children: 'shareable article cover',
-              }),
-              createNode('div', {
-                style: {
-                  marginTop: '6px',
-                  display: 'flex',
-                  color: '#94a3b8',
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  textAlign: 'center',
-                },
-                children: post.slug,
+                src: blogIcon,
+                alt: 'matukoto blog icon',
               }),
             ],
           }),
@@ -308,9 +197,7 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
     fonts,
   });
 
-  return `<!-- ${escapeXml(post.title)} | ${escapeXml(post.created)} | ${escapeXml(
-    tagLine
-  )} -->${svg}`;
+  return `<!-- ${escapeXml(post.title)} | ${escapeXml(updatedAt)} -->${svg}`;
 }
 
 async function loadBlogIcon(): Promise<string> {
