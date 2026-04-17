@@ -30,4 +30,19 @@ describe('/+layout.svelte', () => {
       .element(page.getByRole('link', { name: 'RSS' }))
       .toHaveAttribute('href', '/rss.xml');
   });
+
+  it('renders social links in the footer', async () => {
+    render(Layout, {
+      children: createRawSnippet(() => ({
+        render: () => '<div>child content</div>',
+      })),
+    });
+
+    await expect
+      .element(page.getByRole('link', { name: 'GitHub' }))
+      .toHaveAttribute('href', 'https://github.com/matukoto');
+    await expect
+      .element(page.getByRole('link', { name: 'BlueSky' }))
+      .toHaveAttribute('href', 'https://bsky.app/profile/matukoto');
+  });
 });

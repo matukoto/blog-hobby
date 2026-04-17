@@ -37,6 +37,9 @@ describe('/articles/[slug]/+page.svelte', () => {
     await expect
       .element(page.getByRole('link', { name: 'svelte' }))
       .toHaveAttribute('href', '/tags/svelte');
+    await expect
+      .element(page.getByRole('button', { name: 'シェア' }))
+      .toBeInTheDocument();
   });
 
   it('adds OGP meta tags for the article', async () => {

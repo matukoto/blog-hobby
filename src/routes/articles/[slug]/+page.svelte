@@ -3,6 +3,41 @@
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
+  let shareStatus = $state('');
+
+  function getShareUrl() {
+    return new URL(`/articles/${data.post.slug}`, data.origin).toString();
+  }
+
+  async function handleShare() {
+    const shareUrl = getShareUrl();
+    const shareData = {
+      title: `${data.post.title} | matukoto blog`,
+      text: `${data.post.title} | matukoto blog`,
+      url: shareUrl,
+    };
+
+    if (typeof navigator !== 'undefined' && 'share' in navigator) {
+      try {
+        await navigator.share(shareData);
+        shareStatus = '共有画面を開きました。';
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          shareStatus = '共有をキャンセルしました。';
+          return;
+        }
+      }
+    }
+
+    if (typeof navigator !== 'undefined' && 'clipboard' in navigator) {
+      await navigator.clipboard.writeText(shareUrl);
+      shareStatus = '記事リンクをコピーしました。';
+      return;
+    }
+
+    shareStatus = 'この環境では共有できません。';
+  }
 </script>
 
 <svelte:head>
@@ -52,6 +87,11 @@
   {/if}
 
   <div class="article-content">{@html data.post.content}</div>
+
+  <footer class="article-footer">
+    <button type="button" class="share-button" onclick={handleShare}>シェア</button>
+    <p class="share-status" aria-live="polite">{shareStatus}</p>
+  </footer>
 </article>
 
 <style>
@@ -122,5 +162,43 @@
   .article-content :global(ul),
   .article-content :global(ol) {
     padding-left: 1.5rem;
+  }
+
+  .article-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .share-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: 0.5rem 1rem;
+    border: 0;
+    border-radius: 9999px;
+    background: #0f172a;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+  }
+
+  .share-button:hover {
+    background: #1e293b;
+  }
+
+  .share-button:focus-visible {
+    outline: 2px solid #f59e0b;
+    outline-offset: 2px;
+  }
+
+  .share-status {
+    margin: 0;
+    color: #475569;
   }
 </style>

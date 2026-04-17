@@ -35,6 +35,13 @@
   </header>
 
   <main class="site-main">{@render children()}</main>
+
+  <footer class="site-footer">
+    <nav class="social-links" aria-label="外部リンク">
+      <a href="https://github.com/matukoto" target="_blank" rel="noreferrer noopener">GitHub</a>
+      <a href="https://bsky.app/profile/matukoto" target="_blank" rel="noreferrer noopener">BlueSky</a>
+    </nav>
+  </footer>
 </div>
 
 <style>
@@ -107,6 +114,33 @@
     max-width: 72rem;
     margin: 0 auto;
     padding: 0 1.5rem 4rem;
+  }
+
+  .site-footer {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 2.5rem;
+  }
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .social-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    background: #e2e8f0;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .social-links a:hover {
+    background: #cbd5e1;
   }
 
   @media (max-width: 640px) {
