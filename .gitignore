@@ -25,3 +25,6 @@ vite.config.ts.timestamp-*
 
 # Cloudflare Types
 /worker-configuration.d.ts
+
+# Generated OGP assets
+/static/ogp/

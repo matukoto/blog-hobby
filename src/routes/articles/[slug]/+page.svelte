@@ -1,12 +1,30 @@
 <script lang="ts">
+  import { getArticleOgpImageUrl } from '$lib/ogp';
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
 </script>
 
 <svelte:head>
-  <title>{data.post.title}| matukoto blog</title>
+  <title>{data.post.title} | matukoto blog</title>
   <meta name="description" content={data.post.excerpt}>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="matukoto blog">
+  <meta property="og:title" content={`${data.post.title} | matukoto blog`}>
+  <meta property="og:description" content={data.post.excerpt}>
+  <meta property="og:url" content={`${data.origin}/articles/${data.post.slug}`}>
+  <meta
+    property="og:image"
+    content={getArticleOgpImageUrl(data.origin, data.post.slug)}
+  >
+  <meta property="og:image:alt" content={data.post.title}>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={`${data.post.title} | matukoto blog`}>
+  <meta name="twitter:description" content={data.post.excerpt}>
+  <meta
+    name="twitter:image"
+    content={getArticleOgpImageUrl(data.origin, data.post.slug)}
+  >
 </svelte:head>
 
 <article class="article">
