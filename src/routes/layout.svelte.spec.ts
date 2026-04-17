@@ -40,27 +40,35 @@ describe('/+layout.svelte', () => {
 
     await expect
       .element(
-        page.getByRole('navigation', { name: 'ソーシャルリンク' }).getByRole('link', {
-          name: 'GitHub profile',
+        page
+          .getByRole('navigation', { name: 'ソーシャルリンク' })
+          .getByRole('link', {
+            name: 'GitHub profile',
+          })
+      )
+      .toHaveAttribute('href', 'https://github.com/matukoto');
+    await expect
+      .element(
+        page
+          .getByRole('navigation', { name: 'ソーシャルリンク' })
+          .getByRole('link', {
+            name: 'BlueSky profile',
+          })
+      )
+      .toHaveAttribute('href', 'https://bsky.app/profile/matukoto');
+    await expect
+      .element(
+        page.getByRole('navigation', { name: '外部リンク' }).getByRole('link', {
+          name: 'GitHub',
         })
       )
       .toHaveAttribute('href', 'https://github.com/matukoto');
     await expect
       .element(
-        page.getByRole('navigation', { name: 'ソーシャルリンク' }).getByRole('link', {
-          name: 'BlueSky profile',
+        page.getByRole('navigation', { name: '外部リンク' }).getByRole('link', {
+          name: 'BlueSky',
         })
       )
-      .toHaveAttribute('href', 'https://bsky.app/profile/matukoto');
-    await expect
-      .element(page.getByRole('navigation', { name: '外部リンク' }).getByRole('link', {
-        name: 'GitHub',
-      }))
-      .toHaveAttribute('href', 'https://github.com/matukoto');
-    await expect
-      .element(page.getByRole('navigation', { name: '外部リンク' }).getByRole('link', {
-        name: 'BlueSky',
-      }))
       .toHaveAttribute('href', 'https://bsky.app/profile/matukoto');
     expect(document.querySelector('footer .social-links svg')).toBeNull();
   });

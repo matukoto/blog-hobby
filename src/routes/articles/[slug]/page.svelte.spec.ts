@@ -57,7 +57,7 @@ describe('/articles/[slug]/+page.svelte', () => {
       .element(page.getByRole('link', { name: 'svelte' }))
       .toHaveAttribute('href', '/tags/svelte');
     await expect
-      .element(page.getByRole('button', { name: 'シェア' }))
+      .element(page.getByRole('button', { name: 'share' }))
       .toBeInTheDocument();
   });
 
@@ -82,19 +82,19 @@ describe('/articles/[slug]/+page.svelte', () => {
     });
 
     expect(
-      document.head.querySelector('meta[property="og:title"]')?.getAttribute(
-        'content'
-      )
+      document.head
+        .querySelector('meta[property="og:title"]')
+        ?.getAttribute('content')
     ).toBe('SvelteKit でブログを作ってみた | matukoto blog');
     expect(
-      document.head.querySelector('meta[property="og:image"]')?.getAttribute(
-        'content'
-      )
+      document.head
+        .querySelector('meta[property="og:image"]')
+        ?.getAttribute('content')
     ).toBe('https://example.com/ogp/first.png');
     expect(
-      document.head.querySelector('meta[name="twitter:card"]')?.getAttribute(
-        'content'
-      )
+      document.head
+        .querySelector('meta[name="twitter:card"]')
+        ?.getAttribute('content')
     ).toBe('summary_large_image');
   });
 
@@ -131,7 +131,7 @@ describe('/articles/[slug]/+page.svelte', () => {
       },
     });
 
-    await page.getByRole('button', { name: 'シェア' }).click();
+    await page.getByRole('button', { name: 'share' }).click();
 
     expect(writeText).toHaveBeenCalledWith(
       'https://example.com/articles/first'

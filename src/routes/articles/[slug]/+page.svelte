@@ -59,7 +59,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.post.title} | matukoto blog</title>
+  <title>{data.post.title}| matukoto blog</title>
   <meta name="description" content={data.post.excerpt}>
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="matukoto blog">
@@ -107,7 +107,9 @@
   <div class="article-content">{@html data.post.content}</div>
 
   <footer class="article-footer">
-    <button type="button" class="share-button" onclick={handleShare}>シェア</button>
+    <button type="button" class="share-button" onclick={handleShare}>
+      share
+    </button>
     <p class="share-status" aria-live="polite">{shareStatus}</p>
   </footer>
 </article>
