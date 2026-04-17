@@ -31,7 +31,7 @@ describe('/+layout.svelte', () => {
       .toHaveAttribute('href', '/rss.xml');
   });
 
-  it('renders social links in the footer', async () => {
+  it('renders social links in the header and footer', async () => {
     render(Layout, {
       children: createRawSnippet(() => ({
         render: () => '<div>child content</div>',
@@ -39,10 +39,29 @@ describe('/+layout.svelte', () => {
     });
 
     await expect
-      .element(page.getByRole('link', { name: 'GitHub' }))
+      .element(
+        page.getByRole('navigation', { name: 'ソーシャルリンク' }).getByRole('link', {
+          name: 'GitHub profile',
+        })
+      )
       .toHaveAttribute('href', 'https://github.com/matukoto');
     await expect
-      .element(page.getByRole('link', { name: 'BlueSky' }))
+      .element(
+        page.getByRole('navigation', { name: 'ソーシャルリンク' }).getByRole('link', {
+          name: 'BlueSky profile',
+        })
+      )
       .toHaveAttribute('href', 'https://bsky.app/profile/matukoto');
+    await expect
+      .element(page.getByRole('navigation', { name: '外部リンク' }).getByRole('link', {
+        name: 'GitHub',
+      }))
+      .toHaveAttribute('href', 'https://github.com/matukoto');
+    await expect
+      .element(page.getByRole('navigation', { name: '外部リンク' }).getByRole('link', {
+        name: 'BlueSky',
+      }))
+      .toHaveAttribute('href', 'https://bsky.app/profile/matukoto');
+    expect(document.querySelector('footer .social-links svg')).toBeNull();
   });
 });

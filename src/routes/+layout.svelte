@@ -32,39 +32,41 @@
       <p class="site-description">雑多ブログ</p>
     </div>
 
-    <a class="rss-link" href="/rss.xml">RSS</a>
+    <div class="site-actions">
+      <nav class="header-social-links" aria-label="ソーシャルリンク">
+        <a
+          class="icon-link icon-link--github"
+          href="https://github.com/matukoto"
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label="GitHub profile"
+          title="GitHub"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d={siGithub.path} fill="currentColor"/>
+          </svg>
+        </a>
+        <a
+          class="icon-link icon-link--bluesky"
+          href="https://bsky.app/profile/matukoto"
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label="BlueSky profile"
+          title="BlueSky"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d={siBluesky.path} fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+
+      <a class="rss-link" href="/rss.xml">RSS</a>
+    </div>
   </header>
 
   <main class="site-main">{@render children()}</main>
 
-  <footer class="site-footer">
-    <nav class="social-links" aria-label="外部リンク">
-      <a
-        class="social-link social-link--github"
-        href="https://github.com/matukoto"
-        target="_blank"
-        rel="noreferrer noopener"
-        aria-label="GitHub"
-        title="GitHub"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d={siGithub.path} fill="currentColor" />
-        </svg>
-      </a>
-      <a
-        class="social-link social-link--bluesky"
-        href="https://bsky.app/profile/matukoto"
-        target="_blank"
-        rel="noreferrer noopener"
-        aria-label="BlueSky"
-        title="BlueSky"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d={siBluesky.path} fill="currentColor" />
-        </svg>
-      </a>
-    </nav>
-  </footer>
+  <footer class="site-footer"></footer>
 </div>
 
 <style>
@@ -110,6 +112,14 @@
     color: #475569;
   }
 
+  .site-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
   .rss-link {
     display: inline-flex;
     align-items: center;
@@ -124,8 +134,45 @@
     text-decoration: none;
   }
 
+  .header-social-links {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    min-height: 2.5rem;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    background: #e2e8f0;
+    text-decoration: none;
+  }
+
+  .icon-link svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+  }
+
+  .icon-link--github {
+    color: #0f172a;
+  }
+
+  .icon-link--bluesky {
+    color: #0285ff;
+  }
+
+  .icon-link:hover,
+  .rss-link:hover {
+    background: #cbd5e1;
+  }
+
   .rss-link:hover {
     background: #1e293b;
+    color: #fff;
   }
 
   .rss-link:focus-visible {
@@ -148,38 +195,19 @@
   .social-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
-  .social-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.75rem;
-    min-height: 2.5rem;
-    padding: 0.75rem;
-    border-radius: 9999px;
-    background: #e2e8f0;
-    text-decoration: none;
+  .social-links a {
+    color: #334155;
     font-weight: 700;
+    text-decoration: none;
   }
 
-  .social-link svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    display: block;
-  }
-
-  .social-link--github {
+  .social-links a:hover {
     color: #0f172a;
-  }
-
-  .social-link--bluesky {
-    color: #0285ff;
-  }
-
-  .social-link:hover {
-    background: #cbd5e1;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
   @media (max-width: 640px) {

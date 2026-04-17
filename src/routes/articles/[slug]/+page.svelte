@@ -9,8 +9,32 @@
     return new URL(`/articles/${data.post.slug}`, data.origin).toString();
   }
 
+  function isDesktopLike() {
+    return (
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(pointer: fine)').matches
+    );
+  }
+
+  async function copyShareUrl(shareUrl: string) {
+    if (typeof navigator === 'undefined' || !('clipboard' in navigator)) {
+      shareStatus = 'この環境ではURLをコピーできません。';
+      return false;
+    }
+
+    await navigator.clipboard.writeText(shareUrl);
+    shareStatus = '記事リンクをコピーしました。';
+    return true;
+  }
+
   async function handleShare() {
     const shareUrl = getShareUrl();
+    if (isDesktopLike()) {
+      await copyShareUrl(shareUrl);
+      return;
+    }
+
     const shareData = {
       title: `${data.post.title} | matukoto blog`,
       text: `${data.post.title} | matukoto blog`,
@@ -30,13 +54,7 @@
       }
     }
 
-    if (typeof navigator !== 'undefined' && 'clipboard' in navigator) {
-      await navigator.clipboard.writeText(shareUrl);
-      shareStatus = '記事リンクをコピーしました。';
-      return;
-    }
-
-    shareStatus = 'この環境では共有できません。';
+    await copyShareUrl(shareUrl);
   }
 </script>
 
