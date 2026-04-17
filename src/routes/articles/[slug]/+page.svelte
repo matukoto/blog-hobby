@@ -3,10 +3,88 @@
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
+  type ShareState = 'idle' | 'success' | 'error';
+
+  let shareState = $state<ShareState>('idle');
+  const BLOG_NAME = 'matukoto blog';
+
+  function getShareUrl() {
+    return new URL(`/articles/${data.post.slug}`, data.origin).toString();
+  }
+
+  function getShareText(shareUrl: string) {
+    return `${data.post.title} | ${BLOG_NAME}\n${shareUrl}`;
+  }
+
+  function isDesktopLike() {
+    return (
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(pointer: fine)').matches
+    );
+  }
+
+  function setShareSuccess() {
+    shareState = 'success';
+  }
+
+  function setShareError() {
+    shareState = 'error';
+  }
+
+  function resetShareState() {
+    shareState = 'idle';
+  }
+
+  async function copyShareText(shareText: string) {
+    if (typeof navigator === 'undefined' || !('clipboard' in navigator)) {
+      setShareError();
+      return false;
+    }
+
+    try {
+      await navigator.clipboard.writeText(shareText);
+      setShareSuccess();
+      return true;
+    } catch {
+      setShareError();
+      return false;
+    }
+  }
+
+  async function handleShare() {
+    resetShareState();
+    const shareUrl = getShareUrl();
+    const shareText = getShareText(shareUrl);
+    if (isDesktopLike()) {
+      await copyShareText(shareText);
+      return;
+    }
+
+    const shareData = {
+      title: `${data.post.title} | ${BLOG_NAME}`,
+      text: shareText,
+      url: shareUrl,
+    };
+
+    if (typeof navigator !== 'undefined' && 'share' in navigator) {
+      try {
+        await navigator.share(shareData);
+        setShareSuccess();
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          return;
+        }
+      }
+    }
+
+    await copyShareText(shareText);
+  }
 </script>
 
 <svelte:head>
-  <title>{data.post.title} | matukoto blog</title>
+  <title>{data.post.title}| matukoto blog</title>
   <meta name="description" content={data.post.excerpt}>
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="matukoto blog">
@@ -52,6 +130,34 @@
   {/if}
 
   <div class="article-content">{@html data.post.content}</div>
+
+  <footer class="article-footer">
+    <button
+      type="button"
+      class:share-button--success={shareState === 'success'}
+      class="share-button"
+      aria-label={shareState === 'success' ? 'シェア済み' : 'share'}
+      onclick={handleShare}
+    >
+      {#if shareState === 'success'}
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M20 6.5 9 17.5l-5-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+          />
+        </svg>
+      {:else}
+        share
+      {/if}
+    </button>
+    {#if shareState === 'error'}
+      <p class="share-status" aria-live="polite">エラー</p>
+    {/if}
+  </footer>
 </article>
 
 <style>
@@ -122,5 +228,59 @@
   .article-content :global(ul),
   .article-content :global(ol) {
     padding-left: 1.5rem;
+  }
+
+  .article-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .share-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: 0.5rem 1rem;
+    border: 0;
+    border-radius: 9999px;
+    background: #0f172a;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+  }
+
+  .share-button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+  }
+
+  .share-button--success {
+    width: 2.75rem;
+    padding: 0;
+    background: #059669;
+  }
+
+  .share-button:hover {
+    background: #1e293b;
+  }
+
+  .share-button--success:hover {
+    background: #047857;
+  }
+
+  .share-button:focus-visible {
+    outline: 2px solid #f59e0b;
+    outline-offset: 2px;
+  }
+
+  .share-status {
+    margin: 0;
+    color: #b91c1c;
   }
 </style>

@@ -4,7 +4,12 @@ import { join } from 'node:path';
 import { Resvg } from '@resvg/resvg-js';
 import satori from 'satori';
 
-import { createExcerpt, createTag, parseFrontmatter, splitFrontmatter } from '../post-parser';
+import {
+  createExcerpt,
+  createTag,
+  parseFrontmatter,
+  splitFrontmatter,
+} from '../post-parser';
 import type { ArticleOgpPost } from '../ogp';
 
 type SatoriNode = {
@@ -50,10 +55,15 @@ export async function generateArticleOgpImages({
   }
 }
 
-export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> {
+export async function buildArticleOgpSvg(
+  post: ArticleOgpPost
+): Promise<string> {
   const titleLines = wrapText(post.title, 20, 3);
   const updatedAt = post.updated ?? post.created;
-  const [fonts, blogIcon] = await Promise.all([FONT_PROMISE, BLOG_ICON_PROMISE]);
+  const [fonts, blogIcon] = await Promise.all([
+    FONT_PROMISE,
+    BLOG_ICON_PROMISE,
+  ]);
   const markup = createNode('div', {
     style: {
       width: '1200px',
@@ -203,7 +213,9 @@ export async function buildArticleOgpSvg(post: ArticleOgpPost): Promise<string> 
 async function loadBlogIcon(): Promise<string> {
   const iconPath = join(process.cwd(), 'static/assets/favicon.svg');
   const icon = await readFile(iconPath, 'utf8');
-  const embeddedImage = icon.match(/xlink:href="(data:image\/png;base64,[^"]+)"/)?.[1];
+  const embeddedImage = icon.match(
+    /xlink:href="(data:image\/png;base64,[^"]+)"/
+  )?.[1];
 
   if (embeddedImage) {
     return embeddedImage;
@@ -254,7 +266,10 @@ async function loadFonts(): Promise<SatoriFont[]> {
   ]);
 }
 
-async function readFont(fileName: string, weight: 400 | 700): Promise<SatoriFont> {
+async function readFont(
+  fileName: string,
+  weight: 400 | 700
+): Promise<SatoriFont> {
   const fontPath = join(process.cwd(), 'src/lib/assets/ogp-fonts', fileName);
   const data = await readFile(fontPath);
 
@@ -266,7 +281,11 @@ async function readFont(fileName: string, weight: 400 | 700): Promise<SatoriFont
   };
 }
 
-function wrapText(text: string, maxCharactersPerLine: number, maxLines: number): string[] {
+function wrapText(
+  text: string,
+  maxCharactersPerLine: number,
+  maxLines: number
+): string[] {
   const characters = Array.from(text.trim());
 
   if (characters.length === 0) {
@@ -279,7 +298,10 @@ function wrapText(text: string, maxCharactersPerLine: number, maxLines: number):
   for (const character of characters) {
     const nextLine = `${currentLine}${character}`;
 
-    if (Array.from(nextLine).length > maxCharactersPerLine && currentLine.length > 0) {
+    if (
+      Array.from(nextLine).length > maxCharactersPerLine &&
+      currentLine.length > 0
+    ) {
       lines.push(currentLine);
       currentLine = character;
 
@@ -316,7 +338,9 @@ function escapeXml(value: string): string {
 
 function createNode(
   type: string,
-  props: Record<string, unknown> & { children?: SatoriNode[] | SatoriNode | string }
+  props: Record<string, unknown> & {
+    children?: SatoriNode[] | SatoriNode | string;
+  }
 ): SatoriNode {
   return {
     type,

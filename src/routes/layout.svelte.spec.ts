@@ -30,4 +30,32 @@ describe('/+layout.svelte', () => {
       .element(page.getByRole('link', { name: 'RSS' }))
       .toHaveAttribute('href', '/rss.xml');
   });
+
+  it('renders social links in the header', async () => {
+    render(Layout, {
+      children: createRawSnippet(() => ({
+        render: () => '<div>child content</div>',
+      })),
+    });
+
+    await expect
+      .element(
+        page
+          .getByRole('navigation', { name: 'ソーシャルリンク' })
+          .getByRole('link', {
+            name: 'GitHub profile',
+          })
+      )
+      .toHaveAttribute('href', 'https://github.com/matukoto');
+    await expect
+      .element(
+        page
+          .getByRole('navigation', { name: 'ソーシャルリンク' })
+          .getByRole('link', {
+            name: 'BlueSky profile',
+          })
+      )
+      .toHaveAttribute('href', 'https://bsky.app/profile/matukoto');
+    expect(document.querySelector('footer')).toBeNull();
+  });
 });
