@@ -4,9 +4,32 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { generateArticleOgpImages } from './ogp';
+import { buildArticleOgpSvg, generateArticleOgpImages } from './ogp';
 
 describe('generateArticleOgpImages', () => {
+  it('builds an svg with article metadata', async () => {
+    const svg = await buildArticleOgpSvg({
+      slug: 'first',
+      title: 'SvelteKit でブログを作ってみた',
+      created: '2024-09-20',
+      updated: '2024-09-20',
+      published: '2024-09-20',
+      tags: [
+        { name: 'Svelte', slug: 'svelte' },
+        { name: 'Cloudflare', slug: 'cloudflare' },
+      ],
+      excerpt: '記事の要約',
+      image: '/assets/svelte.png',
+      unlisted: false,
+      content: '',
+    });
+
+    expect(svg).toContain('<svg');
+    expect(svg).toContain('SvelteKit でブログを作ってみた');
+    expect(svg).toContain('2024-09-20');
+    expect(svg).toContain('Svelte');
+  });
+
   it('writes png files for markdown posts', async () => {
     const workspace = await mkdtemp(join(tmpdir(), 'blog-hobby-ogp-'));
     const postsDir = join(workspace, 'posts');
