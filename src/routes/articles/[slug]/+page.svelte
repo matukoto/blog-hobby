@@ -4,9 +4,14 @@
 
   let { data }: { data: PageData } = $props();
   let shareStatus = $state('');
+  const BLOG_NAME = 'matukoto blog';
 
   function getShareUrl() {
     return new URL(`/articles/${data.post.slug}`, data.origin).toString();
+  }
+
+  function getShareText(shareUrl: string) {
+    return `${data.post.title} | ${BLOG_NAME}\n${shareUrl}`;
   }
 
   function isDesktopLike() {
@@ -17,27 +22,28 @@
     );
   }
 
-  async function copyShareUrl(shareUrl: string) {
+  async function copyShareText(shareText: string) {
     if (typeof navigator === 'undefined' || !('clipboard' in navigator)) {
-      shareStatus = 'この環境ではURLをコピーできません。';
+      shareStatus = 'この環境ではクリップボードにコピーできません。';
       return false;
     }
 
-    await navigator.clipboard.writeText(shareUrl);
-    shareStatus = '記事リンクをコピーしました。';
+    await navigator.clipboard.writeText(shareText);
+    shareStatus = '記事タイトルとブログ名を含むリンクをコピーしました。';
     return true;
   }
 
   async function handleShare() {
     const shareUrl = getShareUrl();
+    const shareText = getShareText(shareUrl);
     if (isDesktopLike()) {
-      await copyShareUrl(shareUrl);
+      await copyShareText(shareText);
       return;
     }
 
     const shareData = {
-      title: `${data.post.title} | matukoto blog`,
-      text: `${data.post.title} | matukoto blog`,
+      title: `${data.post.title} | ${BLOG_NAME}`,
+      text: shareText,
       url: shareUrl,
     };
 
@@ -54,7 +60,7 @@
       }
     }
 
-    await copyShareUrl(shareUrl);
+    await copyShareText(shareText);
   }
 </script>
 

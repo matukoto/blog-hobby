@@ -134,11 +134,11 @@ describe('/articles/[slug]/+page.svelte', () => {
     await page.getByRole('button', { name: 'share' }).click();
 
     expect(writeText).toHaveBeenCalledWith(
-      'https://example.com/articles/first'
+      'SvelteKit でブログを作ってみた | matukoto blog\nhttps://example.com/articles/first'
     );
     expect(share).not.toHaveBeenCalled();
     await expect
-      .element(page.getByText('記事リンクをコピーしました。'))
+      .element(page.getByText('記事タイトルとブログ名を含むリンクをコピーしました。'))
       .toBeInTheDocument();
   });
 });
