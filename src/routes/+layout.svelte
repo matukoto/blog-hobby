@@ -2,6 +2,7 @@
   import type { Snippet } from 'svelte';
   import type { LayoutData } from './$types';
   import GoogleAnalytics from '$lib/GoogleAnalytics.svelte';
+  import { siBluesky, siGithub } from 'simple-icons';
 
   let {
     children,
@@ -38,8 +39,30 @@
 
   <footer class="site-footer">
     <nav class="social-links" aria-label="外部リンク">
-      <a href="https://github.com/matukoto" target="_blank" rel="noreferrer noopener">GitHub</a>
-      <a href="https://bsky.app/profile/matukoto" target="_blank" rel="noreferrer noopener">BlueSky</a>
+      <a
+        class="social-link social-link--github"
+        href="https://github.com/matukoto"
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="GitHub"
+        title="GitHub"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d={siGithub.path} fill="currentColor" />
+        </svg>
+      </a>
+      <a
+        class="social-link social-link--bluesky"
+        href="https://bsky.app/profile/matukoto"
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="BlueSky"
+        title="BlueSky"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d={siBluesky.path} fill="currentColor" />
+        </svg>
+      </a>
     </nav>
   </footer>
 </div>
@@ -128,18 +151,34 @@
     gap: 0.75rem;
   }
 
-  .social-links a {
+  .social-link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width: 2.75rem;
     min-height: 2.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem;
     border-radius: 9999px;
     background: #e2e8f0;
     text-decoration: none;
     font-weight: 700;
   }
 
-  .social-links a:hover {
+  .social-link svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+  }
+
+  .social-link--github {
+    color: #0f172a;
+  }
+
+  .social-link--bluesky {
+    color: #0285ff;
+  }
+
+  .social-link:hover {
     background: #cbd5e1;
   }
 
