@@ -29,8 +29,9 @@ pnpm test:e2e e2e/demo.test.ts
 pnpm test  
 
 # Markdown 用ツールは package.json の scripts には未定義  
-npx textlint --fix src/lib/posts/**/*.md  
-npx markdownlint-cli2 "**/*.md"  
+textlint --fix src/lib/posts/**/*.md  
+markdownlint-cli2 "**/*.md"  
+biome format --write "**/*.md"  
 ```  
 
 ## 高レベルアーキテクチャ  
