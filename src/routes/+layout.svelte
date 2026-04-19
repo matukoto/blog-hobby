@@ -13,7 +13,7 @@
   } = $props();
 </script>
 
-<GoogleAnalytics gaId={data?.gaId}/>
+<GoogleAnalytics gaId={data?.gaId} />
 
 <svelte:head>
   <link rel="icon" href="/assets/favicon.ico">
@@ -43,7 +43,7 @@
           title="GitHub"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d={siGithub.path} fill="currentColor"/>
+            <path d={siGithub.path} fill="currentColor" />
           </svg>
         </a>
         <a
@@ -55,7 +55,7 @@
           title="BlueSky"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d={siBluesky.path} fill="currentColor"/>
+            <path d={siBluesky.path} fill="currentColor" />
           </svg>
         </a>
       </nav>

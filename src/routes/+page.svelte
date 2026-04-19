@@ -31,7 +31,7 @@
             ></a>
 
             {#if post.image}
-              <img class="post-image" src={post.image} alt="" />
+              <img class="post-image" src={post.image} alt="">
             {/if}
 
             <div class="post-body">
@@ -41,10 +41,8 @@
 
               {#if post.tags.length > 0}
                 <ul class="tag-list" aria-label={`${post.title} のタグ`}>
-              {#each post.tags as tag (tag.slug)}
-                    <li>
-                      <a href={`/tags/${tag.slug}`}>{tag.name}</a>
-                    </li>
+                  {#each post.tags as tag (tag.slug)}
+                    <li><a href={`/tags/${tag.slug}`}>{tag.name}</a></li>
                   {/each}
                 </ul>
               {/if}
@@ -63,12 +61,12 @@
     {:else}
       <ul class="all-tags">
         {#each data.tags as tag (tag.slug)}
-					<li>
-						<a href={`/tags/${tag.slug}`}>{tag.name}</a>
-						<span>{tag.count}</span>
-					</li>
-				{/each}
-			</ul>
+          <li>
+            <a href={`/tags/${tag.slug}`}>{tag.name}</a>
+            <span>{tag.count}</span>
+          </li>
+        {/each}
+      </ul>
     {/if}
   </aside>
 </div>

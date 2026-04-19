@@ -106,9 +106,7 @@
 </svelte:head>
 
 <article class="article">
-  <p class="back-link">
-    <a href="/">← 記事一覧へ戻る</a>
-  </p>
+  <p class="back-link"><a href="/">← 記事一覧へ戻る</a></p>
 
   <header class="article-header">
     <p class="article-date">{data.post.created}</p>
@@ -116,12 +114,10 @@
 
     {#if data.post.tags.length > 0}
       <ul class="tag-list" aria-label={`${data.post.title} のタグ`}>
-				{#each data.post.tags as tag}
-					<li>
-						<a href={`/tags/${tag.slug}`}>{tag.name}</a>
-					</li>
-				{/each}
-			</ul>
+        {#each data.post.tags as tag}
+          <li><a href={`/tags/${tag.slug}`}>{tag.name}</a></li>
+        {/each}
+      </ul>
     {/if}
   </header>
 
