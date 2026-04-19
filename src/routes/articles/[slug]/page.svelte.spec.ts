@@ -143,7 +143,7 @@ describe('/articles/[slug]/+page.svelte', () => {
     expect(document.querySelector('.share-status')).toBeNull();
   });
 
-  it('does not duplicate the article URL in the mobile share text', async () => {
+  it('sends only title and url on mobile share', async () => {
     const share = vi.fn().mockResolvedValue(undefined);
 
     mockMatchMedia(false);
@@ -176,7 +176,6 @@ describe('/articles/[slug]/+page.svelte', () => {
     expect(share).toHaveBeenCalledTimes(1);
     expect(share).toHaveBeenCalledWith({
       title: 'SvelteKit でブログを作ってみた | matukoto blog',
-      text: 'SvelteKit でブログを作ってみた | matukoto blog',
       url: 'https://example.com/articles/first',
     });
   });

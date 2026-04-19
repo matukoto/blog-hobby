@@ -64,7 +64,6 @@
 
     const shareData = {
       title: shareTitle,
-      text: shareTitle,
       url: shareUrl,
     };
 
