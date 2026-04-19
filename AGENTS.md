@@ -15,21 +15,6 @@
 - **テスト**: Vitest (unit + component) / Playwright (E2E)  
 - **コンテンツ**: MDSvex (Markdown + Svelte)  
 
-## 基本ルール  
-
-- 日本語でやりとりすること  
-- やりとりの要約（依頼内容、計画、実行内容、検証結果）を `docs/agents/` 以下に保存すること  
-- 設計作業は `docs/design/`、調査は `docs/research/`、分類不能なものは `docs/misc/` に保存  
-
-## プロジェクト概要  
-
-- **フレームワーク**: SvelteKit (Svelte 5)  
-- **言語**: TypeScript (strict モード)  
-- **デプロイ**: Cloudflare Workers (adapter-cloudflare)  
-- **パッケージマネージャー**: pnpm  
-- **テスト**: Vitest (unit + component) / Playwright (E2E)  
-- **コンテンツ**: MDSvex (Markdown + Svelte)  
-
 ## ビルド・テスト・チェックコマンド  
 
 ### 開発  
@@ -60,18 +45,23 @@ pnpm test:unit src/demo.spec.ts               # server テスト
 pnpm test:unit src/routes/page.svelte.spec.ts # client (browser) テスト  
 
 # E2E テスト (Playwright)  
-pnpm test:e2e # E2E テスト実行  
+pnpm test:e2e # E2E テスト実行（30 秒で打ち切り）  
 
 # すべてのテスト  
 pnpm test # unit + E2E  
-$()$( ### Lint / Format  
+```  
 
-)$()bash  
+### Lint / Format  
+
+```bash  
 # Markdown lint (textlint)  
-npx textlint --fix urara/**/*.md  
+pnpm exec textlint --fix src/lib/posts/**/*.md  
 
-# Markdown format (markdownlint)  
-npx markdownlint-cli2 "**/*.md"  
+# Markdown lint (markdownlint)  
+markdownlint-cli2 "**/*.md"  
+
+# Markdown format (Biome)  
+pnpm exec biome format --write "**/*.md"  
 ```  
 
 ## コードスタイルガイドライン  
@@ -116,7 +106,6 @@ import Page from './+page.svelte';
   // $state() でリアクティブな状態管理  
   let count = $state(0);  
 </script>  
-
 <!-- {@render children()} でスロット描画 -->  
 {@render children()}  
 ```  
@@ -195,7 +184,7 @@ test('page has expected content', async ({ page }) => {
 
 ## テストディレクトリ構成  
 
-```  
+```text  
 src/  
   ├── demo.spec.ts              # Server テスト (Vitest node environment)  
   ├── routes/  
@@ -212,6 +201,7 @@ e2e/
 - **Cloudflare Workers 設定**: `wrangler.jsonc`  
 - **E2E テスト設定**: `playwright.config.ts`  
 - **Markdown lint**: `.textlintrc.json`, `.markdownlint-cli2.jsonc`  
+- **Markdown format**: `biome.jsonc`  
 
 ## 開発手法  
 
@@ -241,7 +231,7 @@ e2e/
 ## その他のベストプラクティス  
 
 - コミット前に `pnpm check` と `pnpm test` を実行  
-- Markdown ファイルは textlint で自動フォーマット  
+- Markdown ファイルは `textlint` と `markdownlint-cli2` で整える  
 - Cloudflare Workers 用の型定義は `wrangler types` で生成  
 - 実装前にテストを書く（TDD の原則を守る）  
 
@@ -249,20 +239,29 @@ e2e/
 
 ### 1. list-sections  
 
-Use this FIRST to discover all available documentation sections. Returns a structured list with titles, use_cases, and paths.  
-When asked about Svelte or SvelteKit topics, ALWAYS use this tool at the start of the chat to find relevant sections.  
+Use this FIRST to discover all available documentation sections.  
+Returns a structured list with titles, use_cases, and paths.  
+When asked about Svelte or SvelteKit topics, ALWAYS use this tool at the  
+start of the chat to find relevant sections.  
 
 ### 2. get-documentation  
 
-Retrieves full documentation content for specific sections. Accepts single or multiple sections.  
-After calling the list-sections tool, you MUST analyze the returned documentation sections (especially the use_cases field) and then use the get-documentation tool to fetch ALL documentation sections that are relevant for the user's task.  
+Retrieves full documentation content for specific sections. Accepts single or  
+multiple sections.  
+After calling the list-sections tool, you MUST analyze the returned  
+documentation sections (especially the use_cases field) and then use the  
+get-documentation tool to fetch ALL documentation sections that are relevant  
+for the user's task.  
 
 ### 3. svelte-autofixer  
 
 Analyzes Svelte code and returns issues and suggestions.  
-You MUST use this tool whenever writing Svelte code before sending it to the user. Keep calling it until no issues or suggestions are returned.  
+You MUST use this tool whenever writing Svelte code before sending it to the  
+user. Keep calling it until no issues or suggestions are returned.  
 
 ### 4. playground-link  
 
 Generates a Svelte Playground link with the provided code.  
-After completing the code, ask the user if they want a playground link. Only call this tool after user confirmation and NEVER if code was written to files in their project.  
+After completing the code, ask the user if they want a playground link. Only  
+call this tool after user confirmation and NEVER if code was written to files  
+in their project.  

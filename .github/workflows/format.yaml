@@ -30,7 +30,9 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Run textlint
         # textlint の終了コードを強制0にする
-        run: npx textlint --fix src/lib/posts/**/*.md | true
+        run: pnpm exec textlint --fix src/lib/posts/**/*.md | true
         shell: bash {0}
+      - name: Run markdownlint
+        run: pnpm exec markdownlint-cli2 "src/lib/posts/**/*.md"
       - name: Autofix
         uses: autofix-ci/action@635ffb0c9798bd160680f18fd73371e355b85f27
