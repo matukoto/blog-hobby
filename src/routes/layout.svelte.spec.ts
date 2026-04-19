@@ -4,13 +4,17 @@ import { describe, expect, it } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import Layout from './+layout.svelte';
 
+function renderLayout() {
+  render(Layout, {
+    children: createRawSnippet(() => ({
+      render: () => '<div>child content</div>',
+    })),
+  });
+}
+
 describe('/+layout.svelte', () => {
   it('renders the favicon link in the head', async () => {
-    render(Layout, {
-      children: createRawSnippet(() => ({
-        render: () => '<div>child content</div>',
-      })),
-    });
+    renderLayout();
 
     const iconHrefs = Array.from(
       document.querySelectorAll('link[rel="icon"]')
@@ -20,11 +24,7 @@ describe('/+layout.svelte', () => {
   });
 
   it('renders an RSS link in the site header', async () => {
-    render(Layout, {
-      children: createRawSnippet(() => ({
-        render: () => '<div>child content</div>',
-      })),
-    });
+    renderLayout();
 
     await expect
       .element(page.getByRole('link', { name: 'RSS' }))
@@ -32,11 +32,7 @@ describe('/+layout.svelte', () => {
   });
 
   it('renders social links in the header', async () => {
-    render(Layout, {
-      children: createRawSnippet(() => ({
-        render: () => '<div>child content</div>',
-      })),
-    });
+    renderLayout();
 
     await expect
       .element(

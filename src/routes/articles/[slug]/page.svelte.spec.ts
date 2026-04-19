@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 
 import Page from './+page.svelte';
+import { makeArticlePageData, makePost } from '$lib/testing/fixtures';
 
 function mockMatchMedia(matches: boolean) {
   Object.defineProperty(window, 'matchMedia', {
@@ -26,25 +27,15 @@ function mockMatchMedia(matches: boolean) {
 describe('/articles/[slug]/+page.svelte', () => {
   it('renders the article body and tag links', async () => {
     render(Page, {
-      data: {
-        gaId: '',
-        origin: 'https://example.com',
-        post: {
-          slug: 'first',
-          title: 'SvelteKit でブログを作ってみた',
-          image: '/assets/svelte.png',
-          created: '2024-09-20',
-          updated: '2024-09-20',
-          published: '2024-09-20',
-          excerpt: '記事の要約',
+      data: makeArticlePageData({
+        post: makePost({
           tags: [
             { name: 'svelte', slug: 'svelte' },
             { name: 'cloudflare', slug: 'cloudflare' },
           ],
           content: '<h2>感想</h2><p>本文</p>',
-          unlisted: false,
-        },
-      },
+        }),
+      }),
     });
 
     await expect
@@ -63,22 +54,12 @@ describe('/articles/[slug]/+page.svelte', () => {
 
   it('adds OGP meta tags for the article', async () => {
     render(Page, {
-      data: {
-        gaId: '',
-        origin: 'https://example.com',
-        post: {
-          slug: 'first',
-          title: 'SvelteKit でブログを作ってみた',
-          image: '/assets/svelte.png',
-          created: '2024-09-20',
-          updated: '2024-09-20',
-          published: '2024-09-20',
-          excerpt: '記事の要約',
+      data: makeArticlePageData({
+        post: makePost({
           tags: [],
           content: '<p>本文</p>',
-          unlisted: false,
-        },
-      },
+        }),
+      }),
     });
 
     expect(
@@ -113,22 +94,12 @@ describe('/articles/[slug]/+page.svelte', () => {
     });
 
     render(Page, {
-      data: {
-        gaId: '',
-        origin: 'https://example.com',
-        post: {
-          slug: 'first',
-          title: 'SvelteKit でブログを作ってみた',
-          image: '/assets/svelte.png',
-          created: '2024-09-20',
-          updated: '2024-09-20',
-          published: '2024-09-20',
-          excerpt: '記事の要約',
+      data: makeArticlePageData({
+        post: makePost({
           tags: [],
           content: '<p>本文</p>',
-          unlisted: false,
-        },
-      },
+        }),
+      }),
     });
 
     await page.getByRole('button', { name: 'share' }).click();
@@ -195,22 +166,12 @@ describe('/articles/[slug]/+page.svelte', () => {
     });
 
     render(Page, {
-      data: {
-        gaId: '',
-        origin: 'https://example.com',
-        post: {
-          slug: 'first',
-          title: 'SvelteKit でブログを作ってみた',
-          image: '/assets/svelte.png',
-          created: '2024-09-20',
-          updated: '2024-09-20',
-          published: '2024-09-20',
-          excerpt: '記事の要約',
+      data: makeArticlePageData({
+        post: makePost({
           tags: [],
           content: '<p>本文</p>',
-          unlisted: false,
-        },
-      },
+        }),
+      }),
     });
 
     await page.getByRole('button', { name: 'share' }).click();
