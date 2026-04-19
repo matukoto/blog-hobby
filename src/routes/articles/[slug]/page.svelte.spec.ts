@@ -143,6 +143,43 @@ describe('/articles/[slug]/+page.svelte', () => {
     expect(document.querySelector('.share-status')).toBeNull();
   });
 
+  it('sends only title and url on mobile share', async () => {
+    const share = vi.fn().mockResolvedValue(undefined);
+
+    mockMatchMedia(false);
+    Object.defineProperty(navigator, 'share', {
+      configurable: true,
+      value: share,
+    });
+
+    render(Page, {
+      data: {
+        gaId: '',
+        origin: 'https://example.com',
+        post: {
+          slug: 'first',
+          title: 'SvelteKit でブログを作ってみた',
+          image: '/assets/svelte.png',
+          created: '2024-09-20',
+          updated: '2024-09-20',
+          published: '2024-09-20',
+          excerpt: '記事の要約',
+          tags: [],
+          content: '<p>本文</p>',
+          unlisted: false,
+        },
+      },
+    });
+
+    await page.getByRole('button', { name: 'share' }).click();
+
+    expect(share).toHaveBeenCalledTimes(1);
+    expect(share).toHaveBeenCalledWith({
+      title: 'SvelteKit でブログを作ってみた | matukoto blog',
+      url: 'https://example.com/articles/first',
+    });
+  });
+
   it('shows an error message when clipboard copy fails', async () => {
     const writeText = vi.fn().mockRejectedValue(new Error('denied'));
     const share = vi.fn().mockResolvedValue(undefined);
