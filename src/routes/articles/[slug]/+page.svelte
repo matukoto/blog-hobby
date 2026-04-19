@@ -56,14 +56,15 @@
     resetShareState();
     const shareUrl = getShareUrl();
     const shareText = getShareText(shareUrl);
+    const shareTitle = `${data.post.title} | ${BLOG_NAME}`;
     if (isDesktopLike()) {
       await copyShareText(shareText);
       return;
     }
 
     const shareData = {
-      title: `${data.post.title} | ${BLOG_NAME}`,
-      text: shareText,
+      title: shareTitle,
+      text: shareTitle,
       url: shareUrl,
     };
 
