@@ -9,9 +9,7 @@
 </svelte:head>
 
 <section class="tag-page">
-  <p class="back-link">
-    <a href="/">← 記事一覧へ戻る</a>
-  </p>
+  <p class="back-link"><a href="/">← 記事一覧へ戻る</a></p>
 
   <header>
     <h1>{data.tag.name}</h1>
@@ -19,20 +17,20 @@
   </header>
 
   <div class="posts">
-		{#each data.posts as post (post.slug)}
-			<article class="post-card">
-				<a
-					class="post-link"
-					href={`/articles/${post.slug}`}
-					aria-label={post.title}
-				></a>
+    {#each data.posts as post (post.slug)}
+      <article class="post-card">
+        <a
+          class="post-link"
+          href={`/articles/${post.slug}`}
+          aria-label={post.title}
+        ></a>
 
-				<p class="post-date">{post.created}</p>
-				<h2>{post.title}</h2>
-				<p class="post-excerpt">{post.excerpt}</p>
-			</article>
-		{/each}
-	</div>
+        <p class="post-date">{post.created}</p>
+        <h2>{post.title}</h2>
+        <p class="post-excerpt">{post.excerpt}</p>
+      </article>
+    {/each}
+  </div>
 </section>
 
 <style>
