@@ -147,7 +147,7 @@ describe('/articles/[slug]/+page.svelte', () => {
     await page.getByRole('button', { name: 'share' }).click();
 
     expect(writeText).toHaveBeenCalledWith(
-      'SvelteKit でブログを作ってみた | matukoto blog\nhttps://example.com/articles/first'
+      'SvelteKit でブログを作ってみた\nhttps://example.com/articles/first'
     );
     expect(share).not.toHaveBeenCalled();
     await expect
@@ -156,7 +156,7 @@ describe('/articles/[slug]/+page.svelte', () => {
     expect(document.querySelector('.share-status')).toBeNull();
   });
 
-  it('sends only title and url on mobile share', async () => {
+  it('sends title, text and url to the mobile share target', async () => {
     const share = vi.fn().mockResolvedValue(undefined);
 
     mockMatchMedia(false);
@@ -188,9 +188,39 @@ describe('/articles/[slug]/+page.svelte', () => {
 
     expect(share).toHaveBeenCalledTimes(1);
     expect(share).toHaveBeenCalledWith({
-      title: 'SvelteKit でブログを作ってみた | matukoto blog',
+      title: 'SvelteKit でブログを作ってみた',
+      text: 'SvelteKit でブログを作ってみた',
       url: 'https://example.com/articles/first',
     });
+  });
+
+  it('copies only the url on mobile clipboard fallback', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+
+    mockMatchMedia(false);
+    Reflect.deleteProperty(navigator, 'share');
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
+
+    render(Page, {
+      data: makeArticlePageData({
+        post: makePost({
+          tags: [],
+          content: '<p>本文</p>',
+        }),
+      }),
+    });
+
+    await page.getByRole('button', { name: 'share' }).click();
+
+    expect(writeText).toHaveBeenCalledWith(
+      'https://example.com/articles/first'
+    );
+    await expect
+      .element(page.getByRole('button', { name: 'シェア済み' }))
+      .toBeInTheDocument();
   });
 
   it('shows an error message when clipboard copy fails', async () => {

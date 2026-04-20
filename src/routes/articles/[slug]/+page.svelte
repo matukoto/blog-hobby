@@ -6,14 +6,17 @@
   type ShareState = 'idle' | 'success' | 'error';
 
   let shareState = $state<ShareState>('idle');
-  const BLOG_NAME = 'matukoto blog';
 
   function getShareUrl() {
     return new URL(`/articles/${data.post.slug}`, data.origin).toString();
   }
 
-  function getShareText(shareUrl: string) {
-    return `${data.post.title} | ${BLOG_NAME}\n${shareUrl}`;
+  function getShareTitle() {
+    return `${data.post.title}`;
+  }
+
+  function getDesktopClipboardText(shareUrl: string) {
+    return `${getShareTitle()}\n${shareUrl}`;
   }
 
   function isDesktopLike() {
@@ -55,15 +58,15 @@
   async function handleShare() {
     resetShareState();
     const shareUrl = getShareUrl();
-    const shareText = getShareText(shareUrl);
-    const shareTitle = `${data.post.title} | ${BLOG_NAME}`;
+    const shareTitle = getShareTitle();
     if (isDesktopLike()) {
-      await copyShareText(shareText);
+      await copyShareText(getDesktopClipboardText(shareUrl));
       return;
     }
 
     const shareData = {
       title: shareTitle,
+      text: getShareTitle(),
       url: shareUrl,
     };
 
@@ -79,7 +82,7 @@
       }
     }
 
-    await copyShareText(shareText);
+    await copyShareText(getShareUrl());
   }
 </script>
 
