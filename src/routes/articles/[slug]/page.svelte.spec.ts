@@ -33,17 +33,59 @@ describe('/articles/[slug]/+page.svelte', () => {
             { name: 'svelte', slug: 'svelte' },
             { name: 'cloudflare', slug: 'cloudflare' },
           ],
-          content: '<h2>感想</h2><p>本文</p>',
+          content: `
+            <h1>導入</h1>
+            <h2>感想</h2>
+            <h3>補足</h3>
+            <h4>詳細</h4>
+            <h5>メモ</h5>
+            <p>本文</p>
+          `,
         }),
       }),
     });
 
     await expect
-      .element(page.getByRole('heading', { level: 1 }))
+      .element(
+        page.getByRole('heading', {
+          level: 1,
+          name: 'SvelteKit でブログを作ってみた',
+        })
+      )
       .toHaveTextContent('SvelteKit でブログを作ってみた');
     await expect
       .element(page.getByRole('heading', { level: 2 }))
       .toHaveTextContent('感想');
+    expect(
+      getComputedStyle(
+        document.querySelector('.article-content h1') as HTMLElement
+      ).borderBottomStyle
+    ).toBe('solid');
+    expect(
+      getComputedStyle(
+        document.querySelector('.article-content h2') as HTMLElement
+      ).borderBottomStyle
+    ).toBe('double');
+    expect(
+      getComputedStyle(
+        document.querySelector('.article-content h3') as HTMLElement
+      ).borderBottomStyle
+    ).toBe('dashed');
+    expect(
+      getComputedStyle(
+        document.querySelector('.article-content h4') as HTMLElement
+      ).borderBottomStyle
+    ).toBe('dotted');
+    expect(
+      getComputedStyle(
+        document.querySelector('.article-content h5') as HTMLElement
+      ).borderBottomStyle
+    ).toBe('groove');
+    expect(
+      getComputedStyle(
+        document.querySelector('header.article-header h1') as HTMLElement
+      ).borderBottomStyle
+    ).toBe('none');
     await expect
       .element(page.getByRole('link', { name: 'svelte' }))
       .toHaveAttribute('href', '/tags/svelte');

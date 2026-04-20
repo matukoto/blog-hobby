@@ -211,9 +211,43 @@
     margin-bottom: 1.5rem;
   }
 
+  .article-content :global(h1),
   .article-content :global(h2),
-  .article-content :global(h3) {
+  .article-content :global(h3),
+  .article-content :global(h4),
+  .article-content :global(h5) {
     margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.35rem;
+    line-height: 1.3;
+    border-bottom-width: 0.14rem;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+  }
+
+  .article-content :global(h1) {
+    border-bottom-color: #1d4ed8;
+  }
+
+  .article-content :global(h2) {
+    border-bottom-style: double;
+    border-bottom-color: #0f766e;
+  }
+
+  .article-content :global(h3) {
+    border-bottom-style: dashed;
+    border-bottom-color: #d97706;
+  }
+
+  .article-content :global(h4) {
+    border-bottom-style: dotted;
+    border-bottom-color: #7c3aed;
+  }
+
+  .article-content :global(h5) {
+    border-bottom-style: groove;
+    border-bottom-width: 0.2rem;
+    border-bottom-color: #db2777;
   }
 
   .article-content :global(p),
