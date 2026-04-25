@@ -17,6 +17,13 @@ describe('posts', () => {
     expect(post?.content).toContain('<h2>感想</h2>');
   });
 
+  it('renders fenced code blocks in posts with highlighted html', async () => {
+    const post = await getPost('sara-arai');
+
+    expect(post).not.toBeNull();
+    expect(post?.content).toContain('<pre class="shiki');
+  });
+
   it('returns posts sorted by created date descending', async () => {
     const posts = await getAllPosts({ includeUnlisted: true });
 

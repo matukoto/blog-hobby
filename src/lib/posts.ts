@@ -1,5 +1,3 @@
-import { marked } from 'marked';
-
 import {
   comparePostsByCreatedDesc,
   createExcerpt,
@@ -7,6 +5,7 @@ import {
   parseFrontmatter,
   splitFrontmatter,
 } from './post-parser';
+import { renderMarkdown } from './markdown';
 
 type RawPostModule = Record<string, string>;
 import type { PostTag, ParsedFrontmatter } from './post-parser';
@@ -109,7 +108,7 @@ async function loadPosts(): Promise<Post[]> {
 
       const { frontmatter, markdown } = splitFrontmatter(source);
       const metadata = parseFrontmatter(frontmatter);
-      const content = await renderMarkdown(markdown, slug);
+      const content = await renderMarkdown(markdown);
 
       return {
         slug,
@@ -127,14 +126,6 @@ async function loadPosts(): Promise<Post[]> {
   ).then((posts) => posts.sort(comparePostsByCreatedDesc));
 
   return postsPromise;
-}
-
-async function renderMarkdown(markdown: string, slug: string): Promise<string> {
-  const rendered = await marked.parse(markdown, {
-    async: true,
-  });
-
-  return rendered.trim();
 }
 
 function filterPosts(posts: Post[], options: GetPostsOptions): Post[] {
