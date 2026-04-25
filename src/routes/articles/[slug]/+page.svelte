@@ -352,6 +352,8 @@
 
   .article-content :global(.code-block) {
     margin: 1.5rem 0;
+    width: 100%;
+    box-sizing: border-box;
     border: 1px solid #cbd5e1;
     border-radius: 0.75rem;
     overflow: hidden;
@@ -410,11 +412,13 @@
 
   .article-content :global(pre) {
     margin: 0;
+    width: 100%;
+    box-sizing: border-box;
     padding: 1rem;
     border: 0;
     border-radius: 0;
     box-shadow: none;
-    overflow-x: auto;
+    overflow-x: visible;
   }
 
   .article-content :global(pre code) {
@@ -423,6 +427,29 @@
       "Courier New", monospace;
     font-size: 0.9rem;
     line-height: 1.7;
+    white-space: normal;
+    counter-reset: code-line;
+  }
+
+  .article-content :global(pre code .line) {
+    display: block;
+    position: relative;
+    min-height: 1.7em;
+    padding-left: 2.8rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .article-content :global(pre code .line::before) {
+    position: absolute;
+    left: 0;
+    width: 2.2rem;
+    text-align: right;
+    color: #94a3b8;
+    user-select: none;
+    content: counter(code-line);
+    counter-increment: code-line;
   }
 
   .article-content :global(:not(pre) > code) {
