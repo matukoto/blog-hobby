@@ -253,6 +253,27 @@
     border-bottom-color: #db2777;
   }
 
+  .article-content :global(pre) {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+  }
+
+  .article-content :global(pre code) {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .article-content :global(:not(pre) > code) {
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.375rem;
+    background: #e2e8f0;
+  }
+
   .article-content :global(p),
   .article-content :global(li) {
     line-height: 1.8;
