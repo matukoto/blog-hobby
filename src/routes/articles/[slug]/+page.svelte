@@ -1,11 +1,19 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { getArticleOgpImageUrl } from '$lib/ogp';
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
   type ShareState = 'idle' | 'success' | 'error';
+  const CODE_COPY_SELECTOR = '[data-code-copy]';
+  const CODE_COPY_DEFAULT_LABEL = 'copy';
+  const CODE_COPY_SUCCESS_LABEL = 'copied';
+  const CODE_COPY_ERROR_LABEL = 'error';
+  const CODE_COPY_RESET_DELAY_MS = 1500;
 
   let shareState = $state<ShareState>('idle');
+  let articleContentElement = $state<HTMLElement | null>(null);
+  const codeCopyResetTimers = new Map<HTMLButtonElement, number>();
 
   function getShareUrl() {
     return new URL(`/articles/${data.post.slug}`, data.origin).toString();
@@ -84,6 +92,93 @@
 
     await copyShareText(getShareUrl());
   }
+
+  function setCodeCopyButtonLabel(button: HTMLButtonElement, label: string) {
+    button.textContent = label;
+    button.setAttribute('aria-label', label);
+  }
+
+  function scheduleCodeCopyButtonReset(button: HTMLButtonElement) {
+    const existingTimer = codeCopyResetTimers.get(button);
+    if (existingTimer !== undefined) {
+      window.clearTimeout(existingTimer);
+    }
+
+    const timer = window.setTimeout(() => {
+      setCodeCopyButtonLabel(button, CODE_COPY_DEFAULT_LABEL);
+      codeCopyResetTimers.delete(button);
+    }, CODE_COPY_RESET_DELAY_MS);
+
+    codeCopyResetTimers.set(button, timer);
+  }
+
+  function getCodeTextFromBlock(button: HTMLButtonElement): string | null {
+    const container = button.closest('.code-block');
+    if (!container) {
+      return null;
+    }
+
+    const codeElement = container.querySelector('pre code');
+    const codeText = codeElement?.textContent;
+    return codeText ?? null;
+  }
+
+  async function copyCodeFromButton(button: HTMLButtonElement) {
+    if (typeof navigator === 'undefined' || !('clipboard' in navigator)) {
+      setCodeCopyButtonLabel(button, CODE_COPY_ERROR_LABEL);
+      scheduleCodeCopyButtonReset(button);
+      return;
+    }
+
+    const codeText = getCodeTextFromBlock(button);
+    if (codeText === null) {
+      setCodeCopyButtonLabel(button, CODE_COPY_ERROR_LABEL);
+      scheduleCodeCopyButtonReset(button);
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(codeText);
+      setCodeCopyButtonLabel(button, CODE_COPY_SUCCESS_LABEL);
+    } catch {
+      setCodeCopyButtonLabel(button, CODE_COPY_ERROR_LABEL);
+    }
+
+    scheduleCodeCopyButtonReset(button);
+  }
+
+  onMount(() => {
+    if (!articleContentElement) {
+      return;
+    }
+
+    const handleArticleContentClick = async (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      const copyButton = target.closest(CODE_COPY_SELECTOR);
+      if (!(copyButton instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      await copyCodeFromButton(copyButton);
+    };
+
+    articleContentElement.addEventListener('click', handleArticleContentClick);
+
+    return () => {
+      articleContentElement?.removeEventListener(
+        'click',
+        handleArticleContentClick
+      );
+      for (const timer of codeCopyResetTimers.values()) {
+        window.clearTimeout(timer);
+      }
+      codeCopyResetTimers.clear();
+    };
+  });
 </script>
 
 <svelte:head>
@@ -128,7 +223,9 @@
     <img class="article-image" src={data.post.image} alt="">
   {/if}
 
-  <div class="article-content">{@html data.post.content}</div>
+  <div class="article-content" bind:this={articleContentElement}>
+    {@html data.post.content}
+  </div>
 
   <footer class="article-footer">
     <button
@@ -251,6 +348,114 @@
     border-bottom-style: groove;
     border-bottom-width: 0.2rem;
     border-bottom-color: #db2777;
+  }
+
+  .article-content :global(.code-block) {
+    margin: 1.5rem 0;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow:
+      0 1px 2px rgb(15 23 42 / 0.08),
+      inset 0 0 0 1px rgb(255 255 255 / 0.65);
+  }
+
+  .article-content :global(.code-block__header) {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.25rem;
+    padding: 0.35rem 0.75rem;
+    border-bottom: 1px solid #cbd5e1;
+    background: #f8fafc;
+  }
+
+  .article-content :global(.code-block__file) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 1.25rem;
+    padding: 0 0.45rem;
+    border-radius: 9999px;
+    background: #e2e8f0;
+    color: #334155;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    font-size: 0.76rem;
+    font-weight: 700;
+  }
+
+  .article-content :global(.code-block__copy) {
+    border: 1px solid #cbd5e1;
+    border-radius: 0.45rem;
+    background: #fff;
+    color: #1e293b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: lowercase;
+    padding: 0.35rem 0.45rem;
+    cursor: pointer;
+  }
+
+  .article-content :global(.code-block__copy:hover) {
+    background: #f1f5f9;
+  }
+
+  .article-content :global(.code-block__copy:focus-visible) {
+    outline: 2px solid #f59e0b;
+    outline-offset: 2px;
+  }
+
+  .article-content :global(pre) {
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    overflow-x: visible;
+  }
+
+  .article-content :global(pre code) {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    white-space: normal;
+    counter-reset: code-line;
+  }
+
+  .article-content :global(pre code .line) {
+    display: block;
+    position: relative;
+    min-height: 1.7em;
+    padding-left: 2.8rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .article-content :global(pre code .line::before) {
+    position: absolute;
+    left: 0;
+    width: 2.2rem;
+    text-align: right;
+    color: #94a3b8;
+    user-select: none;
+    content: counter(code-line);
+    counter-increment: code-line;
+  }
+
+  .article-content :global(:not(pre) > code) {
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.375rem;
+    background: #e2e8f0;
   }
 
   .article-content :global(p),
