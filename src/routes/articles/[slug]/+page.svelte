@@ -266,6 +266,7 @@
   .article-content :global(.code-block__header) {
     display: flex;
     align-items: center;
+    gap: 0.4rem;
     min-height: 2.25rem;
     padding: 0.35rem 0.75rem;
     border-bottom: 1px solid #cbd5e1;
@@ -277,7 +278,24 @@
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     font-size: 0.8rem;
+    font-weight: 600;
     color: #334155;
+  }
+
+  .article-content :global(.code-block__extension) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 1.25rem;
+    padding: 0 0.45rem;
+    border-radius: 9999px;
+    background: #dbeafe;
+    color: #1e3a8a;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
   }
 
   .article-content :global(pre) {
