@@ -256,7 +256,11 @@
   .article-content :global(pre) {
     margin: 1.5rem 0;
     padding: 1rem;
+    border: 1px solid #cbd5e1;
     border-radius: 0.75rem;
+    box-shadow:
+      0 1px 2px rgb(15 23 42 / 0.08),
+      inset 0 0 0 1px rgb(255 255 255 / 0.65);
     overflow-x: auto;
   }
 
