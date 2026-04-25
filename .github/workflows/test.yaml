@@ -35,7 +35,7 @@ jobs:
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         id: playwright-cache
         with:
-          path: ~/.cache/msplaywright
+          path: ~/.cache/ms-playwright
           # Playwrightのバージョンが変わった時だけキャッシュを作り直す
           key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.VERSION }}
       - name: Install Playwright browsers
