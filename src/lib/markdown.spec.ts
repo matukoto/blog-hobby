@@ -6,9 +6,21 @@ describe('renderMarkdown', () => {
   it('renders a fenced code block with shiki classes when language is specified', async () => {
     const html = await renderMarkdown('```ts\nconst answer = 42;\n```');
 
+    expect(html).toContain('<div class="code-block">');
+    expect(html).toContain('<span class="code-block__filename">snippet</span>');
     expect(html).toContain('<pre class="shiki');
     expect(html).toContain('<code>');
     expect(html).toContain('<span');
+  });
+
+  it('renders filename metadata in the code block header', async () => {
+    const html = await renderMarkdown(
+      '```ts filename=main.ts\nconst answer = 42;\n```'
+    );
+
+    expect(html).toContain(
+      '<span class="code-block__filename">main.ts</span>'
+    );
   });
 
   it('falls back to plain-text highlighting when language is not specified', async () => {

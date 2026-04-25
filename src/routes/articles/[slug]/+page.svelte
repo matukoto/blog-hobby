@@ -253,14 +253,39 @@
     border-bottom-color: #db2777;
   }
 
-  .article-content :global(pre) {
+  .article-content :global(.code-block) {
     margin: 1.5rem 0;
-    padding: 1rem;
     border: 1px solid #cbd5e1;
     border-radius: 0.75rem;
+    overflow: hidden;
     box-shadow:
       0 1px 2px rgb(15 23 42 / 0.08),
       inset 0 0 0 1px rgb(255 255 255 / 0.65);
+  }
+
+  .article-content :global(.code-block__header) {
+    display: flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding: 0.35rem 0.75rem;
+    border-bottom: 1px solid #cbd5e1;
+    background: #f8fafc;
+  }
+
+  .article-content :global(.code-block__filename) {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    font-size: 0.8rem;
+    color: #334155;
+  }
+
+  .article-content :global(pre) {
+    margin: 0;
+    padding: 1rem;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
     overflow-x: auto;
   }
 
