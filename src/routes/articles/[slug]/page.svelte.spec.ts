@@ -268,8 +268,7 @@ describe('/articles/[slug]/+page.svelte', () => {
           content: `
             <div class="code-block">
               <div class="code-block__header">
-                <span class="code-block__filename">main</span>
-                <span class="code-block__extension">.ts</span>
+                <span class="code-block__file">main.ts</span>
                 <button
                   type="button"
                   class="code-block__copy"

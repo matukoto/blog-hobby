@@ -373,28 +373,19 @@
     background: #f8fafc;
   }
 
-  .article-content :global(.code-block__filename) {
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-      "Courier New", monospace;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #334155;
-  }
-
-  .article-content :global(.code-block__extension) {
+  .article-content :global(.code-block__file) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-height: 1.25rem;
     padding: 0 0.45rem;
     border-radius: 9999px;
-    background: #dbeafe;
-    color: #1e3a8a;
+    background: #e2e8f0;
+    color: #334155;
     font-family:
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    font-size: 0.72rem;
+    font-size: 0.76rem;
     font-weight: 700;
   }
 
