@@ -137,12 +137,20 @@ async function renderCodeBlock(code: string, rawInfo?: string): Promise<string> 
   const highlighted = await highlightCodeBlock(code, meta.language);
   const filenameLabel = extractFilenameLabel(meta.filename);
   const extensionLabel = resolveExtension(meta.filename, meta.language);
+  const encodedCode = encodeURIComponent(code);
 
   return `
 <div class="code-block">
   <div class="code-block__header">
     <span class="code-block__filename">${escapeHtml(filenameLabel)}</span>
     <span class="code-block__extension">${escapeHtml(extensionLabel)}</span>
+    <button
+      type="button"
+      class="code-block__copy"
+      data-code-copy
+      data-code="${escapeHtml(encodedCode)}"
+      aria-label="copy code"
+    >copy</button>
   </div>
   ${highlighted}
 </div>`.trim();

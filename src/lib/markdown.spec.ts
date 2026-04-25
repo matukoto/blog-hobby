@@ -9,6 +9,8 @@ describe('renderMarkdown', () => {
     expect(html).toContain('<div class="code-block">');
     expect(html).toContain('<span class="code-block__filename">snippet</span>');
     expect(html).toContain('<span class="code-block__extension">.ts</span>');
+    expect(html).toContain('class="code-block__copy"');
+    expect(html).toContain('data-code="const%20answer%20%3D%2042%3B"');
     expect(html).toContain('<pre class="shiki');
     expect(html).toContain('<code>');
     expect(html).toContain('<span');

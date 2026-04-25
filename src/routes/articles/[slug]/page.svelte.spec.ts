@@ -252,4 +252,44 @@ describe('/articles/[slug]/+page.svelte', () => {
     expect(share).not.toHaveBeenCalled();
     await expect.element(page.getByText('エラー')).toBeInTheDocument();
   });
+
+  it('copies code block content with the copy button', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
+
+    render(Page, {
+      data: makeArticlePageData({
+        post: makePost({
+          tags: [],
+          content: `
+            <div class="code-block">
+              <div class="code-block__header">
+                <span class="code-block__filename">main</span>
+                <span class="code-block__extension">.ts</span>
+                <button
+                  type="button"
+                  class="code-block__copy"
+                  data-code-copy
+                  data-code="const%20a%20%3D%201%3B"
+                  aria-label="copy code"
+                >copy</button>
+              </div>
+              <pre class="shiki"><code>const a = 1;</code></pre>
+            </div>
+          `,
+        }),
+      }),
+    });
+
+    await page.getByRole('button', { name: 'copy code' }).click();
+
+    expect(writeText).toHaveBeenCalledWith('const a = 1;');
+    await expect
+      .element(page.getByRole('button', { name: 'copied' }))
+      .toBeInTheDocument();
+  });
 });

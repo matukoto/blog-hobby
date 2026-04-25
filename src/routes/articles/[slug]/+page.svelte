@@ -1,11 +1,19 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { getArticleOgpImageUrl } from '$lib/ogp';
   import type { PageData } from './$types';
 
   let { data }: { data: PageData } = $props();
   type ShareState = 'idle' | 'success' | 'error';
+  const CODE_COPY_SELECTOR = '[data-code-copy]';
+  const CODE_COPY_DEFAULT_LABEL = 'copy';
+  const CODE_COPY_SUCCESS_LABEL = 'copied';
+  const CODE_COPY_ERROR_LABEL = 'error';
+  const CODE_COPY_RESET_DELAY_MS = 1500;
 
   let shareState = $state<ShareState>('idle');
+  let articleContentElement = $state<HTMLElement | null>(null);
+  const codeCopyResetTimers = new Map<HTMLButtonElement, number>();
 
   function getShareUrl() {
     return new URL(`/articles/${data.post.slug}`, data.origin).toString();
@@ -84,6 +92,96 @@
 
     await copyShareText(getShareUrl());
   }
+
+  function setCodeCopyButtonLabel(button: HTMLButtonElement, label: string) {
+    button.textContent = label;
+    button.setAttribute('aria-label', label);
+  }
+
+  function scheduleCodeCopyButtonReset(button: HTMLButtonElement) {
+    const existingTimer = codeCopyResetTimers.get(button);
+    if (existingTimer !== undefined) {
+      window.clearTimeout(existingTimer);
+    }
+
+    const timer = window.setTimeout(() => {
+      setCodeCopyButtonLabel(button, CODE_COPY_DEFAULT_LABEL);
+      codeCopyResetTimers.delete(button);
+    }, CODE_COPY_RESET_DELAY_MS);
+
+    codeCopyResetTimers.set(button, timer);
+  }
+
+  function decodeCodePayload(payload: string): string | null {
+    try {
+      return decodeURIComponent(payload);
+    } catch {
+      return null;
+    }
+  }
+
+  async function copyCodeFromButton(button: HTMLButtonElement) {
+    if (typeof navigator === 'undefined' || !('clipboard' in navigator)) {
+      setCodeCopyButtonLabel(button, CODE_COPY_ERROR_LABEL);
+      scheduleCodeCopyButtonReset(button);
+      return;
+    }
+
+    const encoded = button.getAttribute('data-code');
+    if (!encoded) {
+      setCodeCopyButtonLabel(button, CODE_COPY_ERROR_LABEL);
+      scheduleCodeCopyButtonReset(button);
+      return;
+    }
+
+    const code = decodeCodePayload(encoded);
+    if (code === null) {
+      setCodeCopyButtonLabel(button, CODE_COPY_ERROR_LABEL);
+      scheduleCodeCopyButtonReset(button);
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(code);
+      setCodeCopyButtonLabel(button, CODE_COPY_SUCCESS_LABEL);
+    } catch {
+      setCodeCopyButtonLabel(button, CODE_COPY_ERROR_LABEL);
+    }
+
+    scheduleCodeCopyButtonReset(button);
+  }
+
+  onMount(() => {
+    if (!articleContentElement) {
+      return;
+    }
+
+    const handleArticleContentClick = async (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      const copyButton = target.closest(CODE_COPY_SELECTOR);
+      if (!(copyButton instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      await copyCodeFromButton(copyButton);
+    };
+
+    articleContentElement.addEventListener('click', handleArticleContentClick);
+
+    return () => {
+      articleContentElement?.removeEventListener(
+        'click',
+        handleArticleContentClick
+      );
+      for (const timer of codeCopyResetTimers.values()) {
+        window.clearTimeout(timer);
+      }
+    };
+  });
 </script>
 
 <svelte:head>
@@ -128,7 +226,9 @@
     <img class="article-image" src={data.post.image} alt="">
   {/if}
 
-  <div class="article-content">{@html data.post.content}</div>
+  <div class="article-content" bind:this={articleContentElement}>
+    {@html data.post.content}
+  </div>
 
   <footer class="article-footer">
     <button
@@ -296,6 +396,29 @@
       "Courier New", monospace;
     font-size: 0.72rem;
     font-weight: 700;
+  }
+
+  .article-content :global(.code-block__copy) {
+    margin-left: auto;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.45rem;
+    background: #fff;
+    color: #1e293b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: lowercase;
+    padding: 0.35rem 0.45rem;
+    cursor: pointer;
+  }
+
+  .article-content :global(.code-block__copy:hover) {
+    background: #f1f5f9;
+  }
+
+  .article-content :global(.code-block__copy:focus-visible) {
+    outline: 2px solid #f59e0b;
+    outline-offset: 2px;
   }
 
   .article-content :global(pre) {
