@@ -54,13 +54,20 @@ function parseCodeFenceMeta(rawInfo?: string): CodeFenceMeta {
     return {};
   }
 
-  let language: string | undefined = head;
+  let language: string | undefined;
   let filename: string | undefined;
 
-  const headSplitIndex = head.indexOf(':');
-  if (headSplitIndex > 0) {
-    language = head.slice(0, headSplitIndex);
-    filename = head.slice(headSplitIndex + 1);
+  const headKeyValueMatch = head.match(/^(?:file|filename|name|title)=(.+)$/i);
+  if (headKeyValueMatch) {
+    filename = unquote(headKeyValueMatch[1]);
+  } else {
+    const headSplitIndex = head.indexOf(':');
+    if (headSplitIndex > 0) {
+      language = head.slice(0, headSplitIndex);
+      filename = head.slice(headSplitIndex + 1);
+    } else {
+      language = head;
+    }
   }
 
   for (const token of rest) {
@@ -143,7 +150,6 @@ async function renderCodeBlock(code: string, rawInfo?: string): Promise<string> 
   const meta = parseCodeFenceMeta(rawInfo);
   const highlighted = await highlightCodeBlock(code, meta.language);
   const fileLabel = resolveFileLabel(meta);
-  const encodedCode = encodeURIComponent(code);
 
   return `
 <div class="code-block">
@@ -153,7 +159,6 @@ async function renderCodeBlock(code: string, rawInfo?: string): Promise<string> 
       type="button"
       class="code-block__copy"
       data-code-copy
-      data-code="${escapeHtml(encodedCode)}"
       aria-label="copy code"
     >copy</button>
   </div>

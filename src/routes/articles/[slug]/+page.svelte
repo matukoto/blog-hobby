@@ -112,12 +112,15 @@
     codeCopyResetTimers.set(button, timer);
   }
 
-  function decodeCodePayload(payload: string): string | null {
-    try {
-      return decodeURIComponent(payload);
-    } catch {
+  function getCodeTextFromBlock(button: HTMLButtonElement): string | null {
+    const container = button.closest('.code-block');
+    if (!container) {
       return null;
     }
+
+    const codeElement = container.querySelector('pre code');
+    const codeText = codeElement?.textContent;
+    return codeText ?? null;
   }
 
   async function copyCodeFromButton(button: HTMLButtonElement) {
@@ -127,22 +130,15 @@
       return;
     }
 
-    const encoded = button.getAttribute('data-code');
-    if (!encoded) {
-      setCodeCopyButtonLabel(button, CODE_COPY_ERROR_LABEL);
-      scheduleCodeCopyButtonReset(button);
-      return;
-    }
-
-    const code = decodeCodePayload(encoded);
-    if (code === null) {
+    const codeText = getCodeTextFromBlock(button);
+    if (codeText === null) {
       setCodeCopyButtonLabel(button, CODE_COPY_ERROR_LABEL);
       scheduleCodeCopyButtonReset(button);
       return;
     }
 
     try {
-      await navigator.clipboard.writeText(code);
+      await navigator.clipboard.writeText(codeText);
       setCodeCopyButtonLabel(button, CODE_COPY_SUCCESS_LABEL);
     } catch {
       setCodeCopyButtonLabel(button, CODE_COPY_ERROR_LABEL);
@@ -180,6 +176,7 @@
       for (const timer of codeCopyResetTimers.values()) {
         window.clearTimeout(timer);
       }
+      codeCopyResetTimers.clear();
     };
   });
 </script>
@@ -366,7 +363,7 @@
   .article-content :global(.code-block__header) {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.55rem;
     min-height: 2.25rem;
     padding: 0.35rem 0.75rem;
     border-bottom: 1px solid #cbd5e1;
@@ -390,7 +387,6 @@
   }
 
   .article-content :global(.code-block__copy) {
-    margin-left: auto;
     border: 1px solid #cbd5e1;
     border-radius: 0.45rem;
     background: #fff;

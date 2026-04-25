@@ -10,6 +10,7 @@ const PLAIN_TEXT_ALIASES = new Set(['plain', 'plaintext', 'text', 'txt']);
 const FALLBACK_LANGUAGE: BundledLanguage = 'md';
 
 const loadedLanguages = new Set<BundledLanguage>([FALLBACK_LANGUAGE]);
+const loadingLanguages = new Map<BundledLanguage, Promise<void>>();
 
 type ShikiHighlighter = Awaited<ReturnType<typeof getSingletonHighlighter>>;
 
@@ -50,8 +51,23 @@ async function ensureLanguageLoaded(
     return;
   }
 
-  await highlighter.loadLanguage(language);
-  loadedLanguages.add(language);
+  const inFlightLoading = loadingLanguages.get(language);
+  if (inFlightLoading) {
+    await inFlightLoading;
+    return;
+  }
+
+  const loading = highlighter
+    .loadLanguage(language)
+    .then(() => {
+      loadedLanguages.add(language);
+    })
+    .finally(() => {
+      loadingLanguages.delete(language);
+    });
+
+  loadingLanguages.set(language, loading);
+  await loading;
 }
 
 export async function highlightCodeBlock(

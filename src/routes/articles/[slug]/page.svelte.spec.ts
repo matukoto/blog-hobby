@@ -273,7 +273,6 @@ describe('/articles/[slug]/+page.svelte', () => {
                   type="button"
                   class="code-block__copy"
                   data-code-copy
-                  data-code="const%20a%20%3D%201%3B"
                   aria-label="copy code"
                 >copy</button>
               </div>
