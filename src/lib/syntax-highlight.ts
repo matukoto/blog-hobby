@@ -1,5 +1,6 @@
 import {
   bundledLanguages,
+  createJavaScriptRegexEngine,
   getSingletonHighlighter,
   type BundledLanguage,
   type BundledTheme,
@@ -36,6 +37,7 @@ function parseLanguage(rawLanguage?: string): BundledLanguage {
 
 async function getHighlighter(): Promise<ShikiHighlighter> {
   highlighterPromise ??= getSingletonHighlighter({
+    engine: createJavaScriptRegexEngine(),
     themes: [SHIKI_THEME],
     langs: [FALLBACK_LANGUAGE],
   });
