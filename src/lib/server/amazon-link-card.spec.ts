@@ -60,6 +60,22 @@ describe('server/amazon-link-card', () => {
     expect(metadata?.url).toBe('https://www.amazon.co.jp/dp/123');
   });
 
+  it('replaces generic amazon preview image with asin image', () => {
+    const metadata = extractAmazonLinkCardMetadataFromHtml(
+      `<html><head>
+				<meta property="og:title" content="Amazon">
+				<meta property="og:image" content="https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png">
+				<meta property="og:url" content="https://www.amazon.co.jp/dp/B00E0DMA38">
+			</head></html>`,
+      'https://amzn.to/abc'
+    );
+
+    expect(metadata).not.toBeNull();
+    expect(metadata?.image).toBe(
+      'https://images-na.ssl-images-amazon.com/images/P/B00E0DMA38.01.LZZZZZZZ.jpg'
+    );
+  });
+
   it('builds snapshot file and skips failed links', async () => {
     const workspace = await mkdtemp(join(tmpdir(), 'blog-hobby-amazon-card-'));
     const postsDir = join(workspace, 'posts');
@@ -124,4 +140,5 @@ describe('server/amazon-link-card', () => {
     const written = await readFile(outputFile, 'utf8');
     expect(JSON.parse(written)).toEqual(snapshot);
   });
+
 });

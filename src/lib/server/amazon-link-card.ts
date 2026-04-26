@@ -32,6 +32,8 @@ const DEFAULT_CONCURRENCY = 4;
 const DEFAULT_USER_AGENT =
   'Mozilla/5.0 (compatible; matukoto-blog-bot/1.0; +https://matukoto.com)';
 const FALLBACK_SITE_NAME = 'Amazon';
+const AMAZON_PREVIEW_IMAGE_PATTERN =
+  /\/share-icons\/previewdoh\/amazon\.png(?:[?#].*)?$/i;
 
 function isLinkToken(token: object): token is LinkToken {
   return (
@@ -119,6 +121,39 @@ function normalizeMetadataTitle(title?: string | null): string | null {
   return normalized && normalized.length > 0 ? normalized : null;
 }
 
+function extractAmazonAsin(rawUrl: string): string | null {
+  try {
+    const url = new URL(rawUrl);
+    const match = url.pathname.match(
+      /\/(?:dp|gp\/product)\/([A-Z0-9]{10})(?:[/?]|$)/i
+    );
+    return match?.[1]?.toUpperCase() ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function toAmazonAsinImageUrl(asin: string): string {
+  return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`;
+}
+
+function isAmazonPreviewImage(rawUrl?: string): boolean {
+  return rawUrl ? AMAZON_PREVIEW_IMAGE_PATTERN.test(rawUrl) : false;
+}
+
+function resolveAmazonImage(rawImageUrl: string | undefined, pageUrl: string) {
+  if (rawImageUrl && !isAmazonPreviewImage(rawImageUrl)) {
+    return rawImageUrl;
+  }
+
+  const asin = extractAmazonAsin(pageUrl);
+  if (!asin) {
+    return undefined;
+  }
+
+  return toAmazonAsinImageUrl(asin);
+}
+
 export function extractAmazonUrlsFromMarkdown(markdown: string): string[] {
   const tokens = marked.lexer(markdown);
   const urls = new Set<string>();
@@ -150,7 +185,10 @@ export function extractAmazonLinkCardMetadataFromHtml(
   }
 
   const url = toAbsoluteHttpUrl(metaMap['og:url'], fallbackUrl) ?? fallbackUrl;
-  const image = toAbsoluteHttpUrl(metaMap['og:image'], url);
+  const image = resolveAmazonImage(
+    toAbsoluteHttpUrl(metaMap['og:image'], url),
+    url
+  );
   const siteName = normalizeMetadataTitle(metaMap['og:site_name']);
 
   return {
