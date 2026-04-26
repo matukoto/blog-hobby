@@ -1,5 +1,11 @@
 import { marked } from 'marked';
 
+import {
+  type AmazonLinkCardSnapshot,
+  getAmazonLinkCardMetadata,
+  renderAmazonLinkCardHtml,
+} from './amazon-link-card';
+import amazonLinkCardData from './generated/amazon-link-card-data.json';
 import { highlightCodeBlock } from './syntax-highlight';
 
 type HighlightedHtmlToken = {
@@ -8,6 +14,18 @@ type HighlightedHtmlToken = {
   text: string;
   pre: boolean;
   block: boolean;
+};
+
+type InlineToken = {
+  type: string;
+  raw?: string;
+  text?: string;
+  href?: string;
+};
+
+type ParagraphToken = {
+  type: 'paragraph';
+  tokens?: InlineToken[];
 };
 
 const DEFAULT_EXTENSION = 'md';
@@ -33,6 +51,13 @@ type CodeFenceMeta = {
   language?: string;
   filename?: string;
 };
+
+type RenderMarkdownOptions = {
+  amazonLinkCardSnapshot?: AmazonLinkCardSnapshot;
+};
+
+const DEFAULT_AMAZON_LINK_CARD_SNAPSHOT =
+  amazonLinkCardData as AmazonLinkCardSnapshot;
 
 function unquote(value: string): string {
   return value.replace(/^['"](.*)['"]$/, '$1');
@@ -146,7 +171,10 @@ function resolveFileLabel(meta: CodeFenceMeta): string {
   return `${meta.filename}.${resolveExtension(undefined, meta.language)}`;
 }
 
-async function renderCodeBlock(code: string, rawInfo?: string): Promise<string> {
+async function renderCodeBlock(
+  code: string,
+  rawInfo?: string
+): Promise<string> {
   const meta = parseCodeFenceMeta(rawInfo);
   const highlighted = await highlightCodeBlock(code, meta.language);
   const fileLabel = resolveFileLabel(meta);
@@ -166,21 +194,106 @@ async function renderCodeBlock(code: string, rawInfo?: string): Promise<string> 
 </div>`.trim();
 }
 
-export async function renderMarkdown(markdown: string): Promise<string> {
+function isIgnorableInlineToken(token: InlineToken): boolean {
+  if (token.type === 'space') {
+    return true;
+  }
+
+  if (token.type !== 'text') {
+    return false;
+  }
+
+  const value = token.raw ?? token.text ?? '';
+  return value.trim().length === 0;
+}
+
+function extractStandaloneLinkFromParagraph(
+  token: ParagraphToken
+): { href: string; text: string } | null {
+  const inlineTokens = token.tokens ?? [];
+  const meaningfulTokens = inlineTokens.filter(
+    (inlineToken) => !isIgnorableInlineToken(inlineToken)
+  );
+
+  if (meaningfulTokens.length !== 1) {
+    return null;
+  }
+
+  const [firstToken] = meaningfulTokens;
+  if (firstToken.type !== 'link' || !firstToken.href) {
+    return null;
+  }
+
+  return {
+    href: firstToken.href,
+    text: firstToken.text?.trim() ?? '',
+  };
+}
+
+function renderAmazonLinkCardFromParagraph(
+  token: ParagraphToken,
+  amazonSnapshot: AmazonLinkCardSnapshot
+): string | null {
+  const standaloneLink = extractStandaloneLinkFromParagraph(token);
+  if (!standaloneLink) {
+    return null;
+  }
+
+  const metadata = getAmazonLinkCardMetadata(
+    amazonSnapshot,
+    standaloneLink.href
+  );
+  if (!metadata) {
+    return null;
+  }
+
+  const cardHtml = renderAmazonLinkCardHtml({
+    href: standaloneLink.href,
+    linkText: standaloneLink.text,
+    metadata,
+  });
+
+  return cardHtml.length > 0 ? cardHtml : null;
+}
+
+export async function renderMarkdown(
+  markdown: string,
+  options: RenderMarkdownOptions = {}
+): Promise<string> {
+  const amazonSnapshot =
+    options.amazonLinkCardSnapshot ?? DEFAULT_AMAZON_LINK_CARD_SNAPSHOT;
   const tokens = marked.lexer(markdown);
 
   await Promise.all(
     marked.walkTokens(tokens, async (token) => {
-      if (token.type !== 'code') {
+      if (token.type === 'code') {
+        const highlighted = await renderCodeBlock(token.text, token.lang);
+        const htmlToken = token as unknown as HighlightedHtmlToken;
+
+        htmlToken.type = 'html';
+        htmlToken.raw = highlighted;
+        htmlToken.text = highlighted;
+        htmlToken.pre = true;
+        htmlToken.block = true;
         return;
       }
 
-      const highlighted = await renderCodeBlock(token.text, token.lang);
-      const htmlToken = token as unknown as HighlightedHtmlToken;
+      if (token.type !== 'paragraph') {
+        return;
+      }
 
+      const amazonCardHtml = renderAmazonLinkCardFromParagraph(
+        token as ParagraphToken,
+        amazonSnapshot
+      );
+      if (!amazonCardHtml) {
+        return;
+      }
+
+      const htmlToken = token as unknown as HighlightedHtmlToken;
       htmlToken.type = 'html';
-      htmlToken.raw = highlighted;
-      htmlToken.text = highlighted;
+      htmlToken.raw = amazonCardHtml;
+      htmlToken.text = amazonCardHtml;
       htmlToken.pre = true;
       htmlToken.block = true;
     })

@@ -350,6 +350,65 @@
     border-bottom-color: #db2777;
   }
 
+  .article-content :global(.amazon-link-card) {
+    margin: 1.5rem 0;
+  }
+
+  .article-content :global(.amazon-link-card__link) {
+    display: flex;
+    gap: 0.9rem;
+    align-items: stretch;
+    text-decoration: none;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.08);
+  }
+
+  .article-content :global(.amazon-link-card__link:hover) {
+    background: #f8fafc;
+  }
+
+  .article-content :global(.amazon-link-card__image) {
+    width: 7rem;
+    min-width: 7rem;
+    object-fit: cover;
+    background: #f1f5f9;
+  }
+
+  .article-content :global(.amazon-link-card__content) {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.75rem 0.9rem 0.85rem 0;
+    min-width: 0;
+  }
+
+  .article-content :global(.amazon-link-card__badge) {
+    width: fit-content;
+    padding: 0.1rem 0.45rem;
+    border-radius: 9999px;
+    background: #ffedd5;
+    color: #9a3412;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .article-content :global(.amazon-link-card__title) {
+    font-weight: 700;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .article-content :global(.amazon-link-card__url) {
+    color: #64748b;
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
   .article-content :global(.code-block) {
     margin: 1.5rem 0;
     width: 100%;
