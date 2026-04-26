@@ -241,6 +241,17 @@ function hasSameUrlKeys(
   return snapshotKeys.every((key, index) => key === urls[index]);
 }
 
+function hasReusableSnapshotData(
+  snapshot: AmazonLinkCardSnapshot,
+  urls: readonly string[]
+): boolean {
+  if (!hasSameUrlKeys(snapshot, urls)) {
+    return false;
+  }
+
+  return urls.every((url) => !isAmazonPreviewImage(snapshot[url]?.image));
+}
+
 async function fetchAmazonLinkCardMetadata(
   url: string,
   fetchFn: FetchLike,
@@ -338,7 +349,7 @@ export async function generateAmazonLinkCardSnapshot({
   ];
   urls.sort((left, right) => left.localeCompare(right));
   const existingSnapshot = await readSnapshotFile(outputFile);
-  if (hasSameUrlKeys(existingSnapshot, urls)) {
+  if (hasReusableSnapshotData(existingSnapshot, urls)) {
     return existingSnapshot;
   }
 
@@ -348,11 +359,16 @@ export async function generateAmazonLinkCardSnapshot({
 
   const snapshot: AmazonLinkCardSnapshot = {};
   for (const [index, metadata] of metadataList.entries()) {
-    if (!metadata) {
+    const url = urls[index];
+    if (metadata) {
+      snapshot[url] = metadata;
       continue;
     }
 
-    snapshot[urls[index]] = metadata;
+    const existingMetadata = existingSnapshot[url];
+    if (existingMetadata) {
+      snapshot[url] = existingMetadata;
+    }
   }
 
   await mkdir(dirname(outputFile), { recursive: true });

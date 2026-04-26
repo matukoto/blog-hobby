@@ -141,4 +141,64 @@ describe('server/amazon-link-card', () => {
     expect(JSON.parse(written)).toEqual(snapshot);
   });
 
+  it('refreshes snapshot when cached metadata quality is low', async () => {
+    const workspace = await mkdtemp(join(tmpdir(), 'blog-hobby-amazon-card-'));
+    const postsDir = join(workspace, 'posts');
+    const outputFile = join(
+      workspace,
+      'generated',
+      'amazon-link-card-data.json'
+    );
+
+    await mkdir(postsDir, { recursive: true });
+    await writeFile(
+      join(postsDir, 'first.md'),
+      `---\n` +
+        `title: テスト記事\n` +
+        `created: 2024-01-01\n` +
+        `updated: 2024-01-01\n` +
+        `tags:\n` +
+        `  - test\n` +
+        `---\n\n` +
+        `[ok](https://amzn.to/ok)\n`
+    );
+    await mkdir(join(workspace, 'generated'), { recursive: true });
+    await writeFile(
+      outputFile,
+      JSON.stringify(
+        {
+          'https://amzn.to/ok': {
+            title: 'Amazon',
+            url: 'https://www.amazon.co.jp/dp/ok',
+            image:
+              'https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png',
+            siteName: 'Amazon',
+          },
+        },
+        null,
+        2
+      )
+    );
+
+    const fetchFn = vi.fn(async () =>
+      createMockResponse({
+        url: 'https://www.amazon.co.jp/dp/B00E0DMA38',
+        body: `<meta property="og:title" content="Amazon">
+					<meta property="og:image" content="https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png">
+					<meta property="og:url" content="https://www.amazon.co.jp/dp/B00E0DMA38">`,
+      })
+    );
+
+    const snapshot = await generateAmazonLinkCardSnapshot({
+      postsDir,
+      outputFile,
+      fetchFn,
+      logger: { warn: vi.fn() },
+    });
+
+    expect(fetchFn).toHaveBeenCalledTimes(1);
+    expect(snapshot['https://amzn.to/ok']?.image).toBe(
+      'https://images-na.ssl-images-amazon.com/images/P/B00E0DMA38.01.LZZZZZZZ.jpg'
+    );
+  });
 });
