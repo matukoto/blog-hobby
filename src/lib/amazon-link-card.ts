@@ -99,7 +99,8 @@ export function renderAmazonLinkCardHtml({
     return '';
   }
 
-  const title = metadata.title.trim() || linkText.trim() || safeHref;
+  const linkTitle = linkText.trim();
+  const title = linkTitle.length > 0 ? linkTitle : metadata.title.trim() || safeHref;
   const cardUrl = metadata.url.trim() || safeHref;
   const hostname = getDisplayHostname(cardUrl);
   const imageHtml = metadata.image

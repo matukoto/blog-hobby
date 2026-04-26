@@ -9,7 +9,7 @@ describe('renderMarkdown', () => {
       {
         amazonLinkCardSnapshot: {
           'https://amzn.to/41ReZTI': {
-            title: 'みんなのコンピュータサイエンス',
+            title: 'Amazon',
             url: 'https://www.amazon.co.jp/dp/example',
             image: 'https://images.example.com/book.jpg',
             siteName: 'Amazon.co.jp',
@@ -20,6 +20,7 @@ describe('renderMarkdown', () => {
 
     expect(html).toContain('class="amazon-link-card"');
     expect(html).toContain('みんなのコンピュータサイエンス');
+    expect(html).not.toContain('amazon-link-card__title">Amazon<');
     expect(html).toContain('class="amazon-link-card__image"');
   });
 

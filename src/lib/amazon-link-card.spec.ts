@@ -50,7 +50,8 @@ describe('amazon-link-card', () => {
     expect(html).toContain('class="amazon-link-card"');
     expect(html).toContain('target="_blank"');
     expect(html).toContain('rel="noopener noreferrer"');
-    expect(html).toContain('&lt;script&gt;alert(1)&lt;/script&gt;');
+    expect(html).toContain('>book<');
+    expect(html).not.toContain('&lt;script&gt;alert(1)&lt;/script&gt;');
     expect(html).toContain('class="amazon-link-card__image"');
   });
 });
