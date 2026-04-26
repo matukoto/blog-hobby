@@ -54,4 +54,22 @@ describe('amazon-link-card', () => {
     expect(html).not.toContain('&lt;script&gt;alert(1)&lt;/script&gt;');
     expect(html).toContain('class="amazon-link-card__image"');
   });
+
+  it('converts preview icon image to asin-based product image for display', () => {
+    const html = renderAmazonLinkCardHtml({
+      href: 'https://amzn.to/41ReZTI',
+      linkText: 'book',
+      metadata: {
+        title: 'Amazon',
+        url: 'https://www.amazon.co.jp/dp/B00E0DMA38',
+        image: 'https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png',
+        siteName: 'Amazon.co.jp',
+      },
+    });
+
+    expect(html).toContain(
+      'https://images-na.ssl-images-amazon.com/images/P/B00E0DMA38.01.LZZZZZZZ.jpg'
+    );
+    expect(html).not.toContain('/share-icons/previewdoh/amazon.png');
+  });
 });
