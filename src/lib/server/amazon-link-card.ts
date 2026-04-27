@@ -4,9 +4,13 @@ import { dirname, join } from 'node:path';
 import { marked } from 'marked';
 
 import {
+  AMAZON_LINK_CARD_SNAPSHOT_VERSION,
+  createAmazonLinkCardSnapshotDocument,
   type AmazonLinkCardMetadata,
+  type AmazonLinkCardSnapshotDocument,
   type AmazonLinkCardSnapshot,
   normalizeAmazonUrl,
+  parseAmazonLinkCardSnapshotDocument,
 } from '../amazon-link-card';
 import { splitFrontmatter } from '../post-parser';
 
@@ -30,7 +34,8 @@ type LinkToken = {
 const DEFAULT_TIMEOUT_MS = 8000;
 const DEFAULT_CONCURRENCY = 4;
 const DEFAULT_USER_AGENT =
-  'Mozilla/5.0 (compatible; matukoto-blog-bot/1.0; +https://matukoto.com)';
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36';
+const DEFAULT_ACCEPT_LANGUAGE = 'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7';
 const FALLBACK_SITE_NAME = 'Amazon';
 const AMAZON_PREVIEW_IMAGE_PATTERN =
   /\/share-icons\/previewdoh\/amazon\.png(?:[?#].*)?$/i;
@@ -121,37 +126,99 @@ function normalizeMetadataTitle(title?: string | null): string | null {
   return normalized && normalized.length > 0 ? normalized : null;
 }
 
-function extractAmazonAsin(rawUrl: string): string | null {
-  try {
-    const url = new URL(rawUrl);
-    const match = url.pathname.match(
-      /\/(?:dp|gp\/product)\/([A-Z0-9]{10})(?:[/?]|$)/i
-    );
-    return match?.[1]?.toUpperCase() ?? null;
-  } catch {
-    return null;
-  }
-}
-
-function toAmazonAsinImageUrl(asin: string): string {
-  return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`;
-}
-
 function isAmazonPreviewImage(rawUrl?: string): boolean {
   return rawUrl ? AMAZON_PREVIEW_IMAGE_PATTERN.test(rawUrl) : false;
 }
 
-function resolveAmazonImage(rawImageUrl: string | undefined, pageUrl: string) {
+function decodeHtmlAttribute(value: string): string {
+  return decodeHtmlEntities(value)
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#34;', '"');
+}
+
+function extractUrlsFromDynamicImagePayload(
+  payload: string,
+  baseUrl: string
+): string[] {
+  const decoded = decodeHtmlAttribute(payload);
+
+  try {
+    const parsed = JSON.parse(decoded) as Record<string, [number, number]>;
+    return Object.entries(parsed)
+      .map(([url, size]) => ({
+        url: toAbsoluteHttpUrl(url, baseUrl),
+        area: Array.isArray(size) ? size[0] * size[1] : 0,
+      }))
+      .filter((entry): entry is { url: string; area: number } => !!entry.url)
+      .sort((left, right) => right.area - left.area)
+      .map((entry) => entry.url);
+  } catch {
+    return [];
+  }
+}
+
+function extractImageCandidatesFromHtml(
+  html: string,
+  baseUrl: string
+): string[] {
+  const candidates: string[] = [];
+
+  const dynamicImagePattern = /data-a-dynamic-image=(["'])([\s\S]*?)\1/gi;
+  let dynamicImageMatch = dynamicImagePattern.exec(html);
+  while (dynamicImageMatch) {
+    candidates.push(
+      ...extractUrlsFromDynamicImagePayload(dynamicImageMatch[2], baseUrl)
+    );
+    dynamicImageMatch = dynamicImagePattern.exec(html);
+  }
+
+  const oldHiResPattern = /data-old-hires=(["'])(.*?)\1/gi;
+  let oldHiResMatch = oldHiResPattern.exec(html);
+  while (oldHiResMatch) {
+    const url = toAbsoluteHttpUrl(
+      decodeHtmlAttribute(oldHiResMatch[2]),
+      baseUrl
+    );
+    if (url) {
+      candidates.push(url);
+    }
+    oldHiResMatch = oldHiResPattern.exec(html);
+  }
+
+  const scriptImagePattern =
+    /"(?:hiRes|large|mainUrl|url)"\s*:\s*"([^"]*m\.media-amazon\.com\/images\/I\/[^"]+)"/gi;
+  let scriptImageMatch = scriptImagePattern.exec(html);
+  while (scriptImageMatch) {
+    const url = toAbsoluteHttpUrl(
+      decodeHtmlAttribute(scriptImageMatch[1]),
+      baseUrl
+    );
+    if (url) {
+      candidates.push(url);
+    }
+    scriptImageMatch = scriptImagePattern.exec(html);
+  }
+
+  return [...new Set(candidates)];
+}
+
+function resolveAmazonImage(
+  rawImageUrl: string | undefined,
+  html: string,
+  pageUrl: string
+) {
+  const htmlImage = extractImageCandidatesFromHtml(html, pageUrl).find(
+    (candidate) => !isAmazonPreviewImage(candidate)
+  );
+  if (htmlImage) {
+    return htmlImage;
+  }
+
   if (rawImageUrl && !isAmazonPreviewImage(rawImageUrl)) {
     return rawImageUrl;
   }
 
-  const asin = extractAmazonAsin(pageUrl);
-  if (!asin) {
-    return undefined;
-  }
-
-  return toAmazonAsinImageUrl(asin);
+  return undefined;
 }
 
 export function extractAmazonUrlsFromMarkdown(markdown: string): string[] {
@@ -187,6 +254,7 @@ export function extractAmazonLinkCardMetadataFromHtml(
   const url = toAbsoluteHttpUrl(metaMap['og:url'], fallbackUrl) ?? fallbackUrl;
   const image = resolveAmazonImage(
     toAbsoluteHttpUrl(metaMap['og:image'], url),
+    html,
     url
   );
   const siteName = normalizeMetadataTitle(metaMap['og:site_name']);
@@ -218,12 +286,12 @@ async function readPostMarkdownFiles(postsDir: string): Promise<string[]> {
 
 async function readSnapshotFile(
   outputFile: string
-): Promise<AmazonLinkCardSnapshot> {
+): Promise<AmazonLinkCardSnapshotDocument> {
   try {
     const source = await readFile(outputFile, 'utf8');
-    return JSON.parse(source) as AmazonLinkCardSnapshot;
+    return parseAmazonLinkCardSnapshotDocument(JSON.parse(source));
   } catch {
-    return {};
+    return createAmazonLinkCardSnapshotDocument({});
   }
 }
 
@@ -242,14 +310,19 @@ function hasSameUrlKeys(
 }
 
 function hasReusableSnapshotData(
-  snapshot: AmazonLinkCardSnapshot,
+  snapshotDocument: AmazonLinkCardSnapshotDocument,
   urls: readonly string[]
 ): boolean {
+  if (snapshotDocument.version !== AMAZON_LINK_CARD_SNAPSHOT_VERSION) {
+    return false;
+  }
+
+  const snapshot = snapshotDocument.entries;
   if (!hasSameUrlKeys(snapshot, urls)) {
     return false;
   }
 
-  return urls.every((url) => !isAmazonPreviewImage(snapshot[url]?.image));
+  return true;
 }
 
 async function fetchAmazonLinkCardMetadata(
@@ -270,6 +343,7 @@ async function fetchAmazonLinkCardMetadata(
       signal: controller.signal,
       headers: {
         'user-agent': options.userAgent,
+        'accept-language': DEFAULT_ACCEPT_LANGUAGE,
         accept:
           'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       },
@@ -348,8 +422,9 @@ export async function generateAmazonLinkCardSnapshot({
     ...new Set(markdownSources.flatMap(extractAmazonUrlsFromMarkdown)),
   ];
   urls.sort((left, right) => left.localeCompare(right));
-  const existingSnapshot = await readSnapshotFile(outputFile);
-  if (hasReusableSnapshotData(existingSnapshot, urls)) {
+  const existingSnapshotDocument = await readSnapshotFile(outputFile);
+  const existingSnapshot = existingSnapshotDocument.entries;
+  if (hasReusableSnapshotData(existingSnapshotDocument, urls)) {
     return existingSnapshot;
   }
 
@@ -372,7 +447,11 @@ export async function generateAmazonLinkCardSnapshot({
   }
 
   await mkdir(dirname(outputFile), { recursive: true });
-  await writeFile(outputFile, `${JSON.stringify(snapshot, null, 2)}\n`, 'utf8');
+  await writeFile(
+    outputFile,
+    `${JSON.stringify(createAmazonLinkCardSnapshotDocument(snapshot), null, 2)}\n`,
+    'utf8'
+  );
 
   return snapshot;
 }

@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  createAmazonLinkCardSnapshotDocument,
   getAmazonLinkCardMetadata,
   normalizeAmazonUrl,
+  parseAmazonLinkCardSnapshotDocument,
   renderAmazonLinkCardHtml,
 } from './amazon-link-card';
 
@@ -35,6 +37,44 @@ describe('amazon-link-card', () => {
     expect(metadata?.title).toBe('みんなのコンピュータサイエンス');
   });
 
+  it('parses both legacy and versioned snapshot documents', () => {
+    expect(
+      parseAmazonLinkCardSnapshotDocument({
+        'https://amzn.to/41ReZTI': {
+          title: 'legacy',
+          url: 'https://www.amazon.co.jp/dp/example',
+        },
+      })
+    ).toEqual({
+      version: 1,
+      entries: {
+        'https://amzn.to/41ReZTI': {
+          title: 'legacy',
+          url: 'https://www.amazon.co.jp/dp/example',
+        },
+      },
+    });
+
+    expect(
+      parseAmazonLinkCardSnapshotDocument(
+        createAmazonLinkCardSnapshotDocument({
+          'https://amzn.to/41ReZTI': {
+            title: 'versioned',
+            url: 'https://www.amazon.co.jp/dp/example',
+          },
+        })
+      )
+    ).toEqual({
+      version: 2,
+      entries: {
+        'https://amzn.to/41ReZTI': {
+          title: 'versioned',
+          url: 'https://www.amazon.co.jp/dp/example',
+        },
+      },
+    });
+  });
+
   it('renders amazon card html with safe escaping', () => {
     const html = renderAmazonLinkCardHtml({
       href: 'https://amzn.to/41ReZTI',
@@ -55,21 +95,20 @@ describe('amazon-link-card', () => {
     expect(html).toContain('class="amazon-link-card__image"');
   });
 
-  it('converts preview icon image to asin-based product image for display', () => {
+  it('does not render a preview icon image as the card image', () => {
     const html = renderAmazonLinkCardHtml({
       href: 'https://amzn.to/41ReZTI',
       linkText: 'book',
       metadata: {
         title: 'Amazon',
         url: 'https://www.amazon.co.jp/dp/B00E0DMA38',
-        image: 'https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png',
+        image:
+          'https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png',
         siteName: 'Amazon.co.jp',
       },
     });
 
-    expect(html).toContain(
-      'https://images-na.ssl-images-amazon.com/images/P/B00E0DMA38.01.LZZZZZZZ.jpg'
-    );
+    expect(html).not.toContain('class="amazon-link-card__image"');
     expect(html).not.toContain('/share-icons/previewdoh/amazon.png');
   });
 });

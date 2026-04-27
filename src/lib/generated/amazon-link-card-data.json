@@ -1,50 +1,71 @@
 {
-  "https://amzn.asia/d/fBVygfJ": {
-    "title": "Amazon",
-    "url": "https://www.amazon.co.jp/dp/4798188921",
-    "image": "https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png",
-    "siteName": "Amazon"
-  },
-  "https://amzn.to/3CNvUfH": {
-    "title": "Amazon",
-    "url": "https://www.amazon.co.jp/dp/B00E0DMA38",
-    "image": "https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png",
-    "siteName": "Amazon"
-  },
-  "https://amzn.to/3EAw9vc": {
-    "title": "Amazon",
-    "url": "https://www.amazon.co.jp/dp/B00CUCTJ6W",
-    "image": "https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png",
-    "siteName": "Amazon"
-  },
-  "https://amzn.to/3X1vnxq": {
-    "title": "Amazon",
-    "url": "https://www.amazon.co.jp/dp/B09CD3298G",
-    "image": "https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png",
-    "siteName": "Amazon"
-  },
-  "https://amzn.to/4f7O3lt": {
-    "title": "Amazon",
-    "url": "https://www.amazon.co.jp/dp/B00B42SX70",
-    "image": "https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png",
-    "siteName": "Amazon"
-  },
-  "https://amzn.to/4i0bOhe": {
-    "title": "Amazon",
-    "url": "https://www.amazon.co.jp/dp/B0DP6HV363",
-    "image": "https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png",
-    "siteName": "Amazon"
-  },
-  "https://amzn.to/4i0cza4": {
-    "title": "Amazon",
-    "url": "https://www.amazon.co.jp/dp/B01E8ABILM",
-    "image": "https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png",
-    "siteName": "Amazon"
-  },
-  "https://amzn.to/4i1slRN": {
-    "title": "Amazon",
-    "url": "https://www.amazon.co.jp/dp/B0DPQ5RL1Q",
-    "image": "https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png",
-    "siteName": "Amazon"
+  "version": 2,
+  "entries": {
+    "https://amzn.asia/d/06luRBWv": {
+      "title": "Amazon | [グレゴリー] ビジネスバック ビジネスリュック 公式 カバートソリッドデイ 現行モデル ブラック | GREGORY(グレゴリー) | メンズ",
+      "url": "https://www.amazon.co.jp/dp/B07MLVG8HM?ref=cm_sw_r_cp_ud_dp_2XT0G0W6NJQ2DSD17ATH&ref_=cm_sw_r_cp_ud_dp_2XT0G0W6NJQ2DSD17ATH&social_share=cm_sw_r_cp_ud_dp_2XT0G0W6NJQ2DSD17ATH",
+      "image": "https://m.media-amazon.com/images/I/51z-oMtcKjL._AC_SY695_.jpg",
+      "siteName": "Amazon"
+    },
+    "https://amzn.asia/d/0dsfsknw": {
+      "title": "入門 コンピュータ科学 ITを支える技術と理論の基礎知識 | J.Glenn Brookshear, 神林 靖, 長尾 高弘 |本 | 通販 | Amazon",
+      "url": "https://www.amazon.co.jp/dp/4048930540?ref=cm_sw_r_ffobk_cp_ud_dp_4Y5VR5JB56TM1CX7KVH5&ref_=cm_sw_r_ffobk_cp_ud_dp_4Y5VR5JB56TM1CX7KVH5&social_share=cm_sw_r_ffobk_cp_ud_dp_4Y5VR5JB56TM1CX7KVH5&bestFormat=true",
+      "image": "https://m.media-amazon.com/images/I/814X+bwQKNL._SY522_.jpg",
+      "siteName": "Amazon"
+    },
+    "https://amzn.asia/d/fBVygfJ": {
+      "title": "情報処理教科書 情報処理安全確保支援士 2025年版",
+      "url": "https://www.amazon.co.jp/dp/4798188921?_encoding=UTF8&psc=1&ref=cm_sw_r_ffobk_cp_ud_dp_0X2N4B4K4SZVD1GAJDE2&ref_=cm_sw_r_ffobk_cp_ud_dp_0X2N4B4K4SZVD1GAJDE2&social_share=cm_sw_r_ffobk_cp_ud_dp_0X2N4B4K4SZVD1GAJDE2&bestFormat=true",
+      "image": "https://m.media-amazon.com/images/I/81M+um-U3QL._SY522_.jpg",
+      "siteName": "Amazon"
+    },
+    "https://amzn.to/3CNvUfH": {
+      "title": "Amazon.co.jp: 銀と金 １ eBook : 福本 伸行: Kindleストア",
+      "url": "https://www.amazon.co.jp/%E9%8A%80%E3%81%A8%E9%87%91-%EF%BC%91-%E7%A6%8F%E6%9C%AC-%E4%BC%B8%E8%A1%8C-ebook/dp/B00E0DMA38?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=ZODJOA273QKE&dib=eyJ2IjoiMSJ9.5rF6Gmsa9vwALos13nz6f2Uom6Fnq6O0KCXcwZbbjbXhiSrp-wKJW7lWBfw4u-l8R37Tfw4ULZ5kbDGZV3F137prZhrDLkVxuUaSRODeDmgzd7igO3OL6Fg8w5Iku9VmsRMrgyGK4QVbeXwXKHUKVwArCTOtS-uNq0tIpdia0CwcyxJNI8hcibyqW3WCHhrt5Yn8Ff2Ompac0EqeTeXQ0fD8eF14kxBKJy-eXt54PkYSPHhlz883Sso713sfhplTAfXf3HTxGnMRHcsnBZdac5RroWGpxVQOJG4nVNaMsslXejIBWcukJCCNs5dHgzkPSgWjBzFPPGc582OGfGvzT9JSZAAxco5FkdAkvhmSThuiWtuclx_bRccl89qwPJObOsrK-7Uaoq0VvbQA4capkD8YIVsB9OCFacDwcU2LbPyscPedUmtOlNrpRWbMPTfY.fPv1EwMBx93APS1a6gvD3_QZwOwxJKlXt0cE9d8OF9U&dib_tag=se&keywords=%E9%87%91%E3%81%A8%E9%8A%80&qid=1739619750&sprefix=%E9%87%91%E3%81%A8%E9%8A%80,aps,210&sr=8-2&linkCode=sl1&tag=maaatuuukooot-22&linkId=17d55b6ca77941be413f98646aedd0ed&language=ja_JP&ref_=as_li_ss_tl",
+      "image": "https://m.media-amazon.com/images/I/91Hv1nSneEL._SY522_.jpg",
+      "siteName": "Amazon"
+    },
+    "https://amzn.to/3EAw9vc": {
+      "title": "Amazon.co.jp: 天空の扉 1 eBook : KAKERU: Kindleストア",
+      "url": "https://www.amazon.co.jp/%E5%A4%A9%E7%A9%BA%E3%81%AE%E6%89%89-1-%EF%BC%AB%EF%BC%A1%EF%BC%AB%EF%BC%A5%EF%BC%B2%EF%BC%B5-ebook/dp/B00CUCTJ6W?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=703G7SOM6VSZ&dib=eyJ2IjoiMSJ9.8aWWUX7cEAFftA0wX31RwmXqhKbtdRnBFoFjtsMMZDtmazGBvj4dhJ3wM89aGqpa6_eyN-ao1Dsopx4Y7w96ZS44EVa7Xbwse9V0puzmA-Mp72jf_iwK6lzNCQmK60Lh06ovNKo4w1084FMP0Z-4yvSgto89__WRpARCtKevrXuoFQQ_xlWmZ4Dp0ZelKepr4ZTfPrr_tF_fA3SJY96m6UzhiHsWQWvgnWIkk8LvqTbhxI2XadOJOJABARp6I3ptquL38n457IV6DZAAf8yeO7uxnoqaUhQAn8LEhSVFgg2VHjw5xeoDMdqqTPePmXbRaCBKz4KUq2l_gogMRTOtbLTSWy6GTF126cMoaP0j9Nk5e3ndMsAOZXWOby1dBot3SR_YPPQA7Bn71aVqUvfZof4pYjwdDQzm5Go-nu-xrOvIwOo-iacrnv-wb_upQIAY.X3hfb2PJimaMysHczxbZHSdfD94whZHs_LQuWsJKZgI&dib_tag=se&keywords=%E5%A4%A9%E7%A9%BA%E3%81%AE%E6%89%89&qid=1739620314&sprefix=%E5%A4%A9%E7%A9%BA%E3%81%AE%E6%89%89,aps,220&sr=8-5&linkCode=sl1&tag=maaatuuukooot-22&linkId=41265b888b68bd7c36e8e90dea684c83&language=ja_JP&ref_=as_li_ss_tl",
+      "image": "https://m.media-amazon.com/images/I/A1ysZ2r+BkL._SY522_.jpg",
+      "siteName": "Amazon"
+    },
+    "https://amzn.to/3X1vnxq": {
+      "title": "Amazon.co.jp: 東京ヒゴロ（１） (ビッグコミックススペシャル) eBook : 松本大洋: Kindleストア",
+      "url": "https://www.amazon.co.jp/%E6%9D%B1%E4%BA%AC%E3%83%92%E3%82%B4%E3%83%AD%EF%BC%88%EF%BC%91%EF%BC%89-%E3%83%93%E3%83%83%E3%82%B0%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB-%E6%9D%BE%E6%9C%AC%E5%A4%A7%E6%B4%8B-ebook/dp/B09CD3298G?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=1P9UPI3KK9BMT&dib=eyJ2IjoiMSJ9.Y5mJ_tz_DCYHPw02THcNjNF67CCri-KrQ_sT3GYhPToCd3ebhvFIfVbxqNInO3D3D-NbpJIVLxRpUGQ3pq-deXNWJCBtaiwvDS_9V9v5rkfkB8zT8O9TF5zyIZvKQ0HqY5l0qg1zQP8Kc6IlnFCAuKDqGMQ1cVcTmPQ91tMnBYJCZqvCI0nP9YtEII7Uw5B6h8WkVaqkj6iXlIJZIw2_6OK1NvS7ioDr3jpUwd69QDZ4uMKUmNbY-7gClJsaTHoGSPkisP09qRtvLiWm07bqNkh_zoRLZKPlLhoWMDc_SPgZHxjANtoVWNgDsYvCQ6CDqcg791uq57A6WB3SCQEUWZACpESKd7MJroTcaiOqO0o99-4qEiOkd_SGgEKyqWXyOrXDAccVX7veljzTYaL5CQCYfmeGyGC4WRNB85ZJTr8.PIQDUG7yDnByoSgNLVbWX93uf32o7zIstSBAXg_ZBsc&dib_tag=se&keywords=%E6%9D%B1%E4%BA%AC%E3%83%92%E3%82%B4%E3%83%AD&qid=1739621314&sprefix=%E6%9D%B1%E4%BA%AC%E3%83%92%E3%82%B4%E3%83%AD,aps,200&sr=8-1&linkCode=sl1&tag=maaatuuukooot-22&linkId=78bac9a73205a4368a25b66f92150129&language=ja_JP&ref_=as_li_ss_tl",
+      "image": "https://m.media-amazon.com/images/I/81pyX5Z79LL._SY522_.jpg",
+      "siteName": "Amazon"
+    },
+    "https://amzn.to/4f7O3lt": {
+      "title": "採用基準 | 伊賀 泰代 | ビジネス教育 | Kindleストア | Amazon",
+      "url": "https://www.amazon.co.jp/%E6%8E%A1%E7%94%A8%E5%9F%BA%E6%BA%96-%E4%BC%8A%E8%B3%80-%E6%B3%B0%E4%BB%A3-ebook/dp/B00B42SX70?&linkCode=sl1&tag=maaatuuukooot-22&linkId=e3abb97fda8ff81e7bd7deffd4eedb72&language=ja_JP&ref_=as_li_ss_tl",
+      "image": "https://m.media-amazon.com/images/I/718+MJ7ABLL._SY522_.jpg",
+      "siteName": "Amazon"
+    },
+    "https://amzn.to/4gDq0LP": {
+      "title": "Amazon.co.jp: 絶滅動物物語 (ビッグコミックススペシャル) eBook : うすくらふみ, 今泉忠明: Kindleストア",
+      "url": "https://www.amazon.co.jp/%E7%B5%B6%E6%BB%85%E5%8B%95%E7%89%A9%E7%89%A9%E8%AA%9E-%E3%83%93%E3%83%83%E3%82%B0%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB-%E3%81%86%E3%81%99%E3%81%8F%E3%82%89%E3%81%B5%E3%81%BF-ebook/dp/B09Q8RJYWB?crid=2UKUJCP32SAT1&dib=eyJ2IjoiMSJ9.JLL6bBSGl6Cj_jDgXEvpm9Qn34M9bCUdR4xi8pUCo_81NdPenBRPX4lGV_4XxIHjPL0nCtqsxK8r9L5G9IJTFI-8t3xg4aSEMCFe0Qf1r4kabjnmRbphxy6cOEDLEAfzdjs8PXkpdcqQK_s-tZYvLMfyAi5ATDxSxqOYakUM3abeThhNmtDOHR5uDGXdNZYGnqceCeG1iuzUxFCmMga_zDrbCnrpUfap4Njz_kd6daa5vjCm895kWA5WkjG57NiNTk-JuM2k-c7HlcwyEpToLAap7ENLgem9-GwNh8B-n-L6L6qP_xgL8K-8s9ycNVty60i_C7rbDGcgj3U3KN-x2aZQweH_QBj33ikMFj-Op7salR5zOr9czsgWtPuTQe6_4oiRniMrl45d-iLgFrAARc-Uf06rC7k3H1Pn08b5aI0ET7MzhHx8wQvLDhVlLdLw.SN2MRhCV-ZepOp7aRa9HhkYDn_QyNvdBoEjKzfYCNvU&dib_tag=se&keywords=%E7%B5%B6%E6%BB%85%E5%8B%95%E7%89%A9%E7%89%A9%E8%AA%9E&qid=1739621686&sprefix=%E3%81%9C%E3%81%A4%E3%82%81%E3%81%A4%E3%81%A9%E3%81%86%E3%81%B6,aps,177&sr=8-1&linkCode=sl1&tag=maaatuuukooot-22&linkId=f9c80ac213841b69c0cf0c2c092a978b&language=ja_JP&ref_=as_li_ss_tl",
+      "image": "https://m.media-amazon.com/images/I/81NxZyNlT0L._SY522_.jpg",
+      "siteName": "Amazon"
+    },
+    "https://amzn.to/4i0bOhe": {
+      "title": "Amazon.co.jp: 龍とカメレオン 6巻 (デジタル版ガンガンコミックスJOKER) 電子書籍: 石山諒: Kindleストア",
+      "url": "https://www.amazon.co.jp/%E9%BE%8D%E3%81%A8%E3%82%AB%E3%83%A1%E3%83%AC%E3%82%AA%E3%83%B3-6%E5%B7%BB-%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%89%88%E3%82%AC%E3%83%B3%E3%82%AC%E3%83%B3%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9JOKER-%E7%9F%B3%E5%B1%B1%E8%AB%92-ebook/dp/B0DP6HV363?_encoding=UTF8&dib_tag=se&dib=eyJ2IjoiMSJ9.q8LXJgTf4Y3f9k19djWU7HCw9a1RwkK-UYUpNY9FXJAl-upaa5j_Gp9TTtUGtORT6T7SBO_wH32g2IEuZqe5SxpSUIhitPe-Hq6yQWgK8qPjEZihujEj5meLCaAfi-DWDuJS6l34LFc6rgV1Jm0GrMRVO0mJswu5jwS0ts2Tze2DJpLVxbsSf8AXPk0fJDg1RE45PGzTZNK2CeyHqqIbjs9QY8GC3qjeWUc-rGxHgiheW__y8aDT-rJ6VwMueReLML6bjhKlNzw44A3MPkAA-8GIRC4-AxuHxYzsQ9ViJXxrcx0GtNcogEWxtQ-4HvoQpA5x5Wx0oKwBVxA4yBALTMvl3s3FlZ3teZqWBplNf5pqxD_E6kD8XhsAu8-cWKmbBtgSnXSso40j-vkj4J6endNSGqFZgbp8X2TOssG-pljkxndFQFOqZ49ifmL5TGxP.QQj90e_a2JEYuGKfs3elMrXWJqcFp0c8xbvvx26rrN4&qid=1739620688&sr=8-1&linkCode=sl1&tag=maaatuuukooot-22&linkId=e2619680ae4da3fb46366fcfda195f1a&language=ja_JP&ref_=as_li_ss_tl",
+      "image": "https://m.media-amazon.com/images/I/81rb14kJT+L._SY522_.jpg",
+      "siteName": "Amazon"
+    },
+    "https://amzn.to/4i0cza4": {
+      "title": "Amazon.co.jp: タイガーマスク（１） (週刊少年マガジンコミックス) 電子書籍: 梶原一騎, 辻なおき: Kindleストア",
+      "url": "https://www.amazon.co.jp/%E3%82%BF%E3%82%A4%E3%82%AC%E3%83%BC%E3%83%9E%E3%82%B9%E3%82%AF%EF%BC%88%EF%BC%91%EF%BC%89-%E9%80%B1%E5%88%8A%E5%B0%91%E5%B9%B4%E3%83%9E%E3%82%AC%E3%82%B8%E3%83%B3%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9-%E6%A2%B6%E5%8E%9F%E4%B8%80%E9%A8%8E-ebook/dp/B01E8ABILM?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=22TLWTRHFJYX1&dib=eyJ2IjoiMSJ9.lH9X7n_03DLvSlgjbK6JXxu3tRLzrZuh7S8ZduMBYzdbsXcnH0op0edQxO0fPwsD3tJV4lDvTvpkSaFLtZQXcB-kUIs4TH51Ili-71oAAAwvlqCVd8cy4IV1_YP7WE27A0ELcB4Y_v3mRd5hrdo7VNFgo7s90t7HPOl2jxeFK3l4jDBUJwc0mTJC7ksUy7QBBauvXaolLNnTX2xtnIMLrHzS145q31hW0Yr7OLLEJrIAdbP3YK_ObBoSdm2GC9osS7ZFRpviBvLtz6bgadEDHeCvqCFa3N3BiaO1spkRirdIuwtfrUk5gZwwuxtsxA-E36pr80c20dGbePjUyMORc4XKc1I3qgGNB91pGxbjZkq2E_jtHkejRfmJ0hfIJJDB6NTh8nGOxxOu-TIUsqT6sN2GeY23d2YE_gYIEbiLTlx9h6_V2605eIYsry9vg8Bi.roM510CChvhZP8fzH1qlSOnqY0HA-NqLROA6b4f8SNw&dib_tag=se&keywords=%E3%82%BF%E3%82%A4%E3%82%AC%E3%83%BC%E3%83%9E%E3%82%B9%E3%82%AF&qid=1739622145&sprefix=%E3%82%BF%E3%82%A4%E3%82%AC%E3%83%BC%E3%83%9E%E3%82%B9%E3%82%AF,aps,178&sr=8-11&linkCode=sl1&tag=maaatuuukooot-22&linkId=a76df6cf7a40d8d541c8d21babb29017&language=ja_JP&ref_=as_li_ss_tl",
+      "image": "https://m.media-amazon.com/images/I/91T2WE64MCL._SY522_.jpg",
+      "siteName": "Amazon"
+    },
+    "https://amzn.to/4i1slRN": {
+      "title": "九条の大罪（１３） (ビッグコミックス) | 真鍋昌平 | 青年マンガ | Kindleストア | Amazon",
+      "url": "https://www.amazon.co.jp/%E4%B9%9D%E6%9D%A1%E3%81%AE%E5%A4%A7%E7%BD%AA%EF%BC%88%EF%BC%91%EF%BC%93%EF%BC%89-%E3%83%93%E3%83%83%E3%82%B0%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9-%E7%9C%9F%E9%8D%8B%E6%98%8C%E5%B9%B3-ebook/dp/B0DPQ5RL1Q?crid=19BHLR0G9JORY&dib=eyJ2IjoiMSJ9.hXfcCflbkAqH-RZPhIDuJ_tKyBLFDlJePD1I5OzV-htiEUxQ3jw_fAVYGGj-ivKEPAZIFYZFQIJ_3Yeu6SXUZkY9xAgZ_Ihrlp0Ic1QPA4OVm6DLZTQD8mGlIfdEhVkiLdLI_Nl7w7_rQKHb_P_xYTrZzNdSx7oH6P6DeJ8ob-f52pplM33yHLXaJ-3eZps6SmnwreHVPRghivA-trwYWJBpwWCfy_JfxmwTNDERrvFO_K9bRxoOH4mIZTc5UldC5cTXG5g97Iws-oR8XYFBSnkZYVYz1QoD9CdgKCC62cjuZ1GONlvmZEETYSija-yoyerEhGsxFmtWW29vRKbHVEWHUMEfTBYhJiG7Et6T3YDdibarS-XCfBwsM0cKzltO4ZEuAM0TP_0cM8prltxnL4Qw5Spmwmk7fdTMi9u2mFF7JQ-QAGTzF5YbRS7dMcGJ.-maceXAIahdpfZ0XoZyOsndhydMUWEh59JnQwDXPguw&dib_tag=se&keywords=%E4%B9%9D%E6%9D%A1%E3%81%AE%E5%A4%A7%E7%BD%AA&qid=1739620905&sprefix=%E4%B9%9D%E6%9D%A1,aps,176&sr=8-2&linkCode=sl1&tag=maaatuuukooot-22&linkId=ec855077472874f98fef1619ad952571&language=ja_JP&ref_=as_li_ss_tl",
+      "image": "https://m.media-amazon.com/images/I/91Ny2sm3uoL._SY522_.jpg",
+      "siteName": "Amazon"
+    }
   }
 }

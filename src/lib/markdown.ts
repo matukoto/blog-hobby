@@ -3,6 +3,7 @@ import { marked } from 'marked';
 import {
   type AmazonLinkCardSnapshot,
   getAmazonLinkCardMetadata,
+  parseAmazonLinkCardSnapshotDocument,
   renderAmazonLinkCardHtml,
 } from './amazon-link-card';
 import amazonLinkCardData from './generated/amazon-link-card-data.json';
@@ -57,7 +58,7 @@ type RenderMarkdownOptions = {
 };
 
 const DEFAULT_AMAZON_LINK_CARD_SNAPSHOT =
-  amazonLinkCardData as AmazonLinkCardSnapshot;
+  parseAmazonLinkCardSnapshotDocument(amazonLinkCardData).entries;
 
 function unquote(value: string): string {
   return value.replace(/^['"](.*)['"]$/, '$1');

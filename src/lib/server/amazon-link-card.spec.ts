@@ -60,19 +60,24 @@ describe('server/amazon-link-card', () => {
     expect(metadata?.url).toBe('https://www.amazon.co.jp/dp/123');
   });
 
-  it('replaces generic amazon preview image with asin image', () => {
+  it('extracts product image from data-a-dynamic-image before og image', () => {
     const metadata = extractAmazonLinkCardMetadataFromHtml(
-      `<html><head>
+      `<html><body>
+				<img
+					id="landingImage"
+					data-old-hires="https://m.media-amazon.com/images/I/high-res.jpg"
+					data-a-dynamic-image="{&quot;https://m.media-amazon.com/images/I/large.jpg&quot;:[1200,1200],&quot;https://m.media-amazon.com/images/I/small.jpg&quot;:[500,500]}"
+				>
 				<meta property="og:title" content="Amazon">
 				<meta property="og:image" content="https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png">
 				<meta property="og:url" content="https://www.amazon.co.jp/dp/B00E0DMA38">
-			</head></html>`,
+			</body></html>`,
       'https://amzn.to/abc'
     );
 
     expect(metadata).not.toBeNull();
     expect(metadata?.image).toBe(
-      'https://images-na.ssl-images-amazon.com/images/P/B00E0DMA38.01.LZZZZZZZ.jpg'
+      'https://m.media-amazon.com/images/I/large.jpg'
     );
   });
 
@@ -138,7 +143,10 @@ describe('server/amazon-link-card', () => {
     expect(fetchFn).toHaveBeenCalledTimes(2);
 
     const written = await readFile(outputFile, 'utf8');
-    expect(JSON.parse(written)).toEqual(snapshot);
+    expect(JSON.parse(written)).toEqual({
+      version: 2,
+      entries: snapshot,
+    });
   });
 
   it('refreshes snapshot when cached metadata quality is low', async () => {
@@ -167,12 +175,15 @@ describe('server/amazon-link-card', () => {
       outputFile,
       JSON.stringify(
         {
-          'https://amzn.to/ok': {
-            title: 'Amazon',
-            url: 'https://www.amazon.co.jp/dp/ok',
-            image:
-              'https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png',
-            siteName: 'Amazon',
+          version: 1,
+          entries: {
+            'https://amzn.to/ok': {
+              title: 'Amazon',
+              url: 'https://www.amazon.co.jp/dp/ok',
+              image:
+                'https://m.media-amazon.com/images/G/01/share-icons/previewdoh/amazon.png',
+              siteName: 'Amazon',
+            },
           },
         },
         null,
@@ -197,8 +208,6 @@ describe('server/amazon-link-card', () => {
     });
 
     expect(fetchFn).toHaveBeenCalledTimes(1);
-    expect(snapshot['https://amzn.to/ok']?.image).toBe(
-      'https://images-na.ssl-images-amazon.com/images/P/B00E0DMA38.01.LZZZZZZZ.jpg'
-    );
+    expect(snapshot['https://amzn.to/ok']?.image).toBeUndefined();
   });
 });

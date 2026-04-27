@@ -6,6 +6,10 @@ export type AmazonLinkCardMetadata = {
 };
 
 export type AmazonLinkCardSnapshot = Record<string, AmazonLinkCardMetadata>;
+export type AmazonLinkCardSnapshotDocument = {
+  version: number;
+  entries: AmazonLinkCardSnapshot;
+};
 
 type RenderAmazonLinkCardHtmlOptions = {
   href: string;
@@ -16,6 +20,7 @@ type RenderAmazonLinkCardHtmlOptions = {
 const AMAZON_SHORT_HOSTS = new Set(['amzn.to', 'amzn.asia']);
 const AMAZON_PREVIEW_IMAGE_PATTERN =
   /\/share-icons\/previewdoh\/amazon\.png(?:[?#].*)?$/i;
+export const AMAZON_LINK_CARD_SNAPSHOT_VERSION = 2;
 
 function normalizeHostname(hostname: string): string {
   return hostname.trim().toLowerCase().replace(/\.$/, '');
@@ -65,33 +70,11 @@ function getDisplayHostname(rawUrl: string): string {
   }
 }
 
-function extractAmazonAsin(rawUrl: string): string | null {
-  try {
-    const url = new URL(rawUrl);
-    const match = url.pathname.match(
-      /\/(?:dp|gp\/product)\/([A-Z0-9]{10})(?:[/?]|$)/i
-    );
-    return match?.[1]?.toUpperCase() ?? null;
-  } catch {
-    return null;
-  }
-}
-
-function toAmazonAsinImageUrl(asin: string): string {
-  return `https://images-na.ssl-images-amazon.com/images/P/${asin}.01.LZZZZZZZ.jpg`;
-}
-
 function resolveDisplayImage(rawImageUrl: string | undefined, pageUrl: string) {
   if (rawImageUrl && !AMAZON_PREVIEW_IMAGE_PATTERN.test(rawImageUrl)) {
     return rawImageUrl;
   }
-
-  const asin = extractAmazonAsin(pageUrl);
-  if (!asin) {
-    return rawImageUrl;
-  }
-
-  return toAmazonAsinImageUrl(asin);
+  return undefined;
 }
 
 export function normalizeAmazonUrl(rawUrl: string): string | null {
@@ -120,6 +103,66 @@ export function getAmazonLinkCardMetadata(
   return snapshot[normalized] ?? null;
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
+function isAmazonLinkCardMetadata(
+  value: unknown
+): value is AmazonLinkCardMetadata {
+  return (
+    isRecord(value) &&
+    typeof value.title === 'string' &&
+    typeof value.url === 'string' &&
+    (value.image === undefined || typeof value.image === 'string') &&
+    (value.siteName === undefined || typeof value.siteName === 'string')
+  );
+}
+
+function sanitizeSnapshotEntries(value: unknown): AmazonLinkCardSnapshot {
+  if (!isRecord(value)) {
+    return {};
+  }
+
+  const entries: AmazonLinkCardSnapshot = {};
+  for (const [key, entry] of Object.entries(value)) {
+    if (key.startsWith('http') && isAmazonLinkCardMetadata(entry)) {
+      entries[key] = entry;
+    }
+  }
+
+  return entries;
+}
+
+export function parseAmazonLinkCardSnapshotDocument(
+  value: unknown
+): AmazonLinkCardSnapshotDocument {
+  if (
+    isRecord(value) &&
+    typeof value.version === 'number' &&
+    'entries' in value
+  ) {
+    return {
+      version: value.version,
+      entries: sanitizeSnapshotEntries(value.entries),
+    };
+  }
+
+  return {
+    version: 1,
+    entries: sanitizeSnapshotEntries(value),
+  };
+}
+
+export function createAmazonLinkCardSnapshotDocument(
+  entries: AmazonLinkCardSnapshot
+): AmazonLinkCardSnapshotDocument {
+  return {
+    version: AMAZON_LINK_CARD_SNAPSHOT_VERSION,
+    entries,
+  };
+}
+
 export function renderAmazonLinkCardHtml({
   href,
   linkText,
@@ -131,7 +174,8 @@ export function renderAmazonLinkCardHtml({
   }
 
   const linkTitle = linkText.trim();
-  const title = linkTitle.length > 0 ? linkTitle : metadata.title.trim() || safeHref;
+  const title =
+    linkTitle.length > 0 ? linkTitle : metadata.title.trim() || safeHref;
   const cardUrl = metadata.url.trim() || safeHref;
   const hostname = getDisplayHostname(cardUrl);
   const resolvedImage = resolveDisplayImage(metadata.image, cardUrl);
