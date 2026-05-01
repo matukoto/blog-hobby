@@ -18,6 +18,7 @@ type RenderAmazonLinkCardHtmlOptions = {
 };
 
 const AMAZON_SHORT_HOSTS = new Set(['amzn.to', 'amzn.asia']);
+const AMAZON_ALLOWED_HOSTS = new Set(['amazon.co.jp', 'amazon.com']);
 const AMAZON_PREVIEW_IMAGE_PATTERN =
   /\/share-icons\/previewdoh\/amazon\.png(?:[?#].*)?$/i;
 export const AMAZON_LINK_CARD_SNAPSHOT_VERSION = 2;
@@ -32,7 +33,10 @@ function isAmazonHostname(hostname: string): boolean {
     return true;
   }
 
-  return /(^|\.)amazon\.[a-z0-9.-]+$/i.test(normalized);
+  return [...AMAZON_ALLOWED_HOSTS].some(
+    (allowedHost) =>
+      normalized === allowedHost || normalized.endsWith(`.${allowedHost}`)
+  );
 }
 
 function isHttpUrl(url: URL): boolean {
@@ -70,9 +74,10 @@ function getDisplayHostname(rawUrl: string): string {
   }
 }
 
-function resolveDisplayImage(rawImageUrl: string | undefined, pageUrl: string) {
-  if (rawImageUrl && !AMAZON_PREVIEW_IMAGE_PATTERN.test(rawImageUrl)) {
-    return rawImageUrl;
+function resolveDisplayImage(rawImageUrl: string | undefined) {
+  const sanitized = rawImageUrl ? sanitizeHttpUrl(rawImageUrl) : null;
+  if (sanitized && !AMAZON_PREVIEW_IMAGE_PATTERN.test(sanitized)) {
+    return sanitized;
   }
   return undefined;
 }
@@ -178,7 +183,7 @@ export function renderAmazonLinkCardHtml({
     linkTitle.length > 0 ? linkTitle : metadata.title.trim() || safeHref;
   const cardUrl = metadata.url.trim() || safeHref;
   const hostname = getDisplayHostname(cardUrl);
-  const resolvedImage = resolveDisplayImage(metadata.image, cardUrl);
+  const resolvedImage = resolveDisplayImage(metadata.image);
   const imageHtml = resolvedImage
     ? `<img class="amazon-link-card__image" src="${escapeHtml(
         resolvedImage

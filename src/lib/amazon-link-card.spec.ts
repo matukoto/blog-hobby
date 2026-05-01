@@ -16,6 +16,8 @@ describe('amazon-link-card', () => {
     expect(normalizeAmazonUrl('https://www.amazon.co.jp/dp/123')).toBe(
       'https://www.amazon.co.jp/dp/123'
     );
+    expect(normalizeAmazonUrl('https://amazon.evil.com/dp/123')).toBeNull();
+    expect(normalizeAmazonUrl('https://foo.amazon.evil.com/dp/123')).toBeNull();
     expect(normalizeAmazonUrl('https://example.com/books')).toBeNull();
     expect(normalizeAmazonUrl('javascript:alert(1)')).toBeNull();
   });
@@ -78,7 +80,7 @@ describe('amazon-link-card', () => {
   it('renders amazon card html with safe escaping', () => {
     const html = renderAmazonLinkCardHtml({
       href: 'https://amzn.to/41ReZTI',
-      linkText: 'book',
+      linkText: '',
       metadata: {
         title: '<script>alert(1)</script>',
         url: 'https://www.amazon.co.jp/dp/example',
@@ -90,8 +92,8 @@ describe('amazon-link-card', () => {
     expect(html).toContain('class="amazon-link-card"');
     expect(html).toContain('target="_blank"');
     expect(html).toContain('rel="noopener noreferrer"');
-    expect(html).toContain('>book<');
-    expect(html).not.toContain('&lt;script&gt;alert(1)&lt;/script&gt;');
+    expect(html).not.toContain('<script>alert(1)</script>');
+    expect(html).toContain('&lt;script&gt;alert(1)&lt;/script&gt;');
     expect(html).toContain('class="amazon-link-card__image"');
   });
 
