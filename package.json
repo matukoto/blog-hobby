@@ -27,7 +27,7 @@
     "@sveltejs/adapter-cloudflare": "7.2.8",
     "@sveltejs/kit": "2.60.1",
     "@sveltejs/vite-plugin-svelte": "7.1.2",
-    "@types/node": "25.8.0",
+    "@types/node": "25.9.0",
     "@vitest/browser-playwright": "4.1.6",
     "fonteditor-core": "2.6.3",
     "markdownlint-cli2": "0.22.1",
