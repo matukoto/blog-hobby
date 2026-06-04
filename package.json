@@ -28,7 +28,7 @@
     "@sveltejs/kit": "2.61.1",
     "@sveltejs/vite-plugin-svelte": "7.1.2",
     "@types/node": "25.9.1",
-    "@vitest/browser-playwright": "4.1.7",
+    "@vitest/browser-playwright": "4.1.8",
     "fonteditor-core": "2.6.3",
     "markdownlint-cli2": "0.22.1",
     "mdsvex": "0.12.7",
