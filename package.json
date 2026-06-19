@@ -42,7 +42,7 @@
     "textlint": "15.7.1",
     "typescript": "6.0.3",
     "vite": "8.0.16",
-    "vitest": "4.1.8",
+    "vitest": "4.1.9",
     "vitest-browser-svelte": "2.1.1",
     "wrangler": "4.100.0"
   },
