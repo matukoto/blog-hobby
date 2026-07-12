@@ -10,7 +10,7 @@ importers:
     dependencies:
       marked:
         specifier: ^18.0.0
-        version: 18.0.5
+        version: 18.0.6
     devDependencies:
       '@biomejs/biome':
         specifier: 2.5.3
@@ -1807,8 +1807,8 @@ packages:
     resolution: {integrity: sha512-xMUI3ChBuRuxuLF4ENvCZyS8z/+Jly1coUcZwErKLIB3sDj7ojpaTBa1e9YVPhSN4jGEIjYGQCldbTJS/hqS+A==}
     engines: {node: '>=22'}
 
-  marked@18.0.5:
-    resolution: {integrity: sha512-S6GcvALHg6K4ohtu4E7x0a1AqhAjp6cV8KhLSyN9qVapnzJkusVBxZRcIU9AeYsbe6P1hKDusSbEOzGyyuce6w==}
+  marked@18.0.6:
+    resolution: {integrity: sha512-MrV5puXBfuiy6wl6DLaq3BtIJQAJToAd5zt/ZKhRfGRAuFPALE7/4Y7jnxRQoEgK/pBgurGqLyAuRgZ2xOjr6w==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -4267,7 +4267,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  marked@18.0.5: {}
+  marked@18.0.6: {}
 
   math-intrinsics@1.1.0: {}
 
