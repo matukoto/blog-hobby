@@ -61,8 +61,8 @@ importers:
         specifier: 4.3.1
         version: 4.3.1
       simple-icons:
-        specifier: 16.25.0
-        version: 16.25.0
+        specifier: 16.26.0
+        version: 16.26.0
       svelte:
         specifier: 5.56.4
         version: 5.56.4
@@ -2314,8 +2314,8 @@ packages:
   siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
 
-  simple-icons@16.25.0:
-    resolution: {integrity: sha512-ReYPfbqjkTBovxjerHw2tf6E1rQdaCqNJKaJbd78Mui8w+78xQlE1aDO/2ekID++n8qa+1t+oaueYLeiSoQsIA==}
+  simple-icons@16.26.0:
+    resolution: {integrity: sha512-T9rNJtyOshULM8heLlvrZY346g9zOgZILQ3vxP+FWcX13RhaOLez7YM/hNCEx3b5gJckSCNDoNsjZuDncSMYSQ==}
     engines: {node: '>=0.12.18'}
 
   sirv@3.0.2:
@@ -5029,7 +5029,7 @@ snapshots:
 
   siginfo@2.0.0: {}
 
-  simple-icons@16.25.0: {}
+  simple-icons@16.26.0: {}
 
   sirv@3.0.2:
     dependencies:
