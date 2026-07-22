@@ -40,7 +40,7 @@
     "svelte": "5.56.6",
     "svelte-check": "4.7.3",
     "textlint": "15.7.1",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "vite": "8.1.5",
     "vitest": "4.1.10",
     "vitest-browser-svelte": "3.0.0",
