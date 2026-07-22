@@ -46,8 +46,8 @@ importers:
         specifier: 0.23.1
         version: 0.23.1(supports-color@10.2.2)
       mdsvex:
-        specifier: 0.12.7
-        version: 0.12.7(svelte@5.56.6)
+        specifier: 0.12.8
+        version: 0.12.8(svelte@5.56.6)
       playwright:
         specifier: 1.61.1
         version: 1.61.1
@@ -1855,8 +1855,8 @@ packages:
   mdast-util-to-string@2.0.0:
     resolution: {integrity: sha512-AW4DRS3QbBayY/jJmD8437V1Gombjf8RSOUCMFBuo5iHi58AGEgVCKQ+ezHkZZDpAQS75hcBMpLqjpJTjtUL7w==}
 
-  mdsvex@0.12.7:
-    resolution: {integrity: sha512-gx4bReLCUvq+MPErHXYeyX+TEq1hsS2KfiZtEOMNTcbibSouFy8AHc5h04KbGCl+g5tLuo4/lbgRVYRnc7bJZw==}
+  mdsvex@0.12.8:
+    resolution: {integrity: sha512-v2sbRA9QWf0tpYWfREI5Kq7OqqrqoUzfmMKbgdOoWGfPDLc1JYU4EgDDF0N9WFhmjFW5agKrYwo/mDVutBKWKw==}
     peerDependencies:
       svelte: ^3.56.0 || ^4.0.0 || ^5.0.0-next.120
 
@@ -3467,7 +3467,7 @@ snapshots:
 
   '@types/mdast@4.0.4':
     dependencies:
-      '@types/unist': 2.0.11
+      '@types/unist': 3.0.3
 
   '@types/ms@2.1.0': {}
 
@@ -4364,7 +4364,7 @@ snapshots:
 
   mdast-util-to-string@2.0.0: {}
 
-  mdsvex@0.12.7(svelte@5.56.6):
+  mdsvex@0.12.8(svelte@5.56.6):
     dependencies:
       '@types/mdast': 4.0.4
       '@types/unist': 2.0.11
