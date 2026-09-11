@@ -10,7 +10,7 @@ importers:
     dependencies:
       marked:
         specifier: ^18.0.0
-        version: 18.0.6
+        version: 18.0.12
     devDependencies:
       '@biomejs/biome':
         specifier: 2.5.4
@@ -68,7 +68,7 @@ importers:
         version: 5.56.6
       svelte-check:
         specifier: 4.7.3
-        version: 4.7.3(picomatch@4.0.4)(svelte@5.56.6)(typescript@6.0.3)
+        version: 4.7.3(picomatch@4.0.5)(svelte@5.56.6)(typescript@6.0.3)
       textlint:
         specifier: 15.7.1
         version: 15.7.1(supports-color@10.2.2)
@@ -1807,8 +1807,8 @@ packages:
     resolution: {integrity: sha512-qHKeU2E1bdyNAT077go2FVTNXvYcktN5IHtF6XyeD1l0PClxzSp2tUApAV14ORI8DGX4H9bNKZEzelZp4qn8IA==}
     engines: {node: '>=22'}
 
-  marked@18.0.6:
-    resolution: {integrity: sha512-MrV5puXBfuiy6wl6DLaq3BtIJQAJToAd5zt/ZKhRfGRAuFPALE7/4Y7jnxRQoEgK/pBgurGqLyAuRgZ2xOjr6w==}
+  marked@18.0.12:
+    resolution: {integrity: sha512-LEm4ga2YeI2T3GVHj9b0BaDPPk93LLTHMFeMyQbNIzPxc8vCI0y/scy0ZA6z6lXKyT9j9Nhl/OC6ZYKYGuFScA==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -3905,10 +3905,6 @@ snapshots:
     dependencies:
       format: 0.2.2
 
-  fdir@6.5.0(picomatch@4.0.4):
-    optionalDependencies:
-      picomatch: 4.0.4
-
   fdir@6.5.0(picomatch@4.0.5):
     optionalDependencies:
       picomatch: 4.0.5
@@ -4273,7 +4269,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  marked@18.0.6: {}
+  marked@18.0.12: {}
 
   math-intrinsics@1.1.0: {}
 
@@ -5113,12 +5109,12 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  svelte-check@4.7.3(picomatch@4.0.4)(svelte@5.56.6)(typescript@6.0.3):
+  svelte-check@4.7.3(picomatch@4.0.5)(svelte@5.56.6)(typescript@6.0.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       '@sveltejs/load-config': 0.2.0
       chokidar: 4.0.3
-      fdir: 6.5.0(picomatch@4.0.4)
+      fdir: 6.5.0(picomatch@4.0.5)
       picocolors: 1.1.1
       sade: 1.8.1
       svelte: 5.56.6
