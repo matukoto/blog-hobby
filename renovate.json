@@ -6,7 +6,9 @@
   ],
   "timezone": "Asia/Tokyo",
   "automerge": true,
-  "dependencyDashboard": true,
+  "dependencyDashboard": {
+    "enabled": true
+  },
   "platformAutomerge": true,
   "prHourlyLimit": 1,
   "minimumReleaseAge": "3 days",
